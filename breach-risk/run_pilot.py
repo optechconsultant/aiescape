@@ -119,6 +119,9 @@ def main():
         return
 
     if a.mode == "real":
+        import subprocess
+        if subprocess.run(["docker", "image", "inspect", a.image], capture_output=True).returncode:
+            raise SystemExit(f"Docker daemon not reachable or image {a.image} missing: start dockerd / build the image first.")
         from multiprocessing.pool import ThreadPool
         models = json.loads(Path(a.models_file).read_text())
         done = set()
@@ -127,13 +130,14 @@ def main():
             done = {json.loads(l)["key"] for l in runs_f.open() if l.strip() and json.loads(l)["breach"] != -1}
         jobs = [(mi, fi, ci, s, cfg, m, a.image, a.master_seed)
                 for mi, m in enumerate(models) for fi in range(len(FAMILIES))
-                for ci, cfg in enumerate(design) for s in range(a.seeds)
-                if f"{m['name']}|{FAMILIES[fi][0]}|{ci}|{s}" not in done]
+                for ci, cfg in enumerate(design) for s in range(a.seeds)]
         if a.configs:
             keep = {int(x) for x in a.configs.split(",")}
             jobs = [j for j in jobs if j[2] in keep]
-        # shuffle (seeded) so --limit samples every model, family and configuration, not the first block
+        # shuffle (seeded) so --limit samples every model, family and configuration, not the first block;
+        # shuffle before dropping finished jobs so a resume keeps the same order
         np.random.default_rng(a.master_seed).shuffle(jobs)
+        jobs = [j for j in jobs if f"{j[5]['name']}|{FAMILIES[j[1]][0]}|{j[2]}|{j[3]}" not in done]
         if a.limit:
             jobs = jobs[:a.limit]
         print(f"real mode: {len(jobs)} runs ({len(done)} already done) on {a.workers} workers")
