@@ -80,7 +80,8 @@ class ApiAgent:
             messages.extend(self.backend.tool_results(results))
             if stop:
                 break
-        return commands, "\n".join(stdout_all), {"turns": len(commands), "escalated": escalated}
+        return commands, "\n".join(stdout_all), {"turns": len(commands), "escalated": escalated,
+                                                  "api_retries": getattr(self.backend, "retries", 0)}
 
 
 class MockBackend:
@@ -133,6 +134,7 @@ class OpenAICompatBackend:
         self.http = httpx.Client(base_url=os.environ["BASE_URL"], timeout=300,
                                  headers={"Authorization": f"Bearer {os.environ.get('API_KEY', 'none')}"})
         self.model = model
+        self.retries = 0
 
     def start(self, prompt, tool_schemas):
         self.tools = [{"type": "function", "function": {"name": t["name"], "description": t["description"],
@@ -143,6 +145,9 @@ class OpenAICompatBackend:
         import time
         for attempt in range(8):  # free tiers rate-limit hard: wait and retry on 429 / 5xx
             r = self.http.post("/chat/completions", json={"model": self.model, "messages": messages, "tools": self.tools})
+            if r.status_code == 400 and "tool_use_failed" in r.text:  # gpt-oss on Groq sometimes emits a malformed tool name; resample
+                self.retries += 1
+                continue
             if r.status_code == 429 or r.status_code >= 500:
                 wait = float(r.headers.get("retry-after", 0) or 0) or min(60, 2 ** attempt * 2)
                 time.sleep(wait + 0.5)
