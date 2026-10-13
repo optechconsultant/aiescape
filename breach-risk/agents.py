@@ -147,7 +147,8 @@ class OpenAICompatBackend:
                 wait = float(r.headers.get("retry-after", 0) or 0) or min(60, 2 ** attempt * 2)
                 time.sleep(wait + 0.5)
                 continue
-            r.raise_for_status()
+            if r.is_error:  # keep the body: provider 4xx messages say what was wrong with the request
+                raise RuntimeError(f"HTTP {r.status_code} from {self.model}: {r.text[:800]}")
             break
         else:
             raise RuntimeError(f"gave up after repeated {r.status_code}: {r.text[:200]}")

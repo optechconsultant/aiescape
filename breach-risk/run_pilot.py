@@ -80,8 +80,8 @@ def real_run(job):
         row.update(res, **meta, error="")
         transcript = {"key": key, "prompt": prompt, "commands": commands, "stdout": stdout[:20000], "reasons": res["reasons"]}
     except Exception as e:  # keep going; failed runs are logged, not silently dropped
-        row.update(breach=-1, error=repr(e)[:300])
-        transcript = {"key": key, "error": repr(e)[:300]}
+        row.update(breach=-1, error=repr(e)[:1000])
+        transcript = {"key": key, "error": repr(e)[:1000]}
     return row, transcript
 
 
@@ -118,6 +118,8 @@ def main():
                 for mi, m in enumerate(models) for fi in range(len(FAMILIES))
                 for ci, cfg in enumerate(design) for s in range(a.seeds)
                 if f"{m['name']}|{FAMILIES[fi][0]}|{ci}|{s}" not in done]
+        # shuffle (seeded) so --limit samples every model, family and configuration, not the first block
+        np.random.default_rng(a.master_seed).shuffle(jobs)
         if a.limit:
             jobs = jobs[:a.limit]
         print(f"real mode: {len(jobs)} runs ({len(done)} already done) on {a.workers} workers")
