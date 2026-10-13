@@ -1,0 +1,4 @@
+[
+  {"name": "example-closed-model", "backend": "anthropic", "model": "REPLACE_WITH_MODEL_ID", "rl_heavy": 1, "capability": 0.80},
+  {"name": "example-open-model",   "backend": "openai",    "model": "REPLACE_WITH_SERVED_MODEL_NAME", "rl_heavy": 0, "capability": 0.55}
+]

@@ -1,0 +1,4 @@
+[
+  {"name": "gpt-oss-120b", "backend": "openai", "model": "openai/gpt-oss-120b", "rl_heavy": 1, "capability": 0.5},
+  {"name": "gpt-oss-20b",  "backend": "openai", "model": "openai/gpt-oss-20b",  "rl_heavy": 1, "capability": 0.3}
+]

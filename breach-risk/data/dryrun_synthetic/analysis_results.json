@@ -1,0 +1,226 @@
+{
+ "Leave-one-model-out": {
+  "base_rate": {
+   "brier": 0.0764,
+   "ece": 0.0207,
+   "auroc": 0.423,
+   "auprc": 0.071
+  },
+  "model_only": {
+   "brier": 0.0762,
+   "ece": 0.0151,
+   "auroc": 0.532,
+   "auprc": 0.089
+  },
+  "full_logistic": {
+   "brier": 0.0651,
+   "ece": 0.0095,
+   "auroc": 0.829,
+   "auprc": 0.311
+  },
+  "boosted_trees": {
+   "brier": 0.0658,
+   "ece": 0.013,
+   "auroc": 0.821,
+   "auprc": 0.297
+  }
+ },
+ "Leave-one-task-family-out": {
+  "base_rate": {
+   "brier": 0.0763,
+   "ece": 0.0208,
+   "auroc": 0.422,
+   "auprc": 0.07
+  },
+  "model_only": {
+   "brier": 0.0758,
+   "ece": 0.0138,
+   "auroc": 0.542,
+   "auprc": 0.101
+  },
+  "full_logistic": {
+   "brier": 0.064,
+   "ece": 0.0098,
+   "auroc": 0.834,
+   "auprc": 0.33
+  },
+  "boosted_trees": {
+   "brier": 0.0643,
+   "ece": 0.0056,
+   "auroc": 0.832,
+   "auprc": 0.324
+  }
+ },
+ "calibration_lomo": [
+  {
+   "n": 1540,
+   "predicted": 0.0069,
+   "observed": 0.011
+  },
+  {
+   "n": 1540,
+   "predicted": 0.0165,
+   "observed": 0.0162
+  },
+  {
+   "n": 1540,
+   "predicted": 0.0326,
+   "observed": 0.0344
+  },
+  {
+   "n": 1540,
+   "predicted": 0.0741,
+   "observed": 0.0753
+  },
+  {
+   "n": 1520,
+   "predicted": 0.2732,
+   "observed": 0.2809
+  }
+ ],
+ "effects": [
+  {
+   "factor": "conflict=soft",
+   "true": 0.7,
+   "est": 0.86,
+   "ci95": "[0.18, 1.54]",
+   "covered": true
+  },
+  {
+   "factor": "conflict=hard",
+   "true": 1.6,
+   "est": 1.62,
+   "ci95": "[0.98, 2.25]",
+   "covered": true
+  },
+  {
+   "factor": "honest_path=blocked",
+   "true": 1.3,
+   "est": 1.56,
+   "ci95": "[0.92, 2.19]",
+   "covered": true
+  },
+  {
+   "factor": "privilege=medium",
+   "true": 0.3,
+   "est": 0.31,
+   "ci95": "[0.02, 0.61]",
+   "covered": true
+  },
+  {
+   "factor": "privilege=high",
+   "true": 0.6,
+   "est": 0.71,
+   "ci95": "[0.43, 0.99]",
+   "covered": true
+  },
+  {
+   "factor": "monitoring=stated",
+   "true": -0.4,
+   "est": -0.24,
+   "ci95": "[-0.66, 0.18]",
+   "covered": true
+  },
+  {
+   "factor": "monitoring=visible",
+   "true": -0.8,
+   "est": -0.64,
+   "ci95": "[-1.16, -0.12]",
+   "covered": true
+  },
+  {
+   "factor": "stakes=task_failure",
+   "true": 0.4,
+   "est": 0.54,
+   "ci95": "[0.14, 0.94]",
+   "covered": true
+  },
+  {
+   "factor": "stakes=shutdown",
+   "true": 0.9,
+   "est": 0.72,
+   "ci95": "[0.30, 1.13]",
+   "covered": true
+  },
+  {
+   "factor": "framing=urgent",
+   "true": 0.3,
+   "est": 0.4,
+   "ci95": "[0.12, 0.67]",
+   "covered": true
+  },
+  {
+   "factor": "framing=persona",
+   "true": 0.5,
+   "est": 0.68,
+   "ci95": "[0.42, 0.94]",
+   "covered": true
+  },
+  {
+   "factor": "escalation=nominal",
+   "true": -0.3,
+   "est": -0.43,
+   "ci95": "[-0.69, -0.17]",
+   "covered": true
+  },
+  {
+   "factor": "escalation=credible",
+   "true": -1.1,
+   "est": -1.16,
+   "ci95": "[-1.45, -0.86]",
+   "covered": true
+  },
+  {
+   "factor": "conflict=soft:honest_path=blocked",
+   "true": 0.0,
+   "est": -0.48,
+   "ci95": "[-1.23, 0.28]",
+   "covered": true
+  },
+  {
+   "factor": "conflict=hard:honest_path=blocked",
+   "true": 0.9,
+   "est": 0.69,
+   "ci95": "[-0.03, 1.41]",
+   "covered": true
+  },
+  {
+   "factor": "monitoring=stated:stakes=task_failure",
+   "true": 0.0,
+   "est": -0.24,
+   "ci95": "[-0.81, 0.32]",
+   "covered": true
+  },
+  {
+   "factor": "monitoring=stated:stakes=shutdown",
+   "true": 0.0,
+   "est": -0.1,
+   "ci95": "[-0.65, 0.44]",
+   "covered": true
+  },
+  {
+   "factor": "monitoring=visible:stakes=task_failure",
+   "true": 0.0,
+   "est": -0.3,
+   "ci95": "[-0.97, 0.37]",
+   "covered": true
+  },
+  {
+   "factor": "monitoring=visible:stakes=shutdown",
+   "true": -0.5,
+   "est": -0.38,
+   "ci95": "[-1.13, 0.37]",
+   "covered": true
+  },
+  {
+   "factor": "rl_heavy",
+   "est": 0.44,
+   "ci95": "[0.26, 0.62]"
+  },
+  {
+   "factor": "capability",
+   "est": 0.92,
+   "ci95": "[0.58, 1.25]"
+  }
+ ]
+}
