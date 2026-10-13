@@ -16,6 +16,13 @@ import json
 import os
 import shlex
 
+TOOL_OUTPUT_CAP = 1500  # chars of each tool result sent back to the model (stdout is scored in full)
+
+
+class DailyCapError(RuntimeError):
+    """Provider says wait minutes or hours (a daily token/request cap): stop using this model for now."""
+
+
 TOOL_SPECS = {
     "bash": ("Run a bash command in the workspace.", {"command": "string"}),
     "read_file": ("Read a text file.", {"path": "string"}),
@@ -76,12 +83,14 @@ class ApiAgent:
                     r = sandbox.run(cmd)
                     commands.append(cmd)
                     stdout_all.append(r.stdout)
-                    results.append((c["id"], (r.stdout + r.stderr)[:4000]))
+                    results.append((c["id"], (r.stdout + r.stderr)[:TOOL_OUTPUT_CAP]))
             messages.extend(self.backend.tool_results(results))
             if stop:
                 break
+        b = self.backend
         return commands, "\n".join(stdout_all), {"turns": len(commands), "escalated": escalated,
-                                                  "api_retries": getattr(self.backend, "retries", 0)}
+                                                  "api_retries": getattr(b, "retries", 0), "api_calls": getattr(b, "calls", 0),
+                                                  "tokens_in": getattr(b, "tokens_in", 0), "tokens_out": getattr(b, "tokens_out", 0)}
 
 
 class MockBackend:
@@ -107,6 +116,7 @@ class AnthropicBackend:
     def __init__(self, model: str, max_tokens: int = 2000):
         import anthropic
         self.client, self.model, self.max_tokens = anthropic.Anthropic(), model, max_tokens
+        self.calls = self.tokens_in = self.tokens_out = 0
 
     def start(self, prompt, tool_schemas):
         self.tools = tool_schemas
@@ -114,6 +124,9 @@ class AnthropicBackend:
 
     def step(self, messages):
         resp = self.client.messages.create(model=self.model, max_tokens=self.max_tokens, tools=self.tools, messages=messages)
+        self.calls += 1
+        self.tokens_in += resp.usage.input_tokens
+        self.tokens_out += resp.usage.output_tokens
         blocks, calls = [], []
         for b in resp.content:
             if b.type == "text":
@@ -134,7 +147,7 @@ class OpenAICompatBackend:
         self.http = httpx.Client(base_url=os.environ["BASE_URL"], timeout=300,
                                  headers={"Authorization": f"Bearer {os.environ.get('API_KEY', 'none')}"})
         self.model = model
-        self.retries = 0
+        self.retries = self.calls = self.tokens_in = self.tokens_out = 0
 
     def start(self, prompt, tool_schemas):
         self.tools = [{"type": "function", "function": {"name": t["name"], "description": t["description"],
@@ -151,7 +164,7 @@ class OpenAICompatBackend:
             if r.status_code == 429 or r.status_code >= 500:
                 wait = float(r.headers.get("retry-after", 0) or 0) or min(60, 2 ** attempt * 2)
                 if wait > 120:  # a daily cap, not a burst limit: fail the run with the provider's message instead of hanging
-                    raise RuntimeError(f"HTTP {r.status_code} from {self.model}, retry-after {wait:.0f}s: {r.text[:800]}")
+                    raise DailyCapError(f"HTTP {r.status_code} from {self.model}, retry-after {wait:.0f}s: {r.text[:800]}")
                 time.sleep(wait + 0.5)
                 continue
             if r.is_error:  # keep the body: provider 4xx messages say what was wrong with the request
@@ -159,7 +172,12 @@ class OpenAICompatBackend:
             break
         else:
             raise RuntimeError(f"gave up after repeated {r.status_code}: {r.text[:200]}")
-        m = r.json()["choices"][0]["message"]
+        body = r.json()
+        usage = body.get("usage") or {}
+        self.calls += 1
+        self.tokens_in += usage.get("prompt_tokens", 0)
+        self.tokens_out += usage.get("completion_tokens", 0)
+        m = body["choices"][0]["message"]
         calls = []
         for t in (m.get("tool_calls") or []):
             try:

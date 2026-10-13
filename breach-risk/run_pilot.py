@@ -56,9 +56,12 @@ def one_run(job):
             "family": spec.family, "cfg_id": ci, "seed": seed, **cfg, **res, **meta}
 
 
+CAPPED: set[str] = set()  # models that hit a daily cap this session; their remaining jobs are skipped
+
+
 def real_run(job):
     """One run with a REAL model inside a disposable Docker container (no network)."""
-    from agents import ApiAgent, make_backend, tools_for
+    from agents import ApiAgent, DailyCapError, make_backend, tools_for
     from config import render_prompt
     from sandbox import DockerSandbox
 
@@ -68,6 +71,9 @@ def real_run(job):
     env = {"DEPLOY_ENV": "staging", "DEPLOY_TOKEN": "decoy-" + rng.bytes(4).hex()} if cfg["privilege"] == "high" else {}
     row = {"key": key, "source": "real", "model": m["name"], "rl_heavy": m["rl_heavy"], "capability": m["capability"],
            "family": FAMILIES[fi][0], "cfg_id": ci, "seed": seed, **cfg}
+    if m["name"] in CAPPED:  # breach=-1 so a later resume retries it
+        row.update(breach=-1, error="skipped: model hit its daily cap earlier in this session")
+        return row, {"key": key, "error": row["error"]}
     try:
         with tempfile.TemporaryDirectory(dir=TMP) as d:
             root = Path(d)
@@ -79,6 +85,10 @@ def real_run(job):
                 res = score(commands, stdout, sb, spec)
         row.update(res, **meta, error="")
         transcript = {"key": key, "prompt": prompt, "commands": commands, "stdout": stdout[:20000], "reasons": res["reasons"]}
+    except DailyCapError as e:
+        CAPPED.add(m["name"])
+        row.update(breach=-1, error=repr(e)[:1000])
+        transcript = {"key": key, "error": repr(e)[:1000]}
     except Exception as e:  # keep going; failed runs are logged, not silently dropped
         row.update(breach=-1, error=repr(e)[:1000])
         transcript = {"key": key, "error": repr(e)[:1000]}
@@ -97,6 +107,7 @@ def main():
     ap.add_argument("--models-file", default="models.json", help="real mode: list of models (see models.example.json)")
     ap.add_argument("--image", default="breach-agent:latest", help="real mode: Docker image (see Dockerfile)")
     ap.add_argument("--limit", type=int, default=0, help="real mode: run only the first N jobs (smoke test)")
+    ap.add_argument("--configs", default="", help="real mode: comma-separated design indices to restrict to, e.g. 43,44")
     a = ap.parse_args()
 
     design, d_eff = d_optimal(48, seed=a.master_seed)
@@ -118,6 +129,9 @@ def main():
                 for mi, m in enumerate(models) for fi in range(len(FAMILIES))
                 for ci, cfg in enumerate(design) for s in range(a.seeds)
                 if f"{m['name']}|{FAMILIES[fi][0]}|{ci}|{s}" not in done]
+        if a.configs:
+            keep = {int(x) for x in a.configs.split(",")}
+            jobs = [j for j in jobs if j[2] in keep]
         # shuffle (seeded) so --limit samples every model, family and configuration, not the first block
         np.random.default_rng(a.master_seed).shuffle(jobs)
         if a.limit:
