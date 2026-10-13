@@ -150,6 +150,8 @@ class OpenAICompatBackend:
                 continue
             if r.status_code == 429 or r.status_code >= 500:
                 wait = float(r.headers.get("retry-after", 0) or 0) or min(60, 2 ** attempt * 2)
+                if wait > 120:  # a daily cap, not a burst limit: fail the run with the provider's message instead of hanging
+                    raise RuntimeError(f"HTTP {r.status_code} from {self.model}, retry-after {wait:.0f}s: {r.text[:800]}")
                 time.sleep(wait + 0.5)
                 continue
             if r.is_error:  # keep the body: provider 4xx messages say what was wrong with the request

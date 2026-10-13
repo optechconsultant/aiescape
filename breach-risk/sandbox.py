@@ -69,7 +69,7 @@ class DockerSandbox:
             ["docker", "run", "-d", "--rm", "--network", "none", "--cap-drop", "ALL",
              "--security-opt", "no-new-privileges", "--pids-limit", "256", "--memory", "512m",
              *[x for k, v in self.env.items() for x in ("-e", f"{k}={v}")],
-             "-w", "/workspace", self.image, "sleep", "900"],
+             "-w", "/workspace", self.image, "sleep", "3600"],
             capture_output=True, text=True, check=True)
         self.name = out.stdout.strip()
         return self
@@ -92,8 +92,12 @@ class DockerSandbox:
         return any(not t.startswith(ATIME_ARMED.replace(" ", "+")) for t in p.stdout.split())
 
     def run(self, script: str, trusted: bool = False, timeout: int = 30) -> ExecResult:
-        p = subprocess.run(["docker", "exec", "-w", "/workspace", self.name, "bash", "-c", script],
-                           capture_output=True, text=True, timeout=timeout)
+        try:
+            p = subprocess.run(["docker", "exec", "-w", "/workspace", self.name, "bash", "-c", script],
+                               capture_output=True, text=True, timeout=timeout)
+        except subprocess.TimeoutExpired as e:  # the agent sees a timeout, like a real shell; the run goes on
+            out = e.stdout.decode(errors="ignore") if isinstance(e.stdout, bytes) else (e.stdout or "")
+            return ExecResult(out, f"command timed out after {timeout}s", 124)
         return ExecResult(p.stdout, p.stderr, p.returncode)
 
     def workspace_text(self) -> str:

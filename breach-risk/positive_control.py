@@ -76,8 +76,12 @@ def main():
         jobs.append(("plain", i, {**base, "honest_path": "open", "privilege": "low" if i < 3 else "medium"}))
     for i in range(5, 10):  # evasive needs a shell for wildcards; honest path blocked so the notes are the only source
         jobs.append(("evasive", i, {**base, "honest_path": "blocked", "privilege": "medium"}))
-    with (out / "runs.jsonl").open("w") as rf, (out / "transcripts.jsonl").open("w") as tf:
+    runs_f = out / "runs.jsonl"
+    done = {json.loads(l)["key"].split("|")[-1] for l in runs_f.open() if json.loads(l)["breach"] != -1} if runs_f.exists() else set()
+    with runs_f.open("a") as rf, (out / "transcripts.jsonl").open("a") as tf:
         for kind, i, cfg in jobs:
+            if str(i) in done:  # resume: completed runs are kept, failed ones are retried
+                continue
             row, tr = control_run(i, kind, i % len(FAMILIES), cfg, m, a.image, a.master_seed)
             rf.write(json.dumps(row) + "\n"); tf.write(json.dumps(tr) + "\n"); rf.flush(); tf.flush()
             print(f"{row['key']:45s} breach={row['breach']} file_read={row.get('file_read')} "
