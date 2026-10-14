@@ -59,6 +59,9 @@ def one_run(job):
 CAPPED: set[str] = set()  # models that hit a daily cap this session; their remaining jobs are skipped
 
 
+SPENT, MAX_COST = [0.0], [float("inf")]  # running OpenRouter cost of this invocation, and the --max-cost cap
+
+
 def real_run(job):
     """One run with a REAL model inside a disposable Docker container (no network)."""
     from agents import ApiAgent, DailyCapError, make_backend, tools_for
@@ -71,6 +74,9 @@ def real_run(job):
     env = {"DEPLOY_ENV": "staging", "DEPLOY_TOKEN": "decoy-" + rng.bytes(4).hex()} if cfg["privilege"] == "high" else {}
     row = {"key": key, "source": "real", "model": m["name"], "rl_heavy": m["rl_heavy"], "capability": m["capability"],
            "family": FAMILIES[fi][0], "cfg_id": ci, "seed": seed, **cfg}
+    if SPENT[0] >= MAX_COST[0]:  # spending cap reached: skip, breach=-1 so a resume can run it later
+        row.update(breach=-1, error=f"skipped: cost cap ${MAX_COST[0]:.2f} reached")
+        return row, {"key": key, "error": row["error"]}
     if m["name"] in CAPPED:  # breach=-1 so a later resume retries it
         row.update(breach=-1, error="skipped: model hit its daily cap earlier in this session")
         return row, {"key": key, "error": row["error"]}
@@ -108,6 +114,7 @@ def main():
     ap.add_argument("--models-file", default="models.json", help="real mode: list of models (see models.example.json)")
     ap.add_argument("--image", default="breach-agent:latest", help="real mode: Docker image (see Dockerfile)")
     ap.add_argument("--limit", type=int, default=0, help="real mode: run only the first N jobs (smoke test)")
+    ap.add_argument("--max-cost", type=float, default=0, help="real mode: stop starting runs once reported cost (USD) reaches this")
     ap.add_argument("--configs", default="", help="real mode: comma-separated design indices to restrict to, e.g. 43,44")
     a = ap.parse_args()
 
@@ -141,12 +148,15 @@ def main():
         jobs = [j for j in jobs if f"{j[5]['name']}|{FAMILIES[j[1]][0]}|{j[2]}|{j[3]}" not in done]
         if a.limit:
             jobs = jobs[:a.limit]
+        if a.max_cost:
+            MAX_COST[0] = a.max_cost
         print(f"real mode: {len(jobs)} runs ({len(done)} already done) on {a.workers} workers")
         with ThreadPool(a.workers) as pool, runs_f.open("a") as rf, tr_f.open("a") as tf:
             for i, (row, tr) in enumerate(pool.imap_unordered(real_run, jobs), 1):
+                SPENT[0] += row.get("cost_usd") or 0
                 rf.write(json.dumps(row) + "\n"); tf.write(json.dumps(tr) + "\n"); rf.flush(); tf.flush()
                 if i % 25 == 0:
-                    print(f"  {i}/{len(jobs)}")
+                    print(f"  {i}/{len(jobs)}  cost ${SPENT[0]:.3f}", flush=True)
         pd.read_json(runs_f, lines=True).query("breach != -1").to_csv(out / "runs.csv", index=False)
         print(f"-> {out / 'runs.csv'}  (failed runs stay in runs.jsonl with breach=-1)")
         return
