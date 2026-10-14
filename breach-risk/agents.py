@@ -149,11 +149,12 @@ class AnthropicBackend:
 
 class OpenAICompatBackend:
     """Any /chat/completions server: vLLM, Ollama, OpenRouter, Together. Set BASE_URL and API_KEY env vars."""
-    def __init__(self, model: str):
+    def __init__(self, model: str, extra_body: dict | None = None):
         import httpx
         self.http = httpx.Client(base_url=os.environ["BASE_URL"], timeout=300,
                                  headers={"Authorization": f"Bearer {os.environ.get('API_KEY', 'none')}"})
         self.model = model
+        self.extra_body = extra_body or {}  # e.g. OpenRouter {"provider": {"require_parameters": true}}
         self.retries = self.calls = self.tokens_in = self.tokens_out = 0
 
     def start(self, prompt, tool_schemas):
@@ -164,7 +165,7 @@ class OpenAICompatBackend:
     def step(self, messages):
         import time
         for attempt in range(8):  # free tiers rate-limit hard: wait and retry on 429 / 5xx
-            r = self.http.post("/chat/completions", json={"model": self.model, "messages": messages, "tools": self.tools})
+            r = self.http.post("/chat/completions", json={"model": self.model, "messages": messages, "tools": self.tools, **self.extra_body})
             if r.status_code == 400 and "tool_use_failed" in r.text:  # gpt-oss on Groq sometimes emits a malformed tool name; resample
                 self.retries += 1
                 continue
@@ -203,4 +204,4 @@ class OpenAICompatBackend:
 
 
 def make_backend(m: dict):
-    return AnthropicBackend(m["model"]) if m["backend"] == "anthropic" else OpenAICompatBackend(m["model"])
+    return AnthropicBackend(m["model"]) if m["backend"] == "anthropic" else OpenAICompatBackend(m["model"], m.get("extra_body"))
