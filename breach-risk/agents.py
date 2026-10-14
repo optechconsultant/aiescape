@@ -66,11 +66,13 @@ class ApiAgent:
             raise RuntimeError("ApiAgent needs an isolated sandbox (DockerSandbox). Refusing to run.")
         messages = self.backend.start(prompt, [schema(t) for t in tools])
         commands, stdout_all, escalated, stop = [], [], 0, False
-        cmd_turns, model_turns, finished = [], 0, False
+        cmd_turns, model_turns, finished, texts = [], 0, False, []
         for turn in range(1, self.max_turns + 1):
             model_turns = turn
             assistant_msg, calls = self.backend.step(messages)
             messages.append(assistant_msg)
+            if assistant_msg.get("content"):
+                texts.append([turn, str(assistant_msg["content"])[:4000]])
             if not calls:
                 finished = True
                 break
@@ -94,10 +96,12 @@ class ApiAgent:
                 break
         b = self.backend
         return commands, "\n".join(stdout_all), {"turns": len(commands), "model_turns": model_turns,
-                                                  "hit_turn_limit": int(not finished), "cmd_turns": cmd_turns,
+                                                  "hit_turn_limit": int(not finished), "cmd_turns": cmd_turns, "texts": texts,
                                                   "escalated": escalated,
                                                   "api_retries": getattr(b, "retries", 0), "api_calls": getattr(b, "calls", 0),
-                                                  "tokens_in": getattr(b, "tokens_in", 0), "tokens_out": getattr(b, "tokens_out", 0)}
+                                                  "tokens_in": getattr(b, "tokens_in", 0), "tokens_out": getattr(b, "tokens_out", 0),
+                                                  "cost_usd": round(getattr(b, "cost", 0.0), 6),
+                                                  "providers": ",".join(sorted(getattr(b, "providers", set())))}
 
 
 class MockBackend:
@@ -156,6 +160,8 @@ class OpenAICompatBackend:
         self.model = model
         self.extra_body = extra_body or {}  # e.g. OpenRouter {"provider": {"require_parameters": true}}
         self.retries = self.calls = self.tokens_in = self.tokens_out = 0
+        self.cost = 0.0
+        self.providers = set()  # OpenRouter reports which backend served each call
 
     def start(self, prompt, tool_schemas):
         self.tools = [{"type": "function", "function": {"name": t["name"], "description": t["description"],
@@ -163,9 +169,15 @@ class OpenAICompatBackend:
         return [{"role": "user", "content": prompt}]
 
     def step(self, messages):
-        import time
+        import time, httpx
         for attempt in range(8):  # free tiers rate-limit hard: wait and retry on 429 / 5xx
-            r = self.http.post("/chat/completions", json={"model": self.model, "messages": messages, "tools": self.tools, **self.extra_body})
+            try:
+                r = self.http.post("/chat/completions", json={"model": self.model, "messages": messages, "tools": self.tools, **self.extra_body})
+            except httpx.TransportError:  # connection reset / timeout: retry like a 5xx
+                if attempt == 7:
+                    raise
+                time.sleep(min(60, 2 ** attempt * 2))
+                continue
             if r.status_code == 400 and "tool_use_failed" in r.text:  # gpt-oss on Groq sometimes emits a malformed tool name; resample
                 self.retries += 1
                 continue
@@ -177,14 +189,22 @@ class OpenAICompatBackend:
                 continue
             if r.is_error:  # keep the body: provider 4xx messages say what was wrong with the request
                 raise RuntimeError(f"HTTP {r.status_code} from {self.model}: {r.text[:800]}")
+            body = r.json()
+            if "choices" not in body and "Failed to call a function" in r.text:  # Groq via OpenRouter, HTTP 200: resample
+                self.retries += 1
+                continue
             break
         else:
             raise RuntimeError(f"gave up after repeated {r.status_code}: {r.text[:200]}")
-        body = r.json()
+        if "choices" not in body:  # OpenRouter relays some upstream errors with HTTP 200
+            raise RuntimeError(f"no choices from {self.model}: {json.dumps(body.get('error') or body)[:800]}")
         usage = body.get("usage") or {}
         self.calls += 1
         self.tokens_in += usage.get("prompt_tokens", 0)
         self.tokens_out += usage.get("completion_tokens", 0)
+        self.cost += float(usage.get("cost") or 0)
+        if body.get("provider"):
+            self.providers.add(body["provider"])
         m = body["choices"][0]["message"]
         calls = []
         for t in (m.get("tool_calls") or []):

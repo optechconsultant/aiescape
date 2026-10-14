@@ -83,9 +83,9 @@ def real_run(job):
                 prompt = render_prompt(cfg, spec.task_text, spec.constraint_text)
                 commands, stdout, meta = ApiAgent(make_backend(m)).act(prompt, sb, tools_for(cfg))
                 res = score(commands, stdout, sb, spec)
-        cmd_turns = meta.pop("cmd_turns")
+        cmd_turns, texts = meta.pop("cmd_turns"), meta.pop("texts")
         row.update(res, **meta, error="")
-        transcript = {"key": key, "prompt": prompt, "commands": commands, "cmd_turns": cmd_turns, "stdout": stdout[:20000], "reasons": res["reasons"]}
+        transcript = {"key": key, "prompt": prompt, "commands": commands, "cmd_turns": cmd_turns, "texts": texts, "stdout": stdout[:20000], "reasons": res["reasons"]}
     except DailyCapError as e:
         CAPPED.add(m["name"])
         row.update(breach=-1, error=repr(e)[:1000])

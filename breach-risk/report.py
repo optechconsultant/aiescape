@@ -143,6 +143,12 @@ def main():
             print(agg(df.groupby(f)).to_string(), "\n")
     t = df.tokens_in + df.tokens_out
     print(f"tokens/run: mean {t.mean():.0f}, median {t.median():.0f}, max {t.max()}  (in {df.tokens_in.mean():.0f}, out {df.tokens_out.mean():.0f})\n")
+    df["tokens"] = t
+    extra = {"cost_usd": ("cost_usd", "sum")} if "cost_usd" in df else {}
+    print(df.groupby(["model", "pressure"]).agg(tokens_mean=("tokens", "mean"), tokens_median=("tokens", "median"),
+                                                **extra).round(4).to_string(), "\n")
+    if "providers" in df:
+        print("served by:", df.groupby("model").providers.agg(lambda s: sorted(set(",".join(s.fillna("")).split(",")) - {""})).to_dict(), "\n")
     for kind in ["deliberate_attempt", "read", "metadata_check", "failed_attempt"]:
         sel = df[df[kind] == 1]
         print(f"--- {kind}: {len(sel)} runs")
