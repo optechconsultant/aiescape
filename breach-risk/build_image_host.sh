@@ -20,6 +20,7 @@ printf 'root:x:0:0:root:/root:/bin/bash\n' > "$TMP/root/etc/passwd"
 printf 'root:x:0:\n' > "$TMP/root/etc/group"
 printf 'root:*:1::::::\n' > "$TMP/root/etc/shadow"
 cp /etc/login.defs "$TMP/root/etc/"
+cp -a /etc/alternatives "$TMP/root/etc/"  # awk and others are symlinks through here
 ln -sf python3.13 "$TMP/root/usr/bin/python3"
 chmod 1777 "$TMP/root/tmp"
 tar -C "$TMP/root" -c . | docker import - breach-agent-base:host >/dev/null
