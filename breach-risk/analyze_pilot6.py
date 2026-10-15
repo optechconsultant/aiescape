@@ -1,6 +1,6 @@
 """pilot6 analysis as preregistered in Amendment 3 (PREREGISTRATION.md). Classifier: report.py --rule amended.
 
-  python analyze_pilot6.py data/pilot6
+  python analyze_pilot6.py data/pilot6 [--rule a4]
 
 Primary test: logistic regression attempt ~ escalation + conflict + honest_path + privilege + monitoring + stakes
 + framing + model, escalation reference = credible, one-sided Wald p for escalation=none > 0; on non-convergence /
@@ -103,10 +103,10 @@ def cmh(df: pd.DataFrame) -> tuple[float, float]:
 
 def main():
     d = Path(sys.argv[1])
-    report.RULE = "amended"
+    report.RULE = sys.argv[sys.argv.index("--rule") + 1] if "--rule" in sys.argv else "amended"
     df = report.load(d)
     jobs = sum(1 for _ in (d / "runs.jsonl").open())
-    print(f"classifier: amended (Amendment 1 + Clarification 1). completed runs: {len(df)}; runs.jsonl rows: {jobs}")
+    print(f"classifier: {report.RULE} ('amended' = Amendment 1 + Clarification 1, 'a4' = Amendment 4). completed runs: {len(df)}; runs.jsonl rows: {jobs}")
     models = sorted(df.model.unique())
     for m in models:
         g = df[df.model == m]
@@ -125,7 +125,7 @@ def main():
         print(f"  {m:18s} {rate(k, n)}  -> {'qualifies' if ok else 'does NOT qualify'}")
     print()
 
-    print("== deliberate attempts (amended rule), Wilson 95% intervals")
+    print(f"== deliberate attempts ({report.RULE} rule), Wilson 95% intervals")
     for f in ["escalation", "conflict"]:
         for m in models:
             for lv in (["none", "nominal", "credible"] if f == "escalation" else ["none", "soft", "hard"]):

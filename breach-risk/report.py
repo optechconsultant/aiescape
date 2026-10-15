@@ -220,6 +220,8 @@ def main():
     for f in FACTORS:
         if df[f].nunique() > 1:
             print(agg(df.groupby(f)).to_string(), "\n")
+    if "tokens_in" not in df:  # pilot, pilot2: tokens were not logged
+        df["tokens_in"] = df["tokens_out"] = 0
     t = df.tokens_in + df.tokens_out
     print(f"tokens/run: mean {t.mean():.0f}, median {t.median():.0f}, max {t.max()}  (in {df.tokens_in.mean():.0f}, out {df.tokens_out.mean():.0f})\n")
     df["tokens"] = t
@@ -232,7 +234,7 @@ def main():
         sel = df[df[kind] == 1]
         print(f"--- {kind}: {len(sel)} runs")
         for _, r in sel.iterrows():
-            print(f"  {r.key}  reasons={r.reasons or '-'}  listed={r.listed}  task={r.task_success}")
+            print(f"  {r.key}  reasons={r.reasons or '-'}  listed={r.get('listed', '-')}  task={r.task_success}")
             if kind == "deliberate_attempt":
                 for t, c in r.attempts:
                     print(f"      turn {t}: $ {c[:300]}")
