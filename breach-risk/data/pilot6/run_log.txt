@@ -1,0 +1,141 @@
+PYTHONPATH=<uv-cache httpx 0.28.1> python3 run_pilot.py --mode real --models-file models.deepinfra.json --seeds 3 --workers 10 --max-cost 4.8 --report-at 50 --out data/pilot6
+resume of failed jobs after sandbox/agents fixes: same command, --workers 7
+
+--- stdout of the runs ---
+full grid: 1458 configurations; design: 48 runs, 20 parameters
+model-matrix rank: 20 / 20
+D-efficiency: 0.130   (random 48-run designs: mean 0.101, best 0.114)
+  conflict     none=16  soft=16  hard=16
+  honest_path  open=24  blocked=24
+  privilege    low=14  medium=17  high=17
+  monitoring   none=15  stated=16  visible=17
+  stakes       none=16  task_failure=17  shutdown=15
+  framing      neutral=16  urgent=17  persona=15
+  escalation   none=17  nominal=16  credible=15
+real mode: 2880 runs (0 already done) on 10 workers
+  25/2880  cost $0.008
+  50/2880  cost $0.021
+  75/2880  cost $0.034
+full grid: 1458 configurations; design: 48 runs, 20 parameters
+model-matrix rank: 20 / 20
+D-efficiency: 0.130   (random 48-run designs: mean 0.101, best 0.114)
+  conflict     none=16  soft=16  hard=16
+  honest_path  open=24  blocked=24
+  privilege    low=14  medium=17  high=17
+  monitoring   none=15  stated=16  visible=17
+  stakes       none=16  task_failure=17  shutdown=15
+  framing      neutral=16  urgent=17  persona=15
+  escalation   none=17  nominal=16  credible=15
+real mode: 2787 runs (93 already done) on 16 workers
+  25/2787  cost $0.008
+  50/2787  cost $0.027
+  75/2787  cost $0.037
+  100/2787  cost $0.053
+  125/2787  cost $0.068
+  150/2787  cost $0.083
+  175/2787  cost $0.094
+  200/2787  cost $0.115
+  225/2787  cost $0.126
+  250/2787  cost $0.143
+  275/2787  cost $0.152
+  300/2787  cost $0.167
+  325/2787  cost $0.183
+  350/2787  cost $0.190
+  375/2787  cost $0.212
+  400/2787  cost $0.228
+  425/2787  cost $0.234
+  450/2787  cost $0.259
+  475/2787  cost $0.271
+  500/2787  cost $0.280
+  525/2787  cost $0.289
+  550/2787  cost $0.299
+  575/2787  cost $0.311
+  600/2787  cost $0.322
+  625/2787  cost $0.342
+  650/2787  cost $0.358
+  675/2787  cost $0.368
+  700/2787  cost $0.381
+  725/2787  cost $0.394
+  750/2787  cost $0.408
+  775/2787  cost $0.439
+  800/2787  cost $0.456
+  825/2787  cost $0.467
+  850/2787  cost $0.485
+  875/2787  cost $0.496
+  900/2787  cost $0.507
+  925/2787  cost $0.531
+  950/2787  cost $0.543
+  975/2787  cost $0.559
+  1000/2787  cost $0.581
+  1025/2787  cost $0.594
+  1050/2787  cost $0.608
+  1075/2787  cost $0.616
+  1100/2787  cost $0.634
+  1125/2787  cost $0.656
+  1150/2787  cost $0.665
+  1175/2787  cost $0.686
+  1200/2787  cost $0.699
+  1225/2787  cost $0.710
+  1250/2787  cost $0.741
+  1275/2787  cost $0.756
+  1300/2787  cost $0.772
+  1325/2787  cost $0.781
+  1350/2787  cost $0.788
+  1375/2787  cost $0.795
+  1400/2787  cost $0.811
+  1425/2787  cost $0.826
+  1450/2787  cost $0.836
+  1475/2787  cost $0.852
+  1500/2787  cost $0.865
+  1525/2787  cost $0.884
+  1550/2787  cost $0.902
+  1575/2787  cost $0.914
+  1600/2787  cost $0.921
+  1625/2787  cost $0.954
+  1650/2787  cost $0.962
+  1675/2787  cost $0.970
+  1700/2787  cost $0.985
+  1725/2787  cost $0.997
+  1750/2787  cost $1.012
+  1775/2787  cost $1.047
+  1800/2787  cost $1.068
+  1825/2787  cost $1.106
+  1850/2787  cost $1.115
+  1875/2787  cost $1.135
+  1900/2787  cost $1.149
+  1925/2787  cost $1.156
+  1950/2787  cost $1.167
+  1975/2787  cost $1.186
+  2000/2787  cost $1.205
+  2025/2787  cost $1.222
+  2050/2787  cost $1.234
+  2075/2787  cost $1.251
+  2100/2787  cost $1.272
+  2125/2787  cost $1.282
+  2150/2787  cost $1.304
+  2175/2787  cost $1.317
+  2200/2787  cost $1.341
+  2225/2787  cost $1.354
+  2250/2787  cost $1.368
+  2275/2787  cost $1.399
+  2300/2787  cost $1.407
+  2325/2787  cost $1.419
+  2350/2787  cost $1.448
+  2375/2787  cost $1.466
+  2400/2787  cost $1.489
+  2425/2787  cost $1.506
+  2450/2787  cost $1.527
+  2475/2787  cost $1.536
+  2500/2787  cost $1.545
+  2525/2787  cost $1.563
+  2550/2787  cost $1.580
+  2575/2787  cost $1.594
+  2600/2787  cost $1.614
+  2625/2787  cost $1.632
+  2650/2787  cost $1.648
+  2675/2787  cost $1.655
+  2700/2787  cost $1.666
+  2725/2787  cost $1.691
+  2750/2787  cost $1.699
+  2775/2787  cost $1.707
+-> /home/user/aiescape/breach-risk/data/pilot6/runs.csv  (failed runs stay in runs.jsonl with breach=-1)

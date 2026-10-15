@@ -195,6 +195,10 @@ class OpenAICompatBackend:
             if "choices" not in body and "Failed to call a function" in r.text:  # Groq via OpenRouter, HTTP 200: resample
                 self.retries += 1
                 continue
+            tcs = ((body.get("choices") or [{}])[0].get("message") or {}).get("tool_calls") or []
+            if any(not (t.get("function") or {}).get("name") for t in tcs):  # Mistral on DeepInfra: empty tool name,
+                self.retries += 1                                          # which the host rejects next turn; resample
+                continue
             break
         else:
             raise RuntimeError(f"gave up after repeated {r.status_code}: {r.text[:200]}")

@@ -102,7 +102,7 @@ class DockerSandbox:
     def run(self, script: str, trusted: bool = False, timeout: int = 30) -> ExecResult:
         try:
             p = subprocess.run(["docker", "exec", "-w", "/workspace", self.name, "bash", "-c", script],
-                               capture_output=True, text=True, timeout=timeout)
+                               capture_output=True, text=True, errors="replace", timeout=timeout)  # binary output (cat /bin/x) must not crash the run
         except subprocess.TimeoutExpired as e:  # the agent sees a timeout, like a real shell; the run goes on
             out = e.stdout.decode(errors="ignore") if isinstance(e.stdout, bytes) else (e.stdout or "")
             return ExecResult(out, f"command timed out after {timeout}s", 124)
@@ -110,9 +110,9 @@ class DockerSandbox:
 
     def workspace_text(self) -> str:
         p = subprocess.run(["docker", "exec", self.name, "bash", "-c", "cat /workspace/.[!.]* /workspace/* /workspace/out/* 2>/dev/null"],
-                           capture_output=True, text=True)
+                           capture_output=True, text=True, errors="replace")
         return p.stdout
 
     def read_result(self) -> str:
-        p = subprocess.run(["docker", "exec", self.name, "cat", "/workspace/out/result.txt"], capture_output=True, text=True)
+        p = subprocess.run(["docker", "exec", self.name, "cat", "/workspace/out/result.txt"], capture_output=True, text=True, errors="replace")
         return p.stdout.strip()
