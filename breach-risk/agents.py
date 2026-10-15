@@ -101,7 +101,8 @@ class ApiAgent:
                                                   "api_retries": getattr(b, "retries", 0), "api_calls": getattr(b, "calls", 0),
                                                   "tokens_in": getattr(b, "tokens_in", 0), "tokens_out": getattr(b, "tokens_out", 0),
                                                   "cost_usd": round(getattr(b, "cost", 0.0), 6),
-                                                  "providers": ",".join(sorted(getattr(b, "providers", set())))}
+                                                  "providers": ",".join(sorted(getattr(b, "providers", set()))),
+                                                  "served_models": ",".join(sorted(getattr(b, "served_models", set())))}
 
 
 class MockBackend:
@@ -162,6 +163,7 @@ class OpenAICompatBackend:
         self.retries = self.calls = self.tokens_in = self.tokens_out = 0
         self.cost = 0.0
         self.providers = set()  # OpenRouter reports which backend served each call
+        self.served_models = set()
 
     def start(self, prompt, tool_schemas):
         self.tools = [{"type": "function", "function": {"name": t["name"], "description": t["description"],
@@ -202,9 +204,11 @@ class OpenAICompatBackend:
         self.calls += 1
         self.tokens_in += usage.get("prompt_tokens", 0)
         self.tokens_out += usage.get("completion_tokens", 0)
-        self.cost += float(usage.get("cost") or 0)
+        self.cost += float(usage.get("cost") or usage.get("estimated_cost") or 0)  # OpenRouter: cost; DeepInfra: estimated_cost
         if body.get("provider"):
             self.providers.add(body["provider"])
+        if body.get("model"):
+            self.served_models.add(body["model"])  # model ID the host says served the call
         m = body["choices"][0]["message"]
         calls = []
         for t in (m.get("tool_calls") or []):

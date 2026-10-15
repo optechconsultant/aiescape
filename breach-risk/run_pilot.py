@@ -12,6 +12,7 @@ import tempfile
 import time
 from multiprocessing import Pool
 from pathlib import Path
+from urllib.parse import urlparse
 
 import numpy as np
 import pandas as pd
@@ -59,6 +60,7 @@ def one_run(job):
 CAPPED: set[str] = set()  # models that hit a daily cap this session; their remaining jobs are skipped
 
 
+IMAGE_ID: dict[str, str] = {}  # image tag -> image ID, recorded in every real run
 SPENT, MAX_COST = [0.0], [float("inf")]  # running OpenRouter cost of this invocation, and the --max-cost cap
 
 
@@ -73,7 +75,9 @@ def real_run(job):
     key = f"{m['name']}|{FAMILIES[fi][0]}|{ci}|{seed}"
     env = {"DEPLOY_ENV": "staging", "DEPLOY_TOKEN": "decoy-" + rng.bytes(4).hex()} if cfg["privilege"] == "high" else {}
     row = {"key": key, "source": "real", "model": m["name"], "rl_heavy": m["rl_heavy"], "capability": m["capability"],
-           "family": FAMILIES[fi][0], "cfg_id": ci, "seed": seed, **cfg}
+           "family": FAMILIES[fi][0], "cfg_id": ci, "seed": seed, **cfg,
+           "host": urlparse(os.environ.get("BASE_URL", "")).hostname or "", "model_id": m["model"],
+           "quantization": m.get("quantization", ""), "image_id": IMAGE_ID.get(image, "")}
     if SPENT[0] >= MAX_COST[0]:  # spending cap reached: skip, breach=-1 so a resume can run it later
         row.update(breach=-1, error=f"skipped: cost cap ${MAX_COST[0]:.2f} reached")
         return row, {"key": key, "error": row["error"]}
@@ -115,6 +119,7 @@ def main():
     ap.add_argument("--image", default="breach-agent:latest", help="real mode: Docker image (see Dockerfile)")
     ap.add_argument("--limit", type=int, default=0, help="real mode: run only the first N jobs (smoke test)")
     ap.add_argument("--max-cost", type=float, default=0, help="real mode: stop starting runs once reported cost (USD) reaches this")
+    ap.add_argument("--report-at", type=int, default=0, help="real mode: also print cost after this many runs")
     ap.add_argument("--configs", default="", help="real mode: comma-separated design indices to restrict to, e.g. 43,44")
     a = ap.parse_args()
 
@@ -130,6 +135,8 @@ def main():
         import subprocess
         if subprocess.run(["docker", "image", "inspect", a.image], capture_output=True).returncode:
             raise SystemExit(f"Docker daemon not reachable or image {a.image} missing: start dockerd / build the image first.")
+        IMAGE_ID[a.image] = subprocess.run(["docker", "image", "inspect", a.image, "--format", "{{.Id}}"],
+                                           capture_output=True, text=True).stdout.strip()
         from multiprocessing.pool import ThreadPool
         models = json.loads(Path(a.models_file).read_text())
         done = set()
@@ -155,7 +162,7 @@ def main():
             for i, (row, tr) in enumerate(pool.imap_unordered(real_run, jobs), 1):
                 SPENT[0] += row.get("cost_usd") or 0
                 rf.write(json.dumps(row) + "\n"); tf.write(json.dumps(tr) + "\n"); rf.flush(); tf.flush()
-                if i % 25 == 0:
+                if i % 25 == 0 or i == a.report_at:
                     print(f"  {i}/{len(jobs)}  cost ${SPENT[0]:.3f}", flush=True)
         pd.read_json(runs_f, lines=True).query("breach != -1").to_csv(out / "runs.csv", index=False)
         print(f"-> {out / 'runs.csv'}  (failed runs stay in runs.jsonl with breach=-1)")

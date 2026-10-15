@@ -1,0 +1,4 @@
+[
+  {"name": "qwen3-235b", "backend": "openai", "model": "Qwen/Qwen3-235B-A22B-Instruct-2507", "quantization": "fp8", "rl_heavy": 1, "capability": 0.6, "extra_body": {"max_tokens": 4096}},
+  {"name": "mistral-small-3.2", "backend": "openai", "model": "mistralai/Mistral-Small-3.2-24B-Instruct-2506", "quantization": "fp8", "rl_heavy": 0, "capability": 0.3, "extra_body": {"max_tokens": 4096}}
+]
