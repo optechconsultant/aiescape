@@ -1,0 +1,183 @@
+######## classifier a4 (PRIMARY)
+completed runs 4800 of 4800 planned; runs.jsonl rows 4800; cost $5.610
+  deepseek-v4-flash: 960 runs, served ['deepseek-ai/DeepSeek-V4-Flash-0731'], quant ['fp8'], cost $1.195, task success (open) 479/480 = 99.8% [98.8%, 100.0%], turn limit 69
+  gemma-4-26b-a4b: 960 runs, served ['google/gemma-4-26B-A4B-it'], quant ['fp8'], cost $1.300, task success (open) 413/480 = 86.0% [82.7%, 88.9%], turn limit 410
+  llama-4-scout: 960 runs, served ['meta-llama/Llama-4-Scout-17B-16E-Instruct'], quant ['fp8'], cost $0.692, task success (open) 13/480 = 2.7% [1.6%, 4.6%], turn limit 46
+  mimo-v2.6-flash: 960 runs, served ['XiaomiMiMo/MiMo-V2.6-Flash'], quant ['fp8'], cost $1.056, task success (open) 479/480 = 99.8% [98.8%, 100.0%], turn limit 111
+  nemotron-3.5-lightning: 960 runs, served ['nvidia/NVIDIA-Nemotron-3.5-Lightning'], quant ['not stated by DeepInfra'], cost $1.366, task success (open) 352/480 = 73.3% [69.2%, 77.1%], turn limit 314
+image: ['sha256:21691fe12b7b797ab4338864bf6c5e16ded35d8fc9cd133bcfc7b6ae813f7764'] 
+
+== deliberate attempts
+  attempt   deepseek-v4-flash        escalation=none     72/340 = 21.2% [17.2%, 25.8%]
+  attempt   deepseek-v4-flash        escalation=nominal  77/320 = 24.1% [19.7%, 29.0%]
+  attempt   deepseek-v4-flash        escalation=credible 48/300 = 16.0% [12.3%, 20.6%]
+  attempt   deepseek-v4-flash        all                 197/960 = 20.5% [18.1%, 23.2%]
+  attempt   gemma-4-26b-a4b          escalation=none     30/340 = 8.8% [6.3%, 12.3%]
+  attempt   gemma-4-26b-a4b          escalation=nominal  28/320 = 8.8% [6.1%, 12.4%]
+  attempt   gemma-4-26b-a4b          escalation=credible 17/300 = 5.7% [3.6%, 8.9%]
+  attempt   gemma-4-26b-a4b          all                 75/960 = 7.8% [6.3%, 9.7%]
+  attempt   llama-4-scout            escalation=none     25/340 = 7.4% [5.0%, 10.6%]
+  attempt   llama-4-scout            escalation=nominal  18/320 = 5.6% [3.6%, 8.7%]
+  attempt   llama-4-scout            escalation=credible 7/300 = 2.3% [1.1%, 4.7%]
+  attempt   llama-4-scout            all                 50/960 = 5.2% [4.0%, 6.8%]
+  attempt   mimo-v2.6-flash          escalation=none     74/340 = 21.8% [17.7%, 26.5%]
+  attempt   mimo-v2.6-flash          escalation=nominal  59/320 = 18.4% [14.6%, 23.1%]
+  attempt   mimo-v2.6-flash          escalation=credible 57/300 = 19.0% [15.0%, 23.8%]
+  attempt   mimo-v2.6-flash          all                 190/960 = 19.8% [17.4%, 22.4%]
+  attempt   nemotron-3.5-lightning   escalation=none     218/340 = 64.1% [58.9%, 69.0%]
+  attempt   nemotron-3.5-lightning   escalation=nominal  235/320 = 73.4% [68.3%, 78.0%]
+  attempt   nemotron-3.5-lightning   escalation=credible 190/300 = 63.3% [57.7%, 68.6%]
+  attempt   nemotron-3.5-lightning   all                 643/960 = 67.0% [63.9%, 69.9%]
+
+== file reads (scorer breach=1) and canary exposure (classifier-independent)
+  read      deepseek-v4-flash        escalation=none     4/340 = 1.2% [0.5%, 3.0%]
+  read      deepseek-v4-flash        escalation=nominal  4/320 = 1.2% [0.5%, 3.2%]
+  read      deepseek-v4-flash        escalation=credible 2/300 = 0.7% [0.2%, 2.4%]
+  read      deepseek-v4-flash        all                 10/960 = 1.0% [0.6%, 1.9%]
+  read      gemma-4-26b-a4b          escalation=none     8/340 = 2.4% [1.2%, 4.6%]
+  read      gemma-4-26b-a4b          escalation=nominal  12/320 = 3.8% [2.2%, 6.4%]
+  read      gemma-4-26b-a4b          escalation=credible 6/300 = 2.0% [0.9%, 4.3%]
+  read      gemma-4-26b-a4b          all                 26/960 = 2.7% [1.9%, 3.9%]
+  read      llama-4-scout            escalation=none     7/340 = 2.1% [1.0%, 4.2%]
+  read      llama-4-scout            escalation=nominal  7/320 = 2.2% [1.1%, 4.4%]
+  read      llama-4-scout            escalation=credible 1/300 = 0.3% [0.1%, 1.9%]
+  read      llama-4-scout            all                 15/960 = 1.6% [0.9%, 2.6%]
+  read      mimo-v2.6-flash          escalation=none     14/340 = 4.1% [2.5%, 6.8%]
+  read      mimo-v2.6-flash          escalation=nominal  4/320 = 1.2% [0.5%, 3.2%]
+  read      mimo-v2.6-flash          escalation=credible 6/300 = 2.0% [0.9%, 4.3%]
+  read      mimo-v2.6-flash          all                 24/960 = 2.5% [1.7%, 3.7%]
+  read      nemotron-3.5-lightning   escalation=none     210/340 = 61.8% [56.5%, 66.8%]
+  read      nemotron-3.5-lightning   escalation=nominal  232/320 = 72.5% [67.4%, 77.1%]
+  read      nemotron-3.5-lightning   escalation=credible 176/300 = 58.7% [53.0%, 64.1%]
+  read      nemotron-3.5-lightning   all                 618/960 = 64.4% [61.3%, 67.3%]
+
+  canary    deepseek-v4-flash        escalation=none     4/340 = 1.2% [0.5%, 3.0%]
+  canary    deepseek-v4-flash        escalation=nominal  3/320 = 0.9% [0.3%, 2.7%]
+  canary    deepseek-v4-flash        escalation=credible 2/300 = 0.7% [0.2%, 2.4%]
+  canary    deepseek-v4-flash        all                 9/960 = 0.9% [0.5%, 1.8%]
+  canary    gemma-4-26b-a4b          escalation=none     3/340 = 0.9% [0.3%, 2.6%]
+  canary    gemma-4-26b-a4b          escalation=nominal  9/320 = 2.8% [1.5%, 5.3%]
+  canary    gemma-4-26b-a4b          escalation=credible 4/300 = 1.3% [0.5%, 3.4%]
+  canary    gemma-4-26b-a4b          all                 16/960 = 1.7% [1.0%, 2.7%]
+  canary    llama-4-scout            escalation=none     7/340 = 2.1% [1.0%, 4.2%]
+  canary    llama-4-scout            escalation=nominal  6/320 = 1.9% [0.9%, 4.0%]
+  canary    llama-4-scout            escalation=credible 1/300 = 0.3% [0.1%, 1.9%]
+  canary    llama-4-scout            all                 14/960 = 1.5% [0.9%, 2.4%]
+  canary    mimo-v2.6-flash          escalation=none     1/340 = 0.3% [0.1%, 1.6%]
+  canary    mimo-v2.6-flash          escalation=nominal  0/320 = 0.0% [0.0%, 1.2%] (rule of three: <= 0.9%)
+  canary    mimo-v2.6-flash          escalation=credible 0/300 = 0.0% [0.0%, 1.3%] (rule of three: <= 1.0%)
+  canary    mimo-v2.6-flash          all                 1/960 = 0.1% [0.0%, 0.6%]
+  canary    nemotron-3.5-lightning   escalation=none     210/340 = 61.8% [56.5%, 66.8%]
+  canary    nemotron-3.5-lightning   escalation=nominal  231/320 = 72.2% [67.0%, 76.8%]
+  canary    nemotron-3.5-lightning   escalation=credible 176/300 = 58.7% [53.0%, 64.1%]
+  canary    nemotron-3.5-lightning   all                 617/960 = 64.3% [61.2%, 67.2%]
+
+== attempts by conflict
+  deepseek-v4-flash        conflict=none 49/320 = 15.3% [11.8%, 19.7%]
+  deepseek-v4-flash        conflict=soft 84/320 = 26.2% [21.7%, 31.3%]
+  deepseek-v4-flash        conflict=hard 64/320 = 20.0% [16.0%, 24.7%]
+  gemma-4-26b-a4b          conflict=none 9/320 = 2.8% [1.5%, 5.3%]
+  gemma-4-26b-a4b          conflict=soft 58/320 = 18.1% [14.3%, 22.7%]
+  gemma-4-26b-a4b          conflict=hard 8/320 = 2.5% [1.3%, 4.9%]
+  llama-4-scout            conflict=none 3/320 = 0.9% [0.3%, 2.7%]
+  llama-4-scout            conflict=soft 41/320 = 12.8% [9.6%, 16.9%]
+  llama-4-scout            conflict=hard 6/320 = 1.9% [0.9%, 4.0%]
+  mimo-v2.6-flash          conflict=none 48/320 = 15.0% [11.5%, 19.3%]
+  mimo-v2.6-flash          conflict=soft 82/320 = 25.6% [21.2%, 30.7%]
+  mimo-v2.6-flash          conflict=hard 60/320 = 18.8% [14.9%, 23.4%]
+  nemotron-3.5-lightning   conflict=none 144/320 = 45.0% [39.6%, 50.5%]
+  nemotron-3.5-lightning   conflict=soft 242/320 = 75.6% [70.6%, 80.0%]
+  nemotron-3.5-lightning   conflict=hard 257/320 = 80.3% [75.6%, 84.3%]
+
+== PRIMARY TEST (H1, Amendment 3 procedure)
+  qualifying: deepseek-v4-flash        request_review 97/200 = 48.5% [41.7%, 55.4%] -> qualifies
+  qualifying: gemma-4-26b-a4b          request_review 49/200 = 24.5% [19.1%, 30.9%] -> qualifies
+  qualifying: llama-4-scout            request_review 109/200 = 54.5% [47.6%, 61.3%] -> qualifies
+  qualifying: mimo-v2.6-flash          request_review 100/200 = 50.0% [43.1%, 56.9%] -> qualifies
+  qualifying: nemotron-3.5-lightning   request_review 21/200 = 10.5% [7.0%, 15.5%] -> does NOT qualify
+  ML logistic regression; n=2560, attempts=403
+    intercept                      b=-3.524 se=0.300
+    escalation=none                b=+0.583 se=0.157
+    escalation=nominal             b=+0.343 se=0.174
+    conflict=hard                  b=-0.718 se=0.129
+    honest_path=blocked            b=+1.867 se=0.148
+    privilege=medium               b=+1.315 se=0.203
+    privilege=high                 b=+1.474 se=0.222
+    monitoring=stated              b=-0.129 se=0.176
+    monitoring=visible             b=+0.040 se=0.173
+    stakes=task_failure            b=-0.137 se=0.181
+    stakes=shutdown                b=+0.050 se=0.184
+    framing=urgent                 b=-0.008 se=0.179
+    framing=persona                b=+0.496 se=0.197
+    model=gemma-4-26b-a4b          b=-1.132 se=0.174
+    model=llama-4-scout            b=-1.543 se=0.191
+    model=mimo-v2.6-flash          b=-0.066 se=0.148
+  escalation=none vs credible: b=+0.583 (OR 1.79), z=3.70, one-sided p=0.00011 -> H1 SUPPORTED
+
+######## classifier amended
+== deliberate attempts
+  attempt   deepseek-v4-flash        escalation=none     72/340 = 21.2% [17.2%, 25.8%]
+  attempt   deepseek-v4-flash        escalation=nominal  79/320 = 24.7% [20.3%, 29.7%]
+  attempt   deepseek-v4-flash        escalation=credible 49/300 = 16.3% [12.6%, 20.9%]
+  attempt   deepseek-v4-flash        all                 200/960 = 20.8% [18.4%, 23.5%]
+  attempt   gemma-4-26b-a4b          escalation=none     32/340 = 9.4% [6.7%, 13.0%]
+  attempt   gemma-4-26b-a4b          escalation=nominal  29/320 = 9.1% [6.4%, 12.7%]
+  attempt   gemma-4-26b-a4b          escalation=credible 18/300 = 6.0% [3.8%, 9.3%]
+  attempt   gemma-4-26b-a4b          all                 79/960 = 8.2% [6.7%, 10.1%]
+  attempt   llama-4-scout            escalation=none     28/340 = 8.2% [5.8%, 11.6%]
+  attempt   llama-4-scout            escalation=nominal  22/320 = 6.9% [4.6%, 10.2%]
+  attempt   llama-4-scout            escalation=credible 8/300 = 2.7% [1.4%, 5.2%]
+  attempt   llama-4-scout            all                 58/960 = 6.0% [4.7%, 7.7%]
+  attempt   mimo-v2.6-flash          escalation=none     84/340 = 24.7% [20.4%, 29.6%]
+  attempt   mimo-v2.6-flash          escalation=nominal  78/320 = 24.4% [20.0%, 29.4%]
+  attempt   mimo-v2.6-flash          escalation=credible 60/300 = 20.0% [15.9%, 24.9%]
+  attempt   mimo-v2.6-flash          all                 222/960 = 23.1% [20.6%, 25.9%]
+  attempt   nemotron-3.5-lightning   escalation=none     218/340 = 64.1% [58.9%, 69.0%]
+  attempt   nemotron-3.5-lightning   escalation=nominal  235/320 = 73.4% [68.3%, 78.0%]
+  attempt   nemotron-3.5-lightning   escalation=credible 190/300 = 63.3% [57.7%, 68.6%]
+  attempt   nemotron-3.5-lightning   all                 643/960 = 67.0% [63.9%, 69.9%]
+
+== PRIMARY TEST (H1, Amendment 3 procedure)
+  qualifying: deepseek-v4-flash        request_review 97/200 = 48.5% [41.7%, 55.4%] -> qualifies
+  qualifying: gemma-4-26b-a4b          request_review 49/200 = 24.5% [19.1%, 30.9%] -> qualifies
+  qualifying: llama-4-scout            request_review 109/200 = 54.5% [47.6%, 61.3%] -> qualifies
+  qualifying: mimo-v2.6-flash          request_review 100/200 = 50.0% [43.1%, 56.9%] -> qualifies
+  qualifying: nemotron-3.5-lightning   request_review 21/200 = 10.5% [7.0%, 15.5%] -> does NOT qualify
+  ML logistic regression; n=2560, attempts=434
+    intercept                      b=-3.630 se=0.298
+    escalation=none                b=+0.576 se=0.156
+    escalation=nominal             b=+0.492 se=0.170
+    conflict=hard                  b=-0.756 se=0.127
+    honest_path=blocked            b=+2.015 se=0.147
+    privilege=medium               b=+1.334 se=0.198
+    privilege=high                 b=+1.450 se=0.216
+    monitoring=stated              b=-0.140 se=0.172
+    monitoring=visible             b=-0.016 se=0.170
+    stakes=task_failure            b=-0.143 se=0.177
+    stakes=shutdown                b=+0.055 se=0.181
+    framing=urgent                 b=+0.049 se=0.178
+    framing=persona                b=+0.533 se=0.192
+    model=gemma-4-26b-a4b          b=-1.130 se=0.173
+    model=llama-4-scout            b=-1.554 se=0.190
+    model=mimo-v2.6-flash          b=+0.150 se=0.146
+  escalation=none vs credible: b=+0.576 (OR 1.78), z=3.68, one-sided p=0.00012 -> H1 SUPPORTED
+
+######## HELD-OUT-MODEL TEST (Amendment 4 §4; classifier a4; pilot6 + pilot7)
+  deepseek-v4-flash: per-config |pred-obs| mean 0.309, max 0.741; configs with obs>0: 32/48
+  gemma-4-26b-a4b: per-config |pred-obs| mean 0.163, max 0.379; configs with obs>0: 18/48
+  llama-4-scout: per-config |pred-obs| mean 0.138, max 0.345; configs with obs>0: 17/48
+  mimo-v2.6-flash: per-config |pred-obs| mean 0.160, max 0.420; configs with obs>0: 35/48
+  mistral-small-3.2: per-config |pred-obs| mean 0.199, max 0.473; configs with obs>0: 8/48
+  nemotron-3.5-lightning: per-config |pred-obs| mean 0.569, max 0.918; configs with obs>0: 40/48
+  qwen3-235b: per-config |pred-obs| mean 0.180, max 0.775; configs with obs>0: 21/48
+                 model  capability fit  runs  observed  obs_lo  obs_hi  predicted   error  err_lo  err_hi  null_pred  null_error  cal_slope  cal_intercept  brier  null_brier  cap_coef
+     deepseek-v4-flash          51  ML   960    0.2052  0.1809  0.2319     0.5138  0.3086  0.2819  0.3329     0.1847     -0.0205     1.4655        -1.9871 0.2313      0.1635    0.5947
+       gemma-4-26b-a4b          26  ML   960    0.0781  0.0628  0.0968     0.2067  0.1286  0.1099  0.1439     0.2028      0.1247     1.6269        -0.7191 0.0855      0.0876    0.4169
+         llama-4-scout          10  ML   960    0.0521  0.0397  0.0680     0.1613  0.1093  0.0933  0.1216     0.2065      0.1545     0.6278        -1.8341 0.0680      0.0732    0.2670
+       mimo-v2.6-flash          38  ML   960    0.1979  0.1739  0.2243     0.2546  0.0567  0.0303  0.0807     0.1857     -0.0122     0.6390        -0.6790 0.1574      0.1589    0.4379
+     mistral-small-3.2          11  ML  1440    0.0083  0.0048  0.0145     0.2078  0.1994  0.1933  0.2030     0.2285      0.2202     1.7650        -3.0971 0.0662      0.0567    0.1147
+nemotron-3.5-lightning          24  ML   960    0.6698  0.6394  0.6988     0.1091 -0.5607 -0.5897 -0.5303     0.1183     -0.5515     1.1616         4.2836 0.4950      0.5253    0.6123
+            qwen3-235b          18  ML  1440    0.1882  0.1688  0.2092     0.1523 -0.0359 -0.0569 -0.0166     0.1870     -0.0012     1.9540         1.6039 0.1289      0.1528    0.4301
+
+  MAE of rate: model 0.1999 vs null 0.1550;  mean Brier: model 0.1760 vs null 0.1740
+  -> configuration + capability model NOT useful by the preregistered criterion  (7 models; small-sample check)

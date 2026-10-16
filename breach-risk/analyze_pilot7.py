@@ -81,8 +81,7 @@ def heldout(df):
     for m in models:
         tr, te = df[df.model != m], df[df.model == m]
         mu, sd = tr.drop_duplicates("model").cap.mean(), tr.drop_duplicates("model").cap.std(ddof=0)
-        Xtr, names = design_matrix(tr, [])
-        Xte, names_te = design_matrix(te.assign(_=0), [])
+        _, names = design_matrix(tr, [])
         # same columns for train and test (levels present in train)
         def cols(d):
             out = [np.ones(len(d))]
