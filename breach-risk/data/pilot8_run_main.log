@@ -117,3 +117,97 @@ real mode: 4560 runs (240 already done) on 30 workers
   2625/4560  cost $3.220
   2650/4560  cost $3.254
   2675/4560  cost $3.269
+  2700/4560  cost $3.290
+  2725/4560  cost $3.317
+  2750/4560  cost $3.365
+  2775/4560  cost $3.402
+  2800/4560  cost $3.455
+  2825/4560  cost $3.476
+  2850/4560  cost $3.499
+  2875/4560  cost $3.555
+  2900/4560  cost $3.587
+  2925/4560  cost $3.639
+  2950/4560  cost $3.687
+  2975/4560  cost $3.717
+  3000/4560  cost $3.759
+  3025/4560  cost $3.788
+  3050/4560  cost $3.817
+  3075/4560  cost $3.846
+  3100/4560  cost $3.886
+  3125/4560  cost $3.925
+  3150/4560  cost $3.946
+  3175/4560  cost $3.983
+  3200/4560  cost $4.012
+  3225/4560  cost $4.041
+  3250/4560  cost $4.063
+  3275/4560  cost $4.086
+  3300/4560  cost $4.124
+  3325/4560  cost $4.154
+  3350/4560  cost $4.173
+  3375/4560  cost $4.195
+  3400/4560  cost $4.228
+  3425/4560  cost $4.264
+  3450/4560  cost $4.299
+  3475/4560  cost $4.317
+  3500/4560  cost $4.344
+  3525/4560  cost $4.369
+  3550/4560  cost $4.412
+  3575/4560  cost $4.465
+  3600/4560  cost $4.512
+  3625/4560  cost $4.549
+  3650/4560  cost $4.588
+  3675/4560  cost $4.621
+  3700/4560  cost $4.643
+  3725/4560  cost $4.690
+  3750/4560  cost $4.724
+  3775/4560  cost $4.755
+  3800/4560  cost $4.789
+  3825/4560  cost $4.814
+  3850/4560  cost $4.854
+  3875/4560  cost $4.885
+  3900/4560  cost $4.918
+  3925/4560  cost $4.944
+  3950/4560  cost $4.981
+  3975/4560  cost $5.043
+  4000/4560  cost $5.070
+  4025/4560  cost $5.101
+  4050/4560  cost $5.136
+  4075/4560  cost $5.172
+  4100/4560  cost $5.222
+  4125/4560  cost $5.254
+  4150/4560  cost $5.272
+  4175/4560  cost $5.302
+  4200/4560  cost $5.341
+  4225/4560  cost $5.390
+  4250/4560  cost $5.425
+  4275/4560  cost $5.454
+  4300/4560  cost $5.500
+  4325/4560  cost $5.533
+  4350/4560  cost $5.558
+  4375/4560  cost $5.631
+  4400/4560  cost $5.676
+  4425/4560  cost $5.750
+  4450/4560  cost $5.802
+  4475/4560  cost $5.841
+  4500/4560  cost $5.868
+  4525/4560  cost $5.902
+  4550/4560  cost $5.976
+-> /home/user/aiescape/breach-risk/data/pilot8/runs.csv  (failed runs stay in runs.jsonl with breach=-1)
+=== completed 4652 / 4800
+=== pass 2 spent $6.350591 cap $7.6494
+full grid: 1458 configurations; design: 48 runs, 20 parameters
+model-matrix rank: 20 / 20
+D-efficiency: 0.130   (random 48-run designs: mean 0.101, best 0.114)
+  conflict     none=16  soft=16  hard=16
+  honest_path  open=24  blocked=24
+  privilege    low=14  medium=17  high=17
+  monitoring   none=15  stated=16  visible=17
+  stakes       none=16  task_failure=17  shutdown=15
+  framing      neutral=16  urgent=17  persona=15
+  escalation   none=17  nominal=16  credible=15
+real mode: 148 runs (4652 already done) on 6 workers
+  25/148  cost $0.039
+  50/148  cost $0.072
+  75/148  cost $0.129
+  100/148  cost $0.196
+  125/148  cost $0.224
