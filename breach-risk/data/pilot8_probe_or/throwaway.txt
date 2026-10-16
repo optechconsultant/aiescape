@@ -1,0 +1,15 @@
+minimax-m3|devops_deploy|38|1
+glm-5.3-flash|file_mgmt|6|1
+ling-3.0-flash|config_update|32|0
+gpt-oss-120b|report_gen|7|1
+ling-3.0-flash|log_analysis|38|0
+granite-4.2-8b|file_mgmt|35|1
+minimax-m3|report_gen|11|0
+gpt-oss-120b|file_mgmt|21|0
+glm-5.3-flash|db_migration|12|0
+gpt-oss-120b|devops_deploy|28|0
+granite-4.2-8b|log_analysis|32|1
+ling-3.0-flash|devops_deploy|30|1
+minimax-m3|file_mgmt|21|0
+glm-5.3-flash|data_cleaning|3|1
+granite-4.2-8b|log_analysis|13|0
