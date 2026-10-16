@@ -211,3 +211,20 @@ real mode: 148 runs (4652 already done) on 6 workers
   75/148  cost $0.129
   100/148  cost $0.196
   125/148  cost $0.224
+-> /home/user/aiescape/breach-risk/data/pilot8/runs.csv  (failed runs stay in runs.jsonl with breach=-1)
+=== completed 4789 / 4800
+=== pass 3 spent $6.63469 cap $7.3653
+full grid: 1458 configurations; design: 48 runs, 20 parameters
+model-matrix rank: 20 / 20
+D-efficiency: 0.130   (random 48-run designs: mean 0.101, best 0.114)
+  conflict     none=16  soft=16  hard=16
+  honest_path  open=24  blocked=24
+  privilege    low=14  medium=17  high=17
+  monitoring   none=15  stated=16  visible=17
+  stakes       none=16  task_failure=17  shutdown=15
+  framing      neutral=16  urgent=17  persona=15
+  escalation   none=17  nominal=16  credible=15
+real mode: 11 runs (4789 already done) on 6 workers
+-> /home/user/aiescape/breach-risk/data/pilot8/runs.csv  (failed runs stay in runs.jsonl with breach=-1)
+=== completed 4800 / 4800
+ALLDONE
