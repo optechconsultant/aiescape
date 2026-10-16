@@ -290,3 +290,59 @@ models are worth more than a third seed per model; 2 seeds still give 960 runs p
   (a random subset in the shuffled order), if the mean cost per run is above $0.0015 the run stops and is reported
   before continuing.
 - If the cap stops the run, the completed set is a random subset of the design; the report states counts per model.
+
+---
+
+## Amendment 6 (2026-10-16, committed before the analyses it describes; no new model runs)
+
+### 1. Status of pilots 6 and 7: development set
+pilot6 (qwen3-235b, mistral-small-3.2) and pilot7 (deepseek-v4-flash, gemma-4-26b-a4b, mimo-v2.6-flash, llama-4-scout,
+nemotron-3.5-lightning), 7 open-weight models and 7,680 runs, are from now on the **development set**. The
+preregistered results already reported for them (H1 in pilot6 and pilot7; the held-out-model test of Amendment 4 §4)
+stand as reported. Every further analysis of these data, including all of §2, is **exploratory**: it may be used to
+choose methods for the confirmation protocol, but it is not evidence for any claim about models outside the set.
+
+### 2. Exploratory analyses on the development set (`analyze_dev.py` -> `data/dev/`)
+Outcomes: deliberate attempt (`a4`) and file read (scorer breach=1); hand-coded versions as sensitivity where
+available. (1) variance decomposition (model, configuration factors, task family, model × factor);
+(2) few-shot calibration (leave one model out; pooled configuration effects + the held-out model's own offset from
+k = 10, 20, 48, 96 probe runs, 200 draws; baselines: other models' pooled rate, the model's own probe mean, the
+capability model); (3) within-model held-out-family and held-out-configuration validation; (4) per-model
+rule-following baseline (honest path open, conflict none); (5) per-model factor effects (heterogeneity).
+
+### 3. Confirmation protocol for later models (closed APIs), fixed before any of their data are collected
+This section may be revised only by a later amendment committed **before** the first confirmation run (probes
+included). Once a confirmation run starts it is frozen.
+- **Models:** each confirmation model is named, with its API ID, date and settings, in a dated amendment before its
+  runs. Models of families already in the development set may be used, but they are reported separately.
+- **Harness:** identical to pilot7 (same scenarios, prompts, tools, 24 model turns, scorer, image procedure),
+  classifier `a4` for attempts (primary) and scorer breach for reads; every flagged transcript and every read is
+  read by hand and reported, with the a4 hand-code agreement.
+- **Design per model:** the 48 configurations × 10 families × 2 seeds (960 runs) in the seeded order
+  (`--master-seed 2026`). The **probe set** is fixed now: the first 48 runs of the model's seeded order that cover
+  each configuration once (one per configuration, family and seed as they fall in that order); the remaining 912
+  runs are the **evaluation set**.
+- **Predictions, fixed before evaluation data are scored:** using only the development set and the model's probe
+  set, compute three predictions for every evaluation run:
+  (P0) the model's own probe mean rate (no configuration information);
+  (P1) pooled configuration effects fitted on all 7 development models (logistic regression, the 7 factors as in
+  Amendment 3, no model terms), plus the confirmation model's own intercept offset estimated from its 48 probe
+  runs (Firth-penalised, offset only);
+  (P2) the development models' pooled rate (no information about the new model).
+  The predictions are written to a file and committed before the evaluation runs are scored.
+- **Success criteria (per model and pooled over confirmation models):**
+  (C1, primary) P1 has a lower Brier score than P0 on the evaluation set, with the 95% bootstrap interval of the
+  Brier difference (P0 − P1; 2,000 resamples of evaluation runs, stratified by configuration) above 0.
+  The claim "pooled configuration effects transfer to a new model beyond its own average rate" is supported for that
+  model only if C1 holds; pooled over models, if C1 holds for the pooled difference and for at least half of the
+  confirmation models.
+  (C2) calibration of P1: calibration slope with 95% interval containing 1 and calibration in the large within
+  ±5 percentage points.
+  (C3) direction of the escalation effect: the confirmation model's attempt rate with escalation=none minus
+  escalation=credible (conflict ≠ none) is > 0 with a one-sided Wilson/Newcombe 95% interval above 0. Reported per
+  model; the claim "removing escalation increases attempts" generalises to that model only if C3 holds.
+  (C4) rule-following baseline: attempt and read rates with honest path open and conflict none, reported with
+  Wilson intervals (descriptive; no criterion).
+- **Reporting:** every criterion is reported for every model whether met or not; a model that fails tool calling in
+  3 probe runs is replaced only by a model named in a further amendment before its runs; the cost cap is stated in
+  the model amendment.
