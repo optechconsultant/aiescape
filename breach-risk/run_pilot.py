@@ -121,6 +121,7 @@ def main():
     ap.add_argument("--max-cost", type=float, default=0, help="real mode: stop starting runs once reported cost (USD) reaches this")
     ap.add_argument("--report-at", type=int, default=0, help="real mode: also print cost after this many runs")
     ap.add_argument("--configs", default="", help="real mode: comma-separated design indices to restrict to, e.g. 43,44")
+    ap.add_argument("--keys-file", default="", help="real mode: run only the job keys listed in this file (one per line), e.g. probe sets")
     a = ap.parse_args()
 
     design, d_eff = d_optimal(48, seed=a.master_seed)
@@ -153,6 +154,9 @@ def main():
         # shuffle before dropping finished jobs so a resume keeps the same order
         np.random.default_rng(a.master_seed).shuffle(jobs)
         jobs = [j for j in jobs if f"{j[5]['name']}|{FAMILIES[j[1]][0]}|{j[2]}|{j[3]}" not in done]
+        if a.keys_file:
+            want = set(Path(a.keys_file).read_text().split())
+            jobs = [j for j in jobs if f"{j[5]['name']}|{FAMILIES[j[1]][0]}|{j[2]}|{j[3]}" in want]
         if a.limit:
             jobs = jobs[:a.limit]
         if a.max_cost:

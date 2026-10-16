@@ -442,3 +442,48 @@ Cost estimate from probe token counts, weighting the input-missing (expensive) a
 the design: Ling ≈ $1.8, Granite ≈ $1.1, Seed ≈ $3.7, GLM ≈ $0.2, gpt-oss-120b-Ultra ≈ $5.7; **total ≈ $12.4,
 above the $9 cap**. Per §2 the main run does not start until the person running the study decides.
 `evaluate_confirmation.py` (probe sets, predictions, C1–C4) is committed with this note, before any main run.
+
+---
+
+## Amendment 8 (2026-10-16, committed before any confirmation run, including the new probes)
+
+Revises Amendment 7 §§2–3 for the reasons below. Amendment 6 §3 and Amendment 7 §1 (predictions P0/P1/P2, C1–C4,
+probe-set rule, `evaluate_confirmation.py`) are unchanged.
+
+### 1. Host: OpenRouter, pinned to DeepInfra
+DeepInfra credit is running out, so all confirmation runs (probes included) go through OpenRouter
+(`BASE_URL=https://openrouter.ai/api/v1`) with every request pinned to a single DeepInfra endpoint, as in pilot5:
+`provider = {"order": [tag], "only": [tag], "allow_fallbacks": false, "require_parameters": true}`, `max_tokens`
+4096, where `tag` is the DeepInfra endpoint tag OpenRouter lists (`/api/v1/models/<id>/endpoints`, checked
+2026-10-16). Each run records `host`, the provider OpenRouter reports for every call (`providers`), and the
+quantisation OpenRouter lists for the pinned endpoint (`quantization`). OpenRouter's DeepInfra prices differ
+from DeepInfra's direct prices for some models; cost is what OpenRouter reports.
+
+### 2. Models (`models.pilot8.json`; the Amendment 7 list is kept as `models.pilot8_a7.json`)
+| model | OpenRouter ID | pinned endpoint | quant (OpenRouter) | $/M in/out |
+| --- | --- | --- | --- | --- |
+| ling-3.0-flash | inclusionai/ling-3.0-flash | deepinfra/bf16 | bf16 | 0.06 / 0.18 |
+| granite-4.2-8b | ibm-granite/granite-4.2-8b | deepinfra/bf16 | bf16 | 0.06 / 0.25 |
+| minimax-m3 | minimax/minimax-m3 | deepinfra/fp8 (not the `fp8/flex` endpoint) | fp8 | 0.28 / 1.10 |
+| glm-5.3-flash | z-ai/glm-5.3-flash | deepinfra/fp4 | fp4 | 0.075 / 0.25 |
+| gpt-oss-120b | openai/gpt-oss-120b | deepinfra/bf16 | bf16 | 0.037 / 0.17 |
+- **Seed-2.0-mini is replaced by MiniMax-M3**, the next candidate in the Amendment 7 order: Seed-2.0-mini has no
+  DeepInfra endpoint on OpenRouter (only ByteDance's own `seed/fp8`). MiniMax-M3 enters only if it passes the 3
+  probe runs below; otherwise the next candidate in order is taken, by a further amendment. MiniMax-M3 is not in a
+  development-set family. AA Intelligence Index 44 (v4.1, https://artificialanalysis.ai/models/minimax-m3; a launch
+  article gave 55 and an older v4.0 page 29); not used by C1–C4.
+- **gpt-oss-120b on DeepInfra bf16 replaces `openai/gpt-oss-120b-Ultra` (fp8)**, which OpenRouter does not offer.
+  It is a **different variant** from the one probed under Amendment 7 and is reported as such. gpt-oss-120b was
+  run in pilots 3 and 4 (on Groq, 30 runs each); those are not in the development set, but the model is not
+  unseen by the study and this is stated wherever its results are reported.
+- Ling and Granite: DeepInfra did not state a precision directly; OpenRouter lists bf16 for its DeepInfra endpoint.
+- Model order in the file (which fixes the seeded job order and therefore the probe sets): ling, granite,
+  minimax-m3, glm, gpt-oss-120b.
+
+### 3. Probes, cost cap, run order
+- The 3 throwaway tool-calling probes are re-run for all five models through OpenRouter (`data/pilot8_probe_or`,
+  not analysed), same pass rule as Amendment 7 §2.
+- **Hard stop $14** (replaces $8.85/$9): no new run starts once reported cost reaches $14.
+- Each model's 48 probe-set runs (Amendment 7 §1) are run first (`run_pilot.py --keys-file`), then the remaining
+  evaluation runs in seeded order. Predictions (`--predict-only`) are written and committed before evaluation runs
+  are scored. `evaluate_confirmation.py` is not changed after the first scored run.
