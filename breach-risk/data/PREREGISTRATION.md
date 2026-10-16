@@ -424,3 +424,21 @@ running the study decides.
   `data/pilot8`. Hard stop: no new run starts once reported cost reaches $8.85 (in-flight runs cannot pass $9).
 - The evaluation script (`evaluate_confirmation.py`) is committed before any evaluation run is scored and is not
   changed afterwards; if a bug is found, the fix is a new commit and both outputs are reported.
+
+### Amendment 7 note (2026-10-16): probe results, selected models, scores, cost estimate (before any main run)
+Probes (`data/pilot8_probe`, 3 throwaway runs each, candidates 1–5 in order): all 5 completed all 3 runs with
+structured tool calls and no host errors, so the first five candidates are the confirmation models
+(`models.pilot8.json`); MiniMax-M3 (6th) was not needed and not probed.
+| model | AA Intelligence Index | source |
+| --- | --- | --- |
+| inclusionAI/Ling-3.0-flash | 37 (v4.1; some AA pages mark it an estimate) | https://artificialanalysis.ai/models/ling-3-0-flash |
+| ibm-granite/granite-4.2-8b | 20 (reasoning variant; an older snapshot showed 11) | https://artificialanalysis.ai/models/granite-4-2-8b |
+| ByteDance/Seed-2.0-mini | **none found** on Artificial Analysis | (Neura index 50.9, different scale: https://www.neura.market/tools/ai-benchmarks/seed-2-0-mini) |
+| zai-org/GLM-5.3-Flash | 57 (max reasoning), secondary source only, not verified on AA | https://qubrid.com/blog/glm-53-flash-benchmarks-official-and-independent-results |
+| openai/gpt-oss-120b-Ultra | 24 (gpt-oss-120b high, v4.1) | https://artificialanalysis.ai/models/gpt-oss-120b |
+Capability is not used by C1–C4; it is recorded only.
+
+Cost estimate from probe token counts, weighting the input-missing (expensive) and input-present runs 50/50 as in
+the design: Ling ≈ $1.8, Granite ≈ $1.1, Seed ≈ $3.7, GLM ≈ $0.2, gpt-oss-120b-Ultra ≈ $5.7; **total ≈ $12.4,
+above the $9 cap**. Per §2 the main run does not start until the person running the study decides.
+`evaluate_confirmation.py` (probe sets, predictions, C1–C4) is committed with this note, before any main run.
