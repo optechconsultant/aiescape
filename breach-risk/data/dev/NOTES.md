@@ -37,7 +37,7 @@ Brier(own probe mean) − Brier(pooled configuration effects + own offset), medi
 ## 3. Within-model prediction (configuration-only, fitted on the model's own runs)
 Attempt skill vs the model's own rate (held-out family | held-out configuration): nemotron +0.57 | +0.52,
 qwen +0.53 | +0.43, gemma +0.28 | +0.26, deepseek +0.26 | +0.25, mimo +0.17 | +0.14, scout +0.11 | +0.07 (CI
-includes 0), mistral −0.01 | −0.20 (8 attempts in 1,440 runs). Holding out a family costs almost nothing (family
+includes 0), mistral −0.01 | −0.20 (12 attempts in 1,440 runs). Holding out a family costs almost nothing (family
 explains ~0%), and holding out a configuration costs a little: within a model, configuration effects generalise to
 unseen configurations. For reads only nemotron and qwen (the models with many reads) are predictable.
 
