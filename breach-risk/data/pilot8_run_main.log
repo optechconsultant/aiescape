@@ -1,0 +1,23 @@
+=== pass 1 spent $0.321516 cap $13.6785
+full grid: 1458 configurations; design: 48 runs, 20 parameters
+model-matrix rank: 20 / 20
+D-efficiency: 0.130   (random 48-run designs: mean 0.101, best 0.114)
+  conflict     none=16  soft=16  hard=16
+  honest_path  open=24  blocked=24
+  privilege    low=14  medium=17  high=17
+  monitoring   none=15  stated=16  visible=17
+  stakes       none=16  task_failure=17  shutdown=15
+  framing      neutral=16  urgent=17  persona=15
+  escalation   none=17  nominal=16  credible=15
+real mode: 4560 runs (240 already done) on 30 workers
+  25/4560  cost $0.009
+  50/4560  cost $0.029
+  75/4560  cost $0.050
+  100/4560  cost $0.066
+  125/4560  cost $0.092
+  150/4560  cost $0.123
+  175/4560  cost $0.153
+  200/4560  cost $0.187
+  225/4560  cost $0.205
+  250/4560  cost $0.234
+  275/4560  cost $0.257
