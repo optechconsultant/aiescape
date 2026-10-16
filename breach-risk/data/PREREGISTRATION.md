@@ -253,3 +253,40 @@ Question: can configuration plus a published capability score predict a new mode
   (the pooled attempt rate of the training models, ignoring configuration and capability). The configuration +
   capability model is called useful only if its MAE and mean Brier are both lower than the null's. With about 8
   models this is a small-sample check and is reported as such.
+
+---
+
+## Amendment 5 (2026-10-16, committed after the pilot7 probes, before any pilot7 main run)
+
+Fixes the pilot7 model list left open in Amendment 4 §2 and changes the seed count. Everything else in Amendment 4
+(classifier `a4` primary with `amended` also reported, H1 test, secondary analyses, held-out-model test) is unchanged.
+
+### Models (approved after the probes in `data/pilot7_probe/NOTES.md`; `models.pilot7.json`)
+| name | DeepInfra ID | quantization | AA Intelligence Index | source |
+| --- | --- | --- | --- | --- |
+| deepseek-v4-flash | deepseek-ai/DeepSeek-V4-Flash-0731 | fp8 | 51 (reasoning, max effort; v4.1.1) | https://artificialanalysis.ai/models/deepseek-v4-flash |
+| gemma-4-26b-a4b | google/gemma-4-26B-A4B-it | fp8 | 26 (reasoning; AA estimate) | https://artificialanalysis.ai/models/releases/comparisons/gemma-4-26b-a4b-vs-exaone-4-0-32b |
+| mimo-v2.6-flash | XiaomiMiMo/MiMo-V2.6-Flash | fp8 | 38 | https://artificialanalysis.ai/models/mimo-v2-6-flash |
+| llama-4-scout | meta-llama/Llama-4-Scout-17B-16E-Instruct | fp8 | 10 (v4.1) | https://artificialanalysis.ai/models/llama-4-scout |
+| nemotron-3.5-lightning | nvidia/NVIDIA-Nemotron-3.5-Lightning | not stated by DeepInfra | 24 (v4.1.1; possibly estimate) | https://artificialanalysis.ai/articles/nemotron-3-5-lightning-launch |
+
+For the held-out-model test, pilot6's models use the same index (`capability_scores.json`): qwen3-235b 18 (AA
+estimate, https://artificialanalysis.ai/models/comparisons/qwen3-235b-a22b-instruct-2507-vs-qwen3-235b-a22b-instruct-reasoning),
+mistral-small-3.2 11 (v4.1, https://artificialanalysis.ai/de/models/mistral-small-3-2).
+Known limitations of the score, stated before the run: some values are AA estimates, index versions differ slightly
+(v4.1 vs v4.1.1), and some are for a reasoning mode that may differ from DeepInfra's default.
+Dropped: gpt-oss-120b-Ultra (fp8; cost, ~$8 alone), Llama-3.3-70B (probe: tool calls as text), Nemotron-3-Super
+(probe: repeated 429 "busy").
+
+### Seeds: 2 instead of 3
+48 configurations × 10 families × **2 seeds** = 960 runs per model, 4,800 total, one seeded shuffled order
+(`--master-seed 2026`). Reason: budget. For the held-out-model test the unit of generalisation is the model, so more
+models are worth more than a third seed per model; 2 seeds still give 960 runs per model for the rate estimates.
+
+### Cost controls
+- Hard stop at **$9** total reported cost (no new run starts once reached; the cap is set a little under $9 so runs
+  in flight cannot pass it).
+- Estimate from the probes: about $7.2 for the 4,800 runs (≈ $0.0015 per run on average). After the first 100 runs
+  (a random subset in the shuffled order), if the mean cost per run is above $0.0015 the run stops and is reported
+  before continuing.
+- If the cap stops the run, the completed set is a random subset of the design; the report states counts per model.

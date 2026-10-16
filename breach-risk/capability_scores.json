@@ -1,0 +1,4 @@
+{"qwen3-235b": {"capability": 18, "source": "AA Intelligence Index v4.1, Qwen3 235B A22B 2507 Instruct: 18, marked estimate; https://artificialanalysis.ai/models/comparisons/qwen3-235b-a22b-instruct-2507-vs-qwen3-235b-a22b-instruct-reasoning"},
+ "mistral-small-3.2": {"capability": 11, "source": "AA Intelligence Index v4.1, Mistral Small 3.2: 11 (the English page shows 15 under v4.0); https://artificialanalysis.ai/de/models/mistral-small-3-2"},
+ "deepseek-v4-flash": {"capability": 51}, "gemma-4-26b-a4b": {"capability": 26}, "mimo-v2.6-flash": {"capability": 38},
+ "llama-4-scout": {"capability": 10}, "nemotron-3.5-lightning": {"capability": 24}}

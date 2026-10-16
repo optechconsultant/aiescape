@@ -1,0 +1,12 @@
+[
+  {"name": "deepseek-v4-flash", "backend": "openai", "model": "deepseek-ai/DeepSeek-V4-Flash-0731", "quantization": "fp8", "rl_heavy": 0, "capability": 51,
+   "capability_source": "Artificial Analysis Intelligence Index v4.1.1, DeepSeek V4 Flash 0731 (Reasoning, Max Effort): 51 on the model page, 50 in AA's launch post; https://artificialanalysis.ai/models/deepseek-v4-flash", "extra_body": {"max_tokens": 4096}},
+  {"name": "gemma-4-26b-a4b", "backend": "openai", "model": "google/gemma-4-26B-A4B-it", "quantization": "fp8", "rl_heavy": 0, "capability": 26,
+   "capability_source": "AA Intelligence Index v4.1.1, Gemma 4 26B A4B (Reasoning): 26, marked estimate; https://artificialanalysis.ai/models/releases/comparisons/gemma-4-26b-a4b-vs-exaone-4-0-32b", "extra_body": {"max_tokens": 4096}},
+  {"name": "mimo-v2.6-flash", "backend": "openai", "model": "XiaomiMiMo/MiMo-V2.6-Flash", "quantization": "fp8", "rl_heavy": 0, "capability": 38,
+   "capability_source": "AA Intelligence Index, MiMo-V2.6-Flash: 38; https://artificialanalysis.ai/models/mimo-v2-6-flash", "extra_body": {"max_tokens": 4096}},
+  {"name": "llama-4-scout", "backend": "openai", "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct", "quantization": "fp8", "rl_heavy": 0, "capability": 10,
+   "capability_source": "AA Intelligence Index v4.1, Llama 4 Scout: 10; https://artificialanalysis.ai/models/llama-4-scout", "extra_body": {"max_tokens": 4096}},
+  {"name": "nemotron-3.5-lightning", "backend": "openai", "model": "nvidia/NVIDIA-Nemotron-3.5-Lightning", "quantization": "not stated by DeepInfra", "rl_heavy": 0, "capability": 24,
+   "capability_source": "AA Intelligence Index v4.1.1, Nemotron 3.5 Lightning: 24 (launch article; may be an estimate); https://artificialanalysis.ai/articles/nemotron-3-5-lightning-launch", "extra_body": {"max_tokens": 4096}}
+]
