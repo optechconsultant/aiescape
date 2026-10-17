@@ -1,0 +1,5 @@
+[
+ {"name": "claude-haiku-5.5", "backend": "openai", "model": "anthropic/claude-haiku-5.5", "quantization": "n/a (closed model, Anthropic endpoint)",
+  "rl_heavy": 0, "capability": null,
+  "extra_body": {"provider": {"order": ["Anthropic"], "allow_fallbacks": false}, "max_tokens": 4096}}
+]

@@ -19,6 +19,7 @@ from urllib.parse import urlparse
 import numpy as np
 
 from agents import make_backend
+from report import classify_a4
 from ladder import MAX_TURNS, act, level_cfg, prompt_for, score_run
 from sandbox import DockerSandbox
 from scenarios import FAMILIES, build_run
@@ -48,7 +49,9 @@ def one(job, cap, image):
                 sb.load(Path(d))
                 commands, stdout, meta = act(backend, prompt, sb, level, MAX_TURNS)
                 res = score_run(commands, stdout, sb, spec, level, meta["final_message"])
-        row.update(res, model_turns=meta["model_turns"], hit_turn_limit=meta["hit_turn_limit"], n_commands=len(commands),
+        a4 = int(any(classify_a4(c) == "attempt" for c in commands))
+        refused = int(not meta["hit_turn_limit"] and not res["result"] and not a4)
+        row.update(res, a4_attempt=a4, outcome="refused" if refused else "completed", model_turns=meta["model_turns"], hit_turn_limit=meta["hit_turn_limit"], n_commands=len(commands),
                    cost_usd=round(getattr(backend, "cost", 0.0), 6), providers=",".join(sorted(getattr(backend, "providers", set()))),
                    tokens_in=getattr(backend, "tokens_in", 0), tokens_out=getattr(backend, "tokens_out", 0), error="")
         tr = {"key": key, "prompt": prompt, "commands": commands, "texts": meta["texts"], "final_message": meta["final_message"],
@@ -69,6 +72,7 @@ def main():
     ap.add_argument("--master-seed", type=int, default=2026)
     ap.add_argument("--image", default="breach-agent:latest")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--levels", default="0,1,2,3,4,5,6,7", help="comma-separated levels to run (Amendment 11 stages)")
     a = ap.parse_args()
     IMAGE_ID[a.image] = subprocess.run(["docker", "image", "inspect", a.image, "--format", "{{.Id}}"],
                                        capture_output=True, text=True, check=True).stdout.strip()
@@ -86,6 +90,8 @@ def main():
     jobs = [(mi, m, lv, fi, s, a.master_seed) for mi, m in enumerate(models) for lv in range(8)
             for fi in range(len(FAMILIES)) for s in range(a.seeds)]
     np.random.default_rng(a.master_seed).shuffle(jobs)
+    keep = {int(x) for x in a.levels.split(",")}
+    jobs = [j for j in jobs if j[2] in keep]
     jobs = [j for j in jobs if f"{j[1]['name']}|P{j[2]}|{FAMILIES[j[3]][0]}|{j[4]}" not in done]
     if a.limit:
         jobs = jobs[:a.limit]

@@ -1,0 +1,16 @@
+300 runs to do (100 done); spent so far {'claude-haiku-5.5': 0.09416200000000002}
+  25/300  spent {'claude-haiku-5.5': 0.126}
+  50/300  spent {'claude-haiku-5.5': 0.168}
+  75/300  spent {'claude-haiku-5.5': 0.204}
+  100/300  spent {'claude-haiku-5.5': 0.244}
+  125/300  spent {'claude-haiku-5.5': 0.28}
+  150/300  spent {'claude-haiku-5.5': 0.32}
+  175/300  spent {'claude-haiku-5.5': 0.356}
+  200/300  spent {'claude-haiku-5.5': 0.393}
+  225/300  spent {'claude-haiku-5.5': 0.432}
+  250/300  spent {'claude-haiku-5.5': 0.469}
+  275/300  spent {'claude-haiku-5.5': 0.51}
+  300/300  spent {'claude-haiku-5.5': 0.55}
+done {'claude-haiku-5.5': 0.55}
+0 runs to do (400 done); spent so far {'claude-haiku-5.5': 0.5496679999999994}
+done {'claude-haiku-5.5': 0.55}
