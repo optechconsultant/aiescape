@@ -1,2 +1,20 @@
 === pass 1
 800 runs to do (0 done); spent so far {}
+  25/800  spent {'ling-3.0-flash': 0.036, 'granite-4.2-8b': 0.043}
+  50/800  spent {'ling-3.0-flash': 0.127, 'granite-4.2-8b': 0.119}
+  75/800  spent {'ling-3.0-flash': 0.185, 'granite-4.2-8b': 0.23}
+  100/800  spent {'ling-3.0-flash': 0.291, 'granite-4.2-8b': 0.307}
+  125/800  spent {'ling-3.0-flash': 0.368, 'granite-4.2-8b': 0.396}
+  150/800  spent {'ling-3.0-flash': 0.413, 'granite-4.2-8b': 0.471}
+  175/800  spent {'ling-3.0-flash': 0.491, 'granite-4.2-8b': 0.504}
+  200/800  spent {'ling-3.0-flash': 0.562, 'granite-4.2-8b': 0.576}
+  225/800  spent {'ling-3.0-flash': 0.604, 'granite-4.2-8b': 0.652}
+  250/800  spent {'ling-3.0-flash': 0.687, 'granite-4.2-8b': 0.685}
+  275/800  spent {'ling-3.0-flash': 0.76, 'granite-4.2-8b': 0.778}
+  300/800  spent {'ling-3.0-flash': 0.832, 'granite-4.2-8b': 0.821}
+  325/800  spent {'ling-3.0-flash': 0.85, 'granite-4.2-8b': 0.868}
+  350/800  spent {'ling-3.0-flash': 0.979, 'granite-4.2-8b': 0.92}
+  375/800  spent {'ling-3.0-flash': 1.071, 'granite-4.2-8b': 0.989}
+  400/800  spent {'ling-3.0-flash': 1.113, 'granite-4.2-8b': 1.107}
+  425/800  spent {'ling-3.0-flash': 1.199, 'granite-4.2-8b': 1.148}
+  450/800  spent {'ling-3.0-flash': 1.272, 'granite-4.2-8b': 1.211}
