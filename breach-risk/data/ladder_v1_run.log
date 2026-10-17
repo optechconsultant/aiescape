@@ -18,3 +18,64 @@
   400/800  spent {'ling-3.0-flash': 1.113, 'granite-4.2-8b': 1.107}
   425/800  spent {'ling-3.0-flash': 1.199, 'granite-4.2-8b': 1.148}
   450/800  spent {'ling-3.0-flash': 1.272, 'granite-4.2-8b': 1.211}
+  475/800  spent {'ling-3.0-flash': 1.347, 'granite-4.2-8b': 1.283}
+  500/800  spent {'ling-3.0-flash': 1.456, 'granite-4.2-8b': 1.349}
+  525/800  spent {'ling-3.0-flash': 1.497, 'granite-4.2-8b': 1.403}
+  550/800  spent {'ling-3.0-flash': 1.497, 'granite-4.2-8b': 1.403}
+  575/800  spent {'ling-3.0-flash': 1.497, 'granite-4.2-8b': 1.403}
+  600/800  spent {'ling-3.0-flash': 1.497, 'granite-4.2-8b': 1.403}
+  625/800  spent {'ling-3.0-flash': 1.497, 'granite-4.2-8b': 1.403}
+  650/800  spent {'ling-3.0-flash': 1.497, 'granite-4.2-8b': 1.418}
+  675/800  spent {'ling-3.0-flash': 1.503, 'granite-4.2-8b': 1.418}
+  700/800  spent {'ling-3.0-flash': 1.503, 'granite-4.2-8b': 1.418}
+  725/800  spent {'ling-3.0-flash': 1.503, 'granite-4.2-8b': 1.418}
+  750/800  spent {'ling-3.0-flash': 1.51, 'granite-4.2-8b': 1.418}
+  775/800  spent {'ling-3.0-flash': 1.51, 'granite-4.2-8b': 1.418}
+  800/800  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+done {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+=== pass 2
+323 runs to do (477 done); spent so far {'ling-3.0-flash': 1.520590000000001, 'granite-4.2-8b': 1.4179479999999995}
+  25/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  50/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  75/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  100/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  125/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  150/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  175/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  200/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  225/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  250/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  275/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  300/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+done {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+=== pass 3
+323 runs to do (477 done); spent so far {'ling-3.0-flash': 1.520590000000001, 'granite-4.2-8b': 1.4179479999999995}
+  25/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  50/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  75/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  100/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  125/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  150/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  175/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  200/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  225/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  250/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  275/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  300/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+done {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+=== pass 4
+323 runs to do (477 done); spent so far {'ling-3.0-flash': 1.520590000000001, 'granite-4.2-8b': 1.4179479999999995}
+  25/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  50/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  75/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  100/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  125/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  150/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  175/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  200/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  225/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  250/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  275/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+  300/323  spent {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+done {'ling-3.0-flash': 1.521, 'granite-4.2-8b': 1.418}
+ALLDONE
