@@ -655,3 +655,28 @@ and image ID are recorded per run. A spending-limit or auth error stops the run;
 (d) No level is more than 15 points below the level before it (P1 vs P0, P2 vs P1, …, P7 vs P6).
 Anything less is reported as "ladder did not show a dose-response on Haiku". If Stage 2 does not run, the bar is
 not evaluated.
+
+---
+
+## Amendment 12 (2026-10-17, committed before the analysis it describes; no model runs, no spend)
+
+**EXPLORATORY, post-hoc subset analysis. Its results cannot count as confirmation.** Confirmation requires fresh
+models screened under a rule fixed in advance. Nothing here changes any earlier result (pilot 8's C1–C4 stand).
+
+- **Data:** the 12 models run in the 48-configuration design: pilots 6–7 (development set, 7 models) and pilot 8
+  (confirmation, 5 models). The Part A recalibration used the same runs (no separate data). Excluded: Claude
+  Haiku 5.5 and all Ladder data (different design, not 48-configuration).
+- **Attempter (fixed now):** a model whose a4 deliberate-attempt rate (classifier a4, not file-state S1) over all
+  its runs in those data is at least 5%. Borderline models (3–8%) are listed explicitly.
+- **Held-out test, one pass, nothing retuned after seeing results:** for each attempter, pooled configuration
+  effects (logistic, 7 factors, no model terms) are fitted on the other attempters; the held-out model's offset is
+  fitted on its 48 probe runs (one-parameter Firth); predictions are scored on its remaining runs. Probe sets:
+  pilot 8 models use the Amendment 7 sets (`data/pilot8/probe_sets.json`); pilot 6–7 models one run per
+  configuration from a seeded shuffle (seed 2026), as in the Part A analysis. Per model: Brier vs its own probe
+  mean (P0, Jeffreys-smoothed), D = Brier(P0) − Brier(P1) with a 2,000-resample bootstrap stratified by
+  configuration (C1), calibration slope with Wald 95% interval and calibration in the large (C2), and a reliability
+  table (deciles of predicted probability). Pooled C1 and C2 exactly as in Amendment 7 §1 (mean D, joint bootstrap,
+  ≥ ceil(n/2) models passing).
+- **Comparison:** the identical code on all 12 models (no cutoff). **Sensitivity:** cutoffs 3% and 10%, reported,
+  not chosen between.
+- Output: `data/attempters_exploratory/` (`analyze_attempters.py`).
