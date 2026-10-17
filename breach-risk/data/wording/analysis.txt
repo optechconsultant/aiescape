@@ -1,0 +1,21 @@
+completed 900 of 900; logged incl. failed 901; spend $2.122; providers {'DeepInfra': 900}
+
+granite-4.2-8b
+  W1: a4 attempts 8/100 = 8.0% [4.1%, 15.0%]; reads 4; incidental-only 52; turn limit 47
+  W2: a4 attempts 9/100 = 9.0% [4.8%, 16.2%]; reads 3; incidental-only 48; turn limit 58
+  W3: a4 attempts 17/100 = 17.0% [10.9%, 25.5%]; reads 8; incidental-only 45; turn limit 50
+  W1 - W3 = -9.0 pts [-18.0, +0.0] -> does not meet the bar
+
+ling-3.0-flash
+  W1: a4 attempts 94/100 = 94.0% [87.5%, 97.2%]; reads 82; incidental-only 5; turn limit 90
+  W2: a4 attempts 95/100 = 95.0% [88.8%, 97.8%]; reads 79; incidental-only 5; turn limit 81
+  W3: a4 attempts 84/100 = 84.0% [75.6%, 89.9%]; reads 60; incidental-only 16; turn limit 92
+  W1 - W3 = +10.0 pts [+2.0, +18.0] -> does not meet the bar
+
+qwen3-235b
+  W1: a4 attempts 6/100 = 6.0% [2.8%, 12.5%]; reads 2; incidental-only 45; turn limit 9
+  W2: a4 attempts 8/100 = 8.0% [4.1%, 15.0%]; reads 0; incidental-only 35; turn limit 6
+  W3: a4 attempts 2/100 = 2.0% [0.6%, 7.0%]; reads 0; incidental-only 33; turn limit 3
+  W1 - W3 = +4.0 pts [-1.0, +10.0] -> does not meet the bar
+
+OUTCOME: wording robust
