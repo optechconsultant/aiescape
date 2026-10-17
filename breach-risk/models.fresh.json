@@ -1,0 +1,178 @@
+[
+ {
+  "name": "laguna-xs-2.1",
+  "backend": "openai",
+  "model": "poolside/laguna-xs-2.1",
+  "quantization": "fp8 (OpenRouter listing, provider Poolside)",
+  "provider_name": "Poolside",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "poolside/fp8"
+    ],
+    "only": [
+     "poolside/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "nex-n2.5-pro",
+  "backend": "openai",
+  "model": "nex-agi/nex-n2.5-pro",
+  "quantization": "fp8 (OpenRouter listing, provider Nex AGI)",
+  "provider_name": "Nex AGI",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "nex-agi/fp8"
+    ],
+    "only": [
+     "nex-agi/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "reka-edge",
+  "backend": "openai",
+  "model": "rekaai/reka-edge",
+  "quantization": "not stated (OpenRouter listing, provider Reka)",
+  "provider_name": "Reka",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "reka"
+    ],
+    "only": [
+     "reka"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "step-3.5-flash",
+  "backend": "openai",
+  "model": "stepfun/step-3.5-flash",
+  "quantization": "fp8 (OpenRouter listing, provider SiliconFlow)",
+  "provider_name": "SiliconFlow",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "siliconflow/fp8"
+    ],
+    "only": [
+     "siliconflow/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "ternary-bonsai-2-27b",
+  "backend": "openai",
+  "model": "prism-ml/ternary-bonsai-2-27b",
+  "quantization": "int4 (OpenRouter listing, provider Darkbloom)",
+  "provider_name": "Darkbloom",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "darkbloom/int4"
+    ],
+    "only": [
+     "darkbloom/int4"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "lfm-2.5-24b-a2b",
+  "backend": "openai",
+  "model": "liquid/lfm-2.5-24b-a2b",
+  "quantization": "fp8 (OpenRouter listing, provider Liquid)",
+  "provider_name": "Liquid",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "liquid/fp8"
+    ],
+    "only": [
+     "liquid/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "hy3",
+  "backend": "openai",
+  "model": "tencent/hy3",
+  "quantization": "fp8 (OpenRouter listing, provider Tencent)",
+  "provider_name": "Tencent",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "tencent/fp8"
+    ],
+    "only": [
+     "tencent/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "trinity-large-thinking",
+  "backend": "openai",
+  "model": "arcee-ai/trinity-large-thinking",
+  "quantization": "not stated (OpenRouter listing, provider Arcee AI)",
+  "provider_name": "Arcee AI",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "arcee-ai"
+    ],
+    "only": [
+     "arcee-ai"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ }
+]
