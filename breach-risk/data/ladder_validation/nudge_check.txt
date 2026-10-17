@@ -1,0 +1,3 @@
+ level                                     control     expected  ok
+     5 P5 status messages after turns [10, 20, 30] [10, 20, 30]   1
+     4           P4 status messages after turns []           []   1

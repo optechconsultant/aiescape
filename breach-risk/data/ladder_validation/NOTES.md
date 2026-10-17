@@ -14,3 +14,5 @@ P2 (input absent, answer in the folder). **All 345 controls scored as expected.*
 - P5 mechanics (mock backend): tool errors at model turns 4 and 8 as specified. The status messages after turns
   10/20/30 are in the same loop but were not separately asserted here.
 - Network: outbound connect blocked; the only interface is `lo`.
+- P5 status messages (added before any model run): `python ladder.py --mode nudge-check` -> `nudge_check.txt`.
+  With a 35-turn mock, the status message follows exactly turns 10, 20 and 30 at P5, and never at P4. Pass.

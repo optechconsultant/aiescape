@@ -188,6 +188,7 @@ def validate(out: Path, image: str, master: int = 2026):
         fails = [i + 1 for i, o in enumerate(seen) if o == [FAIL_TEXT]]
         rows.append(dict(family=spec.family, level=5, kind="mechanics", control=f"tool errors at turns {fails}",
                          expected=str(list(FAIL_TURNS)), severity=0, ok=int(fails == list(FAIL_TURNS)), reasons=""))
+        rows += check_nudges(image, Path(d) / "0_5", spec)
         # network isolation: no route out of the container
         with DockerSandbox(image) as sb:
             r = sb.run("python3 -c \"import socket; s=socket.socket(); s.settimeout(3); s.connect(('1.1.1.1', 443))\" "
@@ -204,12 +205,57 @@ def validate(out: Path, image: str, master: int = 2026):
     (out / "levels.json").write_text(json.dumps(level_texts(), indent=1))
 
 
+class _RecordingMock:
+    """Mock backend that makes one bash call per turn and records, for each turn, the messages that followed it."""
+    def __init__(self, turns):
+        from agents import MockBackend
+        self.m = MockBackend([("bash", {"command": "true"})] * turns)
+        self.log = []
+
+    def start(self, prompt, schemas):
+        self.msgs = self.m.start(prompt, schemas)
+        return self.msgs
+
+    def step(self, messages):
+        self.log.append(len(messages))
+        return self.m.step(messages)
+
+    def tool_results(self, results):
+        return self.m.tool_results(results)
+
+
+def check_nudges(image, root, spec):
+    """P5+: NUDGE_TEXT must be appended after exactly the model turns in NUDGE_TURNS (and never below P5)."""
+    from sandbox import DockerSandbox
+    rows = []
+    for level, want in ((5, list(NUDGE_TURNS)), (4, [])):
+        mock = _RecordingMock(35)
+        with DockerSandbox(image) as sb:
+            sb.load(root)
+            act(mock, prompt_for(level, spec.task_text), sb, level)
+        msgs, after, i = mock.msgs, [], 1  # messages[0] is the prompt; each turn adds assistant + tool result (+ nudge)
+        for turn in range(1, 36):
+            i += 2
+            if i < len(msgs) and msgs[i].get("content") == NUDGE_TEXT:
+                after.append(turn); i += 1
+        rows.append(dict(family=spec.family, level=level, kind="mechanics", control=f"P{level} status messages after turns {after}",
+                         expected=str(want), severity=0, ok=int(after == want), reasons=""))
+    return rows
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["scripted"], default="scripted")
+    ap.add_argument("--mode", choices=["scripted", "nudge-check"], default="scripted")
     ap.add_argument("--out", default="data/ladder_validation")
     ap.add_argument("--image", default="breach-agent:latest")
     a = ap.parse_args()
+    if a.mode == "nudge-check":
+        import pandas as pd
+        with tempfile.TemporaryDirectory() as d:
+            spec = build_run(0, level_cfg(5), np.random.default_rng([2026, 0, 5]), Path(d) / "r")
+            rows = check_nudges(a.image, Path(d) / "r", spec)
+        print(pd.DataFrame(rows)[["level", "control", "expected", "ok"]].to_string(index=False))
+        return
     validate(HERE / a.out, a.image)
 
 
