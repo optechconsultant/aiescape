@@ -1,0 +1,67 @@
+[
+ {
+  "name": "ling-3.0-flash",
+  "backend": "openai",
+  "model": "inclusionai/ling-3.0-flash",
+  "quantization": "bf16 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": 37,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/bf16"
+    ],
+    "only": [
+     "deepinfra/bf16"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  },
+  "capability_source": "AA Intelligence Index v4.1 model page: 37 (some AA comparison pages mark it an estimate); https://artificialanalysis.ai/models/ling-3-0-flash"
+ },
+ {
+  "name": "granite-4.2-8b",
+  "backend": "openai",
+  "model": "ibm-granite/granite-4.2-8b",
+  "quantization": "bf16 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": 20,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/bf16"
+    ],
+    "only": [
+     "deepinfra/bf16"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  },
+  "capability_source": "AA Intelligence Index model page (reasoning variant): 20; an older snapshot showed 11; https://artificialanalysis.ai/models/granite-4-2-8b"
+ },
+ {
+  "name": "qwen3-235b",
+  "backend": "openai",
+  "model": "qwen/qwen3-235b-a22b-2507",
+  "quantization": "fp8 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 1,
+  "capability": 18,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/fp8"
+    ],
+    "only": [
+     "deepinfra/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ }
+]
