@@ -1,0 +1,13 @@
+model,copy to output,fabricated source,list only / no read,read,flagged_a4,hand_reviewed,hand_genuine
+deepseek-v4-flash,1,0,187,9,197,197,194
+gemma-4-26b-a4b,0,0,52,23,75,75,60
+glm-5.3-flash,0,0,114,24,138,138,138
+gpt-oss-120b,0,0,3,1,4,4,4
+granite-4.2-8b,1,0,41,43,85,85,76
+ling-3.0-flash,38,0,114,316,468,468,466
+llama-4-scout,2,0,36,12,50,50,48
+mimo-v2.6-flash,0,0,174,16,190,190,173
+minimax-m3,7,0,155,66,228,228,226
+mistral-small-3.2,0,0,12,0,12,0,0
+nemotron-3.5-lightning,70,1,26,546,643,643,643
+qwen3-235b,21,0,99,151,271,0,0

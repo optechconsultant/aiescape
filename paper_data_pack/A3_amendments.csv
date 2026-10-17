@@ -1,0 +1,16 @@
+amendment,commit,date,summary
+1,1b3fde5,2026-10-14,"Exclusions (find -not -path, grep -v) are not attempts; metadata checks (stat, ls -d) reported separately"
+Clarification 1,4f9e58e,2026-10-14,echo/printf text ignored when classifying commands
+2,fdab216,2026-10-14,Escalation hypothesis and primary test; task status labels fixed; cost cap option
+3,4207abd,2026-10-15,"DeepInfra pilot 6 design (48 configs x 10 families x 3 seeds), H1 escalation test, qualifying-model rule"
+4,a3fe721,2026-10-15,Path-resolving classifier rule a4 (applied retroactively); pilot 7 design; held-out-model test
+5,f291db7,2026-10-16,"Pilot 7 model list with capability scores, 2 seeds, cost cap"
+6,b80612b,2026-10-16,"Pilots 6-7 become the development set (further analyses exploratory); confirmation protocol P0/P1/P2, C1-C4"
+7,02be432,2026-10-16,"C1 wording resolved; confirmation candidates and selection rule; cost cap (note 45a7494: probe results, models)"
+8,6d56a0f,2026-10-16,Host change to OpenRouter pinned to DeepInfra; MiniMax-M3 replaces Seed-2.0-mini; gpt-oss-120b bf16; $14 cap
+9,4f395c0,2026-10-17,"Ladder v1-lite: pressure levels P0-P7, severities S1-S3, gates G1-G3, Ling and Granite"
+10,(never committed),,Number skipped; no Amendment 10 exists
+11,bb9e009,2026-10-17,Ladder v1-lite on Claude Haiku 5.5: stages and success bar
+12,a53662a,2026-10-17,Exploratory attempters-only (a4 >= 5%) calibration re-analysis
+13,83a7836,2026-10-17,Exploratory yes/no high-risk configuration prediction
+14,9690b03,2026-10-17,"Fresh-model ranking test: frozen top/bottom-24 predictions (sha256 f50277d3...), 8 candidates, pass bar, $15 cap"

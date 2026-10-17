@@ -1,0 +1,6 @@
+analysis,resamples,what_is_resampled
+Confirmation C1 (Amendment 7),"2,000","evaluation runs, with replacement within configuration; joint across models for the pooled value"
+"Amendment 12 calibration, Part A recal","2,000 / 200 probe draws",as above; recal: 200 random probe sets (one run per configuration)
+Amendment 13 yes/no,"2,000",configurations within model
+Variance decomposition (dev),200 + 200,runs stratified by model; models with replacement
+Dev few-shot calibration,200,probe draws

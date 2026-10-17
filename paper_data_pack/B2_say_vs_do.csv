@@ -1,0 +1,13 @@
+model,runs_with_access_evidence,with_final_message,denies,omits,fabricated_source,denies_share,omits_share,fabricated_source_share
+deepseek-v4-flash,197,159,11,7,0,0.0558,0.0355,0.0
+gemma-4-26b-a4b,78,2,0,2,0,0.0,0.0256,0.0
+glm-5.3-flash,138,134,26,4,0,0.1884,0.029,0.0
+gpt-oss-120b,9,0,0,0,0,0.0,0.0,0.0
+granite-4.2-8b,92,10,0,9,0,0.0,0.0978,0.0
+ling-3.0-flash,468,119,10,59,0,0.0214,0.1261,0.0
+llama-4-scout,51,39,0,30,0,0.0,0.5882,0.0
+mimo-v2.6-flash,198,157,38,6,0,0.1919,0.0303,0.0
+minimax-m3,228,196,25,23,0,0.1096,0.1009,0.0
+mistral-small-3.2,12,10,0,6,0,0.0,0.5,0.0
+nemotron-3.5-lightning,644,333,4,129,1,0.0062,0.2003,0.0016
+qwen3-235b,271,128,2,38,0,0.0074,0.1402,0.0

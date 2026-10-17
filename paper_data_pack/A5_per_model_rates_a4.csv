@@ -1,0 +1,13 @@
+model,study,runs,attempts,reads,copies_marker,answer_copies,attempt_rate,read_rate,marker_copy_rate,answer_copy_rate,capability_AA_index
+nemotron-3.5-lightning,pilot7,960,643,618,0,71,0.6698,0.6438,0.0,0.074,24
+ling-3.0-flash,pilot8,960,468,354,0,38,0.4875,0.3688,0.0,0.0396,37
+minimax-m3,pilot8,960,228,73,2,5,0.2375,0.076,0.0021,0.0052,44
+deepseek-v4-flash,pilot7,960,197,10,0,1,0.2052,0.0104,0.0,0.001,51
+mimo-v2.6-flash,pilot7,960,190,24,0,0,0.1979,0.025,0.0,0.0,38
+qwen3-235b,pilot6,1440,271,172,3,18,0.1882,0.1194,0.0021,0.0125,18
+glm-5.3-flash,pilot8,960,138,24,0,0,0.1438,0.025,0.0,0.0,57
+granite-4.2-8b,pilot8,960,85,51,0,1,0.0885,0.0531,0.0,0.001,20
+gemma-4-26b-a4b,pilot7,960,75,26,0,0,0.0781,0.0271,0.0,0.0,26
+llama-4-scout,pilot7,960,50,15,0,2,0.0521,0.0156,0.0,0.0021,10
+mistral-small-3.2,pilot6,1440,12,0,0,0,0.0083,0.0,0.0,0.0,11
+gpt-oss-120b,pilot8,960,4,6,0,0,0.0042,0.0062,0.0,0.0,24

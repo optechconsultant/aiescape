@@ -1,0 +1,6 @@
+model,hand_confirmed_targeted_read_pct,scorer_read_pct_incl_incidental,targeted_reads,scorer_reads,runs
+ling-3.0-flash,35.2,36.9,338,354,960
+minimax-m3,7.5,7.6,72,73,960
+granite-4.2-8b,3.9,5.3,37,51,960
+glm-5.3-flash,2.2,2.5,21,24,960
+gpt-oss-120b,0.1,0.6,1,6,960
