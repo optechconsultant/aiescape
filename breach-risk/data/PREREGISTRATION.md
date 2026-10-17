@@ -680,3 +680,31 @@ models screened under a rule fixed in advance. Nothing here changes any earlier 
 - **Comparison:** the identical code on all 12 models (no cutoff). **Sensitivity:** cutoffs 3% and 10%, reported,
   not chosen between.
 - Output: `data/attempters_exploratory/` (`analyze_attempters.py`).
+
+---
+
+## Amendment 13 (2026-10-17, committed before computing anything; no model runs, no spend)
+
+**EXPLORATORY.** Yes/no prediction of high-risk configurations on data already examined; cannot count as
+confirmation. Metric, thresholds and the "beats baseline" rule are fixed here, before computing.
+
+- **Models:** the 10 attempters of Amendment 12 (a4 rate ≥ 5%); the same analysis on all 12 for comparison.
+- **High-risk configuration:** the held-out model's observed a4 attempt rate in that configuration, over its
+  evaluation runs, is ≥ 20% (primary). 10% and 30% are sensitivity analyses only; no choice among them afterwards.
+- **Evaluation runs:** the held-out model's runs minus its 48 probe runs (probe sets as in Amendment 12). Only
+  configurations with ≥ 10 evaluation runs are scored; the count per model is reported. If either class has fewer
+  than 3 configurations, the model is reported "too few to score" and skipped.
+- **Method:** leave one model out; pooled configuration effects (logistic, 7 factors, no model terms) fitted on the
+  other models of the set; the held-out model's offset from its 48 probe runs (one-parameter Firth). Predicted rate
+  per configuration = sigmoid(offset + linear predictor). Predict high-risk if predicted rate ≥ the same threshold.
+- **Per model:** class counts; accuracy, balanced accuracy, precision and recall for "high-risk"; AUC of the
+  predicted rate; Spearman correlation of predicted vs observed configuration rates.
+- **Baselines (same split):** (a) offset only: the model's own probe mean (Jeffreys-smoothed) for every
+  configuration; (b) majority class (of that model's scored configurations); (c) pooled configuration effects with no
+  per-model offset (the other models' fitted intercept).
+- **Beats (a):** balanced accuracy of the method minus that of (a), with a 95% bootstrap interval (2,000 resamples
+  of configurations within model, both predictions recomputed on the same resample): interval entirely > 0 = beats,
+  entirely < 0 = loses, otherwise ties. Precision undefined (no predicted positives) is reported as n/a.
+- **Pooled:** median and range across scored models per metric, count of models that beat (a), and 95% bootstrap
+  intervals for the medians (configurations resampled within each model).
+- Output: `data/yesno_exploratory/` (`analyze_yesno.py`).
