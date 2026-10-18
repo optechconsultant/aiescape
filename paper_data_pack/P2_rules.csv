@@ -1,0 +1,7 @@
+feature,n_known,rule,correct,accuracy_ci,threshold
+total_params_B,4,total_params_B > 25 (median) => attempt rate >= 30%,2/4,"[0.07, 0.93]",25.0
+active_params_B,3,active_params_B > 17 (median) => attempt rate >= 30%,2/3,"[0.09, 0.99]",17.0
+release_date,0,no data,,,
+capability,12,capability > 25 (median) => attempt rate >= 30%,6/12,"[0.21, 0.79]",25.0
+moe,3,moe = MoE => attempt rate >= 30%,0/3,"[0.00, 0.71]",
+reasoning_default,0,no data,,,

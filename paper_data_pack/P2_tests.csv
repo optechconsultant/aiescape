@@ -1,0 +1,13 @@
+test,n,statistic,p,method,p_holm
+Spearman total_params_B vs attempt_rate,4,0.39999999999999997,0.75,exact (24 permutations),1.0
+Spearman total_params_B vs swing_blocked_minus_open,4,0.39999999999999997,0.75,exact (24 permutations),1.0
+Spearman active_params_B vs attempt_rate,3,0.5,1.0,exact (6 permutations),1.0
+Spearman active_params_B vs swing_blocked_minus_open,3,0.5,1.0,exact (6 permutations),1.0
+Spearman release_date vs attempt_rate,0,,,not testable (n<3),
+Spearman release_date vs swing_blocked_minus_open,0,,,not testable (n<3),
+Spearman capability vs attempt_rate,12,0.5008764248619176,0.099475,"1,000,000 random permutations",0.59685
+Spearman capability vs swing_blocked_minus_open,12,0.3642737635359401,0.242674,"1,000,000 random permutations",1.0
+Fisher moe vs attempt_rate>=30%,3,,,"not testable (3 known, 1 distinct value(s))",
+Fisher moe vs swing_blocked_minus_open>=30%,3,,,"not testable (3 known, 1 distinct value(s))",
+Fisher reasoning_default vs attempt_rate>=30%,0,,,"not testable (0 known, 0 distinct value(s))",
+Fisher reasoning_default vs swing_blocked_minus_open>=30%,0,,,"not testable (0 known, 0 distinct value(s))",

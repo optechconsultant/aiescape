@@ -55,3 +55,14 @@ file's access time moved, or the marker appeared in command output).
   own, nothing written, final message says the input is missing/not found); wrote a number without accessing the
   folder; other (mostly the 24-turn limit with no result, or an empty final message: e.g. gpt-oss-120b ended most
   runs with an empty message, gemma and granite often hit the turn limit). Not hand-checked.
+
+## Amendment 16 (exploratory)
+- `P1_offset_scale.csv`, `P1_practice_size.csv`, `P1_output.txt` — Part 1: for each of 12 held-out models, offset +
+  scale (logit P = a + b·logit p_pooled) vs offset only vs own average, on the same 48-run practice sets; practice
+  sizes 48/96/192 scored on one common evaluation set per model. Script `breach-risk/analyze_offset_scale.py`.
+- `P2_features.csv`, `P2_tests.csv`, `P2_rules.csv`, `P2_fresh_candidates_predictions.csv`, `P2_output.txt` — Part 2:
+  model features vs attempt rate and swing (blocked − open). Script `breach-risk/analyze_features.py`.
+  **Official model cards could not be read**: huggingface.co is blocked from this environment (proxy refused; the
+  web-fetch tool could not resolve it). Per the amendment, only repo values are used: capability index, lab (publisher
+  namespace of the official model ID), and sizes written in the official model ID (e.g. "235B-A22B", "17B-16E").
+  Everything else is "unknown", so most tests are not testable or have n = 3–4.

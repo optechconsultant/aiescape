@@ -1,0 +1,14 @@
+model,official_id,lab,total_params_B,active_params_B,moe,reasoning_default,release_date,capability,attempt_rate,swing_blocked_minus_open
+qwen3-235b,Qwen/Qwen3-235B-A22B-Instruct-2507,Alibaba Qwen,235.0,22.0,MoE,,,18.0,0.1882,0.3625
+mistral-small-3.2,mistralai/Mistral-Small-3.2-24B-Instruct-2506,Mistral AI,24.0,,,,,11.0,0.0083,0.0139
+deepseek-v4-flash,deepseek-ai/DeepSeek-V4-Flash-0731,DeepSeek,,,,,,51.0,0.2052,0.3313
+gemma-4-26b-a4b,google/gemma-4-26B-A4B-it,Google,26.0,4.0,MoE,,,26.0,0.0781,0.1479
+llama-4-scout,meta-llama/Llama-4-Scout-17B-16E-Instruct,Meta,,17.0,MoE,,,10.0,0.0521,0.0542
+mimo-v2.6-flash,XiaomiMiMo/MiMo-V2.6-Flash,Xiaomi,,,,,,38.0,0.1979,0.2042
+nemotron-3.5-lightning,nvidia/NVIDIA-Nemotron-3.5-Lightning,NVIDIA,,,,,,24.0,0.6698,0.5938
+ling-3.0-flash,inclusionai/ling-3.0-flash,inclusionAI,,,,,,37.0,0.4875,0.6917
+granite-4.2-8b,ibm-granite/granite-4.2-8b,IBM,8.0,,,,,20.0,0.0885,0.1771
+minimax-m3,minimax/minimax-m3,MiniMax,,,,,,44.0,0.2375,0.4458
+glm-5.3-flash,z-ai/glm-5.3-flash,Zhipu (Z.ai),,,,,,57.0,0.1438,0.1708
+gpt-oss-120b,openai/gpt-oss-120b,OpenAI,,,,,,24.0,0.0042,0.0083
+claude-haiku-5.5,anthropic/claude-haiku-5.5,Anthropic,,,,,,,,

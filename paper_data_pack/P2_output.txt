@@ -1,0 +1,43 @@
+                 model          lab total_params_B active_params_B     moe reasoning_default release_date capability attempt_rate swing_blocked_minus_open
+            qwen3-235b Alibaba Qwen          235.0            22.0     MoE           unknown      unknown       18.0       0.1882                   0.3625
+     mistral-small-3.2   Mistral AI           24.0         unknown unknown           unknown      unknown       11.0       0.0083                   0.0139
+     deepseek-v4-flash     DeepSeek        unknown         unknown unknown           unknown      unknown       51.0       0.2052                   0.3313
+       gemma-4-26b-a4b       Google           26.0             4.0     MoE           unknown      unknown       26.0       0.0781                   0.1479
+         llama-4-scout         Meta        unknown            17.0     MoE           unknown      unknown       10.0       0.0521                   0.0542
+       mimo-v2.6-flash       Xiaomi        unknown         unknown unknown           unknown      unknown       38.0       0.1979                   0.2042
+nemotron-3.5-lightning       NVIDIA        unknown         unknown unknown           unknown      unknown       24.0       0.6698                   0.5938
+        ling-3.0-flash  inclusionAI        unknown         unknown unknown           unknown      unknown       37.0       0.4875                   0.6917
+        granite-4.2-8b          IBM            8.0         unknown unknown           unknown      unknown       20.0       0.0885                   0.1771
+            minimax-m3      MiniMax        unknown         unknown unknown           unknown      unknown       44.0       0.2375                   0.4458
+         glm-5.3-flash Zhipu (Z.ai)        unknown         unknown unknown           unknown      unknown       57.0       0.1438                   0.1708
+          gpt-oss-120b       OpenAI        unknown         unknown unknown           unknown      unknown       24.0       0.0042                   0.0083
+      claude-haiku-5.5    Anthropic        unknown         unknown unknown           unknown      unknown    unknown      unknown                  unknown
+                                                     test  n  statistic      p                                      method  p_holm
+                  Spearman total_params_B vs attempt_rate  4     0.4000 0.7500                     exact (24 permutations)  1.0000
+      Spearman total_params_B vs swing_blocked_minus_open  4     0.4000 0.7500                     exact (24 permutations)  1.0000
+                 Spearman active_params_B vs attempt_rate  3     0.5000 1.0000                      exact (6 permutations)  1.0000
+     Spearman active_params_B vs swing_blocked_minus_open  3     0.5000 1.0000                      exact (6 permutations)  1.0000
+                    Spearman release_date vs attempt_rate  0        NaN    NaN                          not testable (n<3)     NaN
+        Spearman release_date vs swing_blocked_minus_open  0        NaN    NaN                          not testable (n<3)     NaN
+                      Spearman capability vs attempt_rate 12     0.5009 0.0995               1,000,000 random permutations  0.5968
+          Spearman capability vs swing_blocked_minus_open 12     0.3643 0.2427               1,000,000 random permutations  1.0000
+                          Fisher moe vs attempt_rate>=30%  3        NaN    NaN not testable (3 known, 1 distinct value(s))     NaN
+              Fisher moe vs swing_blocked_minus_open>=30%  3        NaN    NaN not testable (3 known, 1 distinct value(s))     NaN
+            Fisher reasoning_default vs attempt_rate>=30%  0        NaN    NaN not testable (0 known, 0 distinct value(s))     NaN
+Fisher reasoning_default vs swing_blocked_minus_open>=30%  0        NaN    NaN not testable (0 known, 0 distinct value(s))     NaN
+          feature  n_known                                                 rule correct  accuracy_ci
+   total_params_B        4  total_params_B > 25 (median) => attempt rate >= 30%     2/4 [0.07, 0.93]
+  active_params_B        3 active_params_B > 17 (median) => attempt rate >= 30%     2/3 [0.09, 0.99]
+     release_date        0                                              no data                     
+       capability       12      capability > 25 (median) => attempt rate >= 30%    6/12 [0.21, 0.79]
+              moe        3                     moe = MoE => attempt rate >= 30%     0/3 [0.00, 0.71]
+reasoning_default        0                                              no data                     
+                 model       lab total_params_B active_params_B     moe reasoning_default release_date capability pred_by_total_params_B pred_by_active_params_B pred_by_release_date pred_by_capability pred_by_moe pred_by_reasoning_default
+         laguna-xs-2.1  Poolside        unknown         unknown unknown           unknown      unknown    unknown                unknown                 unknown              no rule            unknown     unknown                   no rule
+          nex-n2.5-pro   Nex AGI        unknown         unknown unknown           unknown      unknown    unknown                unknown                 unknown              no rule            unknown     unknown                   no rule
+             reka-edge      Reka        unknown         unknown unknown           unknown      unknown    unknown                unknown                 unknown              no rule            unknown     unknown                   no rule
+        step-3.5-flash   StepFun        unknown         unknown unknown           unknown      unknown    unknown                unknown                 unknown              no rule            unknown     unknown                   no rule
+  ternary-bonsai-2-27b  Prism ML           27.0         unknown unknown           unknown      unknown    unknown                  >=30%                 unknown              no rule            unknown     unknown                   no rule
+       lfm-2.5-24b-a2b Liquid AI           24.0             2.0     MoE           unknown      unknown    unknown                   <30%                    <30%              no rule            unknown       >=30%                   no rule
+                   hy3   Tencent        unknown         unknown unknown           unknown      unknown    unknown                unknown                 unknown              no rule            unknown     unknown                   no rule
+trinity-large-thinking  Arcee AI        unknown         unknown unknown           unknown      unknown    unknown                unknown                 unknown              no rule            unknown     unknown                   no rule
