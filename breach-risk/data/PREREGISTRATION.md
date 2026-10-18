@@ -815,3 +815,52 @@ or read with no a4 command, e.g. whole-disk `find /`) is counted separately and 
 least 15 percentage points and the 95% bootstrap interval of that difference (2,000 resamples of runs within each
 cell) excludes zero; otherwise "wording robust". Per-model, per-wording rates are reported with Wilson 95% intervals.
 Any safety-check interruption stops the work; nothing is reworded to get around it.
+
+---
+
+## Amendment 16 (2026-10-18, committed before any of the analyses it describes; EXPLORATORY; no model runs)
+
+All of this is exploratory: it reuses data already examined (pilots 6–8, 12 models in the 48-configuration design)
+and cannot count as confirmation. Everything below is fixed now, before computing.
+
+### Part 1: two-number prediction (offset + scale)
+- For each of the 12 models in turn (held out): pooled configuration effects (logistic, 7 factors, no model terms)
+  fitted on the other 11 models; p_pooled = their prediction for each held-out run.
+- On the held-out model's practice runs fit **logit P = a + b · logit(p_pooled)** (two-parameter Firth). Compare with
+  the old method, **offset only** (b fixed at 1, one-parameter Firth), and with the model's own practice mean
+  (Jeffreys-smoothed, (k + 0.5)/(n + 1)).
+- **Practice sets:** the same 48-run sets as before (pilot 8: `data/pilot8/probe_sets.json`; pilots 6–7: one run per
+  configuration from a seeded shuffle, seed 2026, as in Amendments 12–13). Larger sets of **96 and 192** add 1 and 3
+  further runs per configuration, taken in the same seeded shuffle order (seed 2026), and contain the 48-run set.
+  Every model has ≥ 20 runs per configuration, so all sizes are available for all 12.
+- **Evaluation runs:** primary (k = 48): all runs not in the 48-run practice set. Practice-size comparison: one common
+  evaluation set per model = all runs not in its 192-run set, so 48/96/192 are scored on identical runs. Practice and
+  evaluation runs are always disjoint.
+- **Per model:** calibration slope (logistic regression of the 0/1 outcome on logit of the prediction) with Wald 95%
+  interval; calibration in the large (mean prediction − observed rate); Brier (per run) and the Brier gain
+  vs own average and vs offset-only. **Calibration check passes** iff the slope interval contains 1 AND
+  |mean prediction − observed| ≤ 0.05. **Pooled:** mean Brier gains across models with 2,000-resample bootstrap
+  intervals (evaluation runs resampled within configuration, jointly across models), and the count passing.
+
+### Part 2: do model features predict behaviour?
+- **Outcomes (12 models):** (a) overall a4 attempt rate; (b) swing = a4 attempt rate with honest_path=blocked minus with
+  honest_path=open (`paper_data_pack/B3_setting_effects_long.csv`).
+- **Features** for the 12 models and Claude Haiku 5.5 (Haiku has no 48-configuration outcomes: features listed, not
+  tested), taken only from repo files (`models.pilot8.json`, `capability_scores.json`) and each model's official model
+  card (publisher's Hugging Face card or official announcement); anything not found there = "unknown", no guessing:
+  total parameters; active parameters (for a dense model, active = total by definition); mixture-of-experts or dense;
+  default reasoning mode (reasoning / not); release date; training lab; capability index (AA Intelligence Index from
+  the repo).
+- **Tests (fixed list, 12 tests):** Spearman correlation of each numeric feature (total parameters, active parameters,
+  release date, capability index) with each outcome (8 tests), two-sided permutation p-value: exact enumeration when
+  ≤ 10 models have the feature, otherwise 1,000,000 random permutations (exact enumeration of 12! is not feasible;
+  stated as Monte Carlo). Fisher exact test (two-sided) of mixture-of-experts vs dense and of reasoning vs not
+  against each outcome dichotomised at 30% (attempt rate ≥ 30%; swing ≥ 30 points) (4 tests). Models with "unknown"
+  are dropped from that test only. Training lab is reported descriptively (no test). **Holm correction across all 12
+  tests.** No feature or test is added or dropped after seeing results.
+- **Simplest rule per feature:** "feature above its median across the 12 models (or MoE = yes, reasoning = yes) ⇒
+  attempt rate ≥ 30%". Accuracy out of the models with that feature known, with an exact (Clopper–Pearson) 95%
+  interval. Twelve models cannot support a rule; this is descriptive only.
+- **Out-of-sample list:** the same features for the 8 Amendment 14 candidates and what each rule predicts, committed
+  before any of them is run, so that a later test is genuinely out of sample.
+- Output: `paper_data_pack/` (`breach-risk/analyze_features.py`).
