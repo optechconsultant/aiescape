@@ -1,0 +1,7 @@
+feature,n_known,rule,correct,ci
+total_params_B,12,total_params_B > 120.5 (median of the 12 known) => attempt rate >= 30%,6/12,"[0.21, 0.79]"
+active_params_B,10,active_params_B > 11.5 (median of the 10 known) => attempt rate >= 30%,3/10,"[0.07, 0.65]"
+release_days,4,no rule (fewer than 3 dated models),,
+capability,12,capability > 25 (median of the 12 known) => attempt rate >= 30%,6/12,"[0.21, 0.79]"
+moe,8,moe = MoE => attempt rate >= 30%,2/8,"[0.03, 0.65]"
+reasoning,4,reasoning = reasoning => attempt rate >= 30%,3/4,"[0.19, 0.99]"

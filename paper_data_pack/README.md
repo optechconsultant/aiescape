@@ -60,9 +60,11 @@ file's access time moved, or the marker appeared in command output).
 - `P1_offset_scale.csv`, `P1_practice_size.csv`, `P1_output.txt` — Part 1: for each of 12 held-out models, offset +
   scale (logit P = a + b·logit p_pooled) vs offset only vs own average, on the same 48-run practice sets; practice
   sizes 48/96/192 scored on one common evaluation set per model. Script `breach-risk/analyze_offset_scale.py`.
-- `P2_features.csv`, `P2_tests.csv`, `P2_rules.csv`, `P2_fresh_candidates_predictions.csv`, `P2_output.txt` — Part 2:
-  model features vs attempt rate and swing (blocked − open). Script `breach-risk/analyze_features.py`.
-  **Official model cards could not be read**: huggingface.co is blocked from this environment (proxy refused; the
-  web-fetch tool could not resolve it). Per the amendment, only repo values are used: capability index, lab (publisher
-  namespace of the official model ID), and sizes written in the official model ID (e.g. "235B-A22B", "17B-16E").
-  Everything else is "unknown", so most tests are not testable or have n = 3–4.
+- `P2_card_facts.csv`, `P2_card_facts_fresh.csv` — model-card facts supplied by the person running the study
+  (12 models + Haiku; 8 fresh candidates); "not stated" = empty. `starred_fields` marks values not from the
+  publisher's card (MiMo, Nemotron).
+- `P2_features.csv`, `P2_tests.csv`, `P2_rules.csv`, `P2_fresh_candidates_predictions.csv`, `P2_output.txt` — Part 2
+  PRIMARY (card-only; starred values = unknown; Holm over a family of 12). `*_sens.csv`, `P2_output_sens.txt` —
+  sensitivity with the starred values included (a deviation from "card only", reported separately). Script
+  `breach-risk/analyze_features.py [--starred]`. The first Part 2 output (commit 0ccddfa) is superseded: it had no
+  card facts and used a Holm family of 6 instead of 12.

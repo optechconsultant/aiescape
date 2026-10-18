@@ -1,9 +1,9 @@
-model,official_id,lab,total_params_B,active_params_B,moe,reasoning_default,release_date,capability,pred_by_total_params_B,pred_by_active_params_B,pred_by_release_date,pred_by_capability,pred_by_moe,pred_by_reasoning_default
-laguna-xs-2.1,poolside/Laguna-XS-2.1,Poolside,,,,,,,unknown,unknown,no rule,unknown,unknown,no rule
-nex-n2.5-pro,nex-agi/Nex-N2.5-Pro,Nex AGI,,,,,,,unknown,unknown,no rule,unknown,unknown,no rule
-reka-edge,RekaAI/reka-edge-2603,Reka,,,,,,,unknown,unknown,no rule,unknown,unknown,no rule
-step-3.5-flash,stepfun-ai/Step-3.5-Flash,StepFun,,,,,,,unknown,unknown,no rule,unknown,unknown,no rule
-ternary-bonsai-2-27b,prism-ml/Ternary-Bonsai-2-27B-gguf,Prism ML,27.0,,,,,,>=30%,unknown,no rule,unknown,unknown,no rule
-lfm-2.5-24b-a2b,LiquidAI/LFM2.5-24B-A2B,Liquid AI,24.0,2.0,MoE,,,,<30%,<30%,no rule,unknown,>=30%,no rule
-hy3,tencent/Hy3,Tencent,,,,,,,unknown,unknown,no rule,unknown,unknown,no rule
-trinity-large-thinking,arcee-ai/Trinity-Large-Thinking,Arcee AI,,,,,,,unknown,unknown,no rule,unknown,unknown,no rule
+model,total_params_B,active_params_B,moe,reasoning,release_date,notes,pred_total_params_B,pred_active_params_B,pred_moe,pred_reasoning,pred_capability
+laguna-xs-2.1,33.0,3.0,MoE,reasoning,,,<30%,<30%,>=30%,>=30%,unknown (no index)
+nex-n2.5-pro,397.0,,,,,reasoning adaptive; architecture tag qwen3_5_moe but card never says MoE,>=30%,unknown,unknown,unknown,unknown (no index)
+reka-edge-2603,7.0,,,non-reasoning,,,<30%,unknown,unknown,<30%,unknown (no index)
+step-3.5-flash,196.81,11.0,MoE,,,card intro says 196B; table 196.81B used,>=30%,<30%,>=30%,unknown,unknown (no index)
+ternary-bonsai-2-27b,27.0,,,,,total given in the model name,<30%,unknown,unknown,unknown,unknown (no index)
+lfm2.5-24b-a2b,24.0,2.45,MoE,reasoning,,,<30%,<30%,>=30%,>=30%,unknown (no index)
+hy3,295.0,21.0,MoE,non-reasoning,,default no_think,>=30%,>=30%,>=30%,<30%,unknown (no index)
+trinity-large-thinking,398.0,13.0,MoE,reasoning,,judgement: card says it produces think traces; no stated default,>=30%,>=30%,>=30%,>=30%,unknown (no index)

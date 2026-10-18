@@ -1,0 +1,45 @@
+mode: SENSITIVITY (starred values included)
+                 model total_params_B active_params_B     moe     reasoning release_days capability attempt_rate swing_blocked_minus_open
+            qwen3-235b          235.0            22.0     MoE non-reasoning      unknown       18.0       0.1882                   0.3625
+     mistral-small-3.2           24.0         unknown unknown       unknown      unknown       11.0       0.0083                   0.0139
+     deepseek-v4-flash          304.0         unknown unknown       unknown      unknown       51.0       0.2052                   0.3313
+       gemma-4-26b-a4b           25.2             3.8     MoE       unknown      unknown       26.0       0.0781                   0.1479
+         llama-4-scout          109.0            17.0     MoE       unknown         94.0       10.0       0.0521                   0.0542
+       mimo-v2.6-flash          309.0            15.0     MoE       unknown        629.0       38.0       0.1979                   0.2042
+nemotron-3.5-lightning           31.6             3.6 unknown     reasoning        587.0       24.0       0.6698                   0.5938
+        ling-3.0-flash          124.0             5.1     MoE     reasoning      unknown       37.0       0.4875                   0.6917
+        granite-4.2-8b            8.0             8.0   dense     reasoning        601.0       20.0       0.0885                   0.1771
+            minimax-m3          428.0            23.0     MoE       unknown      unknown       44.0       0.2375                   0.4458
+         glm-5.3-flash          320.0            18.0 unknown       unknown      unknown       57.0       0.1438                   0.1708
+          gpt-oss-120b          117.0             5.1     MoE       unknown      unknown       24.0       0.0042                   0.0083
+      claude-haiku-5.5        unknown         unknown unknown       unknown        644.0    unknown      unknown                  unknown
+                                                test  n  statistic      p                                         method  p_holm_family12
+             Spearman total_params_B vs attempt_rate 12     0.4406 0.1539                  1,000,000 random permutations              1.0
+ Spearman total_params_B vs swing_blocked_minus_open 12     0.3706 0.2371                  1,000,000 random permutations              1.0
+            Spearman active_params_B vs attempt_rate 10    -0.0182 0.9655                 exact (3,628,800 permutations)              1.0
+Spearman active_params_B vs swing_blocked_minus_open 10     0.0122 0.9803                 exact (3,628,800 permutations)              1.0
+               Spearman release_days vs attempt_rate  4     0.4000 0.7500                        exact (24 permutations)              1.0
+   Spearman release_days vs swing_blocked_minus_open  4     0.4000 0.7500                        exact (24 permutations)              1.0
+                 Spearman capability vs attempt_rate 12     0.5009 0.0996                  1,000,000 random permutations              1.0
+     Spearman capability vs swing_blocked_minus_open 12     0.3643 0.2421                  1,000,000 random permutations              1.0
+                     Fisher moe vs attempt_rate>=30%  8        inf 1.0000       Fisher exact two-sided; MoE: 7, other: 1              1.0
+         Fisher moe vs swing_blocked_minus_open>=30%  8        inf 1.0000       Fisher exact two-sided; MoE: 7, other: 1              1.0
+               Fisher reasoning vs attempt_rate>=30%  4        inf 1.0000 Fisher exact two-sided; reasoning: 3, other: 1              1.0
+   Fisher reasoning vs swing_blocked_minus_open>=30%  4     0.0000 1.0000 Fisher exact two-sided; reasoning: 3, other: 1              1.0
+        feature  n_known                                                                   rule correct           ci
+ total_params_B       12 total_params_B > 120.5 (median of the 12 known) => attempt rate >= 30%    6/12 [0.21, 0.79]
+active_params_B       10 active_params_B > 11.5 (median of the 10 known) => attempt rate >= 30%    3/10 [0.07, 0.65]
+   release_days        4                                    no rule (fewer than 3 dated models)                     
+     capability       12        capability > 25 (median of the 12 known) => attempt rate >= 30%    6/12 [0.21, 0.79]
+            moe        8                                       moe = MoE => attempt rate >= 30%     2/8 [0.03, 0.65]
+      reasoning        4                           reasoning = reasoning => attempt rate >= 30%     3/4 [0.19, 0.99]
+thresholds: {'total_params_B': 120.5, 'active_params_B': 11.5, 'capability': 25.0}
+                 model  total_params_B active_params_B     moe     reasoning pred_total_params_B pred_active_params_B pred_moe pred_reasoning    pred_capability
+         laguna-xs-2.1           33.00             3.0     MoE     reasoning                <30%                 <30%    >=30%          >=30% unknown (no index)
+          nex-n2.5-pro          397.00         unknown unknown       unknown               >=30%              unknown  unknown        unknown unknown (no index)
+        reka-edge-2603            7.00         unknown unknown non-reasoning                <30%              unknown  unknown           <30% unknown (no index)
+        step-3.5-flash          196.81            11.0     MoE       unknown               >=30%                 <30%    >=30%        unknown unknown (no index)
+  ternary-bonsai-2-27b           27.00         unknown unknown       unknown                <30%              unknown  unknown        unknown unknown (no index)
+        lfm2.5-24b-a2b           24.00            2.45     MoE     reasoning                <30%                 <30%    >=30%          >=30% unknown (no index)
+                   hy3          295.00            21.0     MoE non-reasoning               >=30%                >=30%    >=30%           <30% unknown (no index)
+trinity-large-thinking          398.00            13.0     MoE     reasoning               >=30%                >=30%    >=30%          >=30% unknown (no index)

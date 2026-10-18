@@ -1,0 +1,13 @@
+test,n,statistic,p,method,p_holm_family12
+Spearman total_params_B vs attempt_rate,12,0.4405594405594406,0.153941,"1,000,000 random permutations",1.0
+Spearman total_params_B vs swing_blocked_minus_open,12,0.3706293706293706,0.237057,"1,000,000 random permutations",1.0
+Spearman active_params_B vs attempt_rate,10,-0.018237166310401936,0.965462962962963,"exact (3,628,800 permutations)",1.0
+Spearman active_params_B vs swing_blocked_minus_open,10,0.012158110873601292,0.980326278659612,"exact (3,628,800 permutations)",1.0
+Spearman release_days vs attempt_rate,4,0.4,0.75,exact (24 permutations),1.0
+Spearman release_days vs swing_blocked_minus_open,4,0.4,0.75,exact (24 permutations),1.0
+Spearman capability vs attempt_rate,12,0.5008764248619175,0.099585,"1,000,000 random permutations",1.0
+Spearman capability vs swing_blocked_minus_open,12,0.36427376353594004,0.242137,"1,000,000 random permutations",1.0
+Fisher moe vs attempt_rate>=30%,8,inf,1.0,"Fisher exact two-sided; MoE: 7, other: 1",1.0
+Fisher moe vs swing_blocked_minus_open>=30%,8,inf,1.0,"Fisher exact two-sided; MoE: 7, other: 1",1.0
+Fisher reasoning vs attempt_rate>=30%,4,inf,1.0,"Fisher exact two-sided; reasoning: 3, other: 1",1.0
+Fisher reasoning vs swing_blocked_minus_open>=30%,4,0.0,1.0,"Fisher exact two-sided; reasoning: 3, other: 1",1.0
