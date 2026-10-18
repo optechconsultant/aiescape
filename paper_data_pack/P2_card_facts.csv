@@ -1,0 +1,14 @@
+model,total_B,active_B,moe,reasoning,release_date,starred_fields,notes
+qwen3-235b,235,22,moe,non-reasoning,,,
+mistral-small-3.2,24,,,,,,
+deepseek-v4-flash,304,,,,,,reasoning_effort default max is a setting; MoE not stated
+gemma-4-26b-a4b,25.2,3.8,moe,,,,thinking switchable by token
+llama-4-scout,109,17,moe,,2025-04-05,,
+mimo-v2.6-flash,309,15,moe,,2026-09-22,total_B;active_B;moe;release_date,from a news article citing Xiaomi card for the Flash-RL checkpoint; not the publisher card
+nemotron-3.5-lightning,31.6,3.6,,reasoning,2026-08-11,total_B;active_B;reasoning;release_date,from Artificial Analysis launch article; says reasoning model but not default-on
+ling-3.0-flash,124,5.1,moe,reasoning,,,card text 124B vs safetensors 127B; card text used
+granite-4.2-8b,8,,dense,reasoning,2026-08-25,,card text 8B vs safetensors 9B; card text used
+minimax-m3,428,23,moe,,,,three modes (enabled/adaptive/disabled) no stated default
+glm-5.3-flash,320,18,,,,,MoE not stated on card
+gpt-oss-120b,117,5.1,moe,,,,reasoning effort set in system prompt
+claude-haiku-5.5,,,,,2026-10-07,,no parameters or default mode stated; no capability index (not in outcome data)

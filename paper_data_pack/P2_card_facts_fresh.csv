@@ -1,0 +1,9 @@
+model,total_B,active_B,moe,reasoning,release_date,notes
+laguna-xs-2.1,33,3,moe,reasoning,,
+nex-n2.5-pro,397,,,,,reasoning adaptive; architecture tag qwen3_5_moe but card never says MoE
+reka-edge-2603,7,,,non-reasoning,,
+step-3.5-flash,196.81,11,moe,,,card intro says 196B; table 196.81B used
+ternary-bonsai-2-27b,27,,,,,total given in the model name
+lfm2.5-24b-a2b,24,2.45,moe,reasoning,,
+hy3,295,21,moe,non-reasoning,,default no_think
+trinity-large-thinking,398,13,moe,reasoning,,judgement: card says it produces think traces; no stated default

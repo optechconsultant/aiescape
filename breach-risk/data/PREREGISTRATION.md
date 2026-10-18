@@ -864,3 +864,19 @@ and cannot count as confirmation. Everything below is fixed now, before computin
 - **Out-of-sample list:** the same features for the 8 Amendment 14 candidates and what each rule predicts, committed
   before any of them is run, so that a later test is genuinely out of sample.
 - Output: `paper_data_pack/` (`breach-risk/analyze_features.py`).
+
+### Amendment 16 addendum (2026-10-18), committed before the Part 2 rerun with model-card facts
+The facts supplied by the person running the study are in `paper_data_pack/P2_card_facts.csv` (12 models + Haiku) and
+`P2_card_facts_fresh.csv` (8 candidates); "not stated" = unknown. Fixed now, before computing:
+- **Primary analysis: card-only, as Amendment 16 says.** Values the supplier starred as not from the publisher's card
+  (MiMo total, active, MoE and date; Nemotron total, active, reasoning and date) are treated as unknown. A
+  **sensitivity** run that includes the starred values is reported separately and labelled as a deviation from
+  "card only"; the primary result is the card-only one. Dense models: active = total (granite).
+- **Holm family size is 12** (all tests in the list), as written in Amendment 16: tests that cannot be run count in
+  the family and have no p-value (equivalent to p = 1 at the end of the step-down). The first Part 2 output (commit
+  0ccddfa) divided by the number of runnable tests (6); that was more lenient than the amendment, and is superseded.
+- **Exact permutation p-values** for ≤ 10 models by full enumeration of all n! permutations (n = 10: 3,628,800);
+  1,000,000 random permutations for n = 11–12.
+- Release date enters Spearman as days since 2025-01-01. A test with fewer than 3 models, or a binary feature with
+  fewer than 2 distinct values among the models with known data, is reported "not testable".
+- Rules and candidate predictions as in Amendment 16, using only primary (card-only) data for the thresholds.
