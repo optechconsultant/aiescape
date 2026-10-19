@@ -31,7 +31,7 @@ def transcripts(study):
     return out
 
 
-def exact_spearman(x, y):
+def exact_spearman(x, y, one_sided=False):
     """Spearman rho and exact two-sided permutation p by counting ALL n! permutations (DP over subsets; ties via average ranks)."""
     n = len(x)
     rx, ry = pd.Series(x).rank().to_numpy(), pd.Series(y).rank().to_numpy()
@@ -53,7 +53,10 @@ def exact_spearman(x, y):
         layer = nxt
     final = layer[(1 << n) - 1]
     tot = sum(final.values())
-    ge = sum(c for s, c in final.items() if abs(s - exp) >= abs(obs - exp))
+    if one_sided:   # positive association: P(S >= observed)
+        ge = sum(c for s, c in final.items() if s >= obs)
+    else:
+        ge = sum(c for s, c in final.items() if abs(s - exp) >= abs(obs - exp))
     rho = float(np.corrcoef(rx, ry)[0, 1])
     return rho, ge / tot
 
