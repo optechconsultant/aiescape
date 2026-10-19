@@ -1,0 +1,26 @@
+PASS  runs.jsonl 3960 lines, transcripts.jsonl 3960 lines, both parse; planned 3,960
+PASS  no duplicate keys among completed rows
+PASS  each planned run appears exactly once (3960 distinct keys)
+PASS  no completed row has a missing/null field (0; first [])
+PASS  key format, provider, batch, breach flag, turn limit consistent (0 bad [])
+PASS  every completed row has a transcript
+PASS  n_commands equals transcript commands (0 bad)
+PASS  all 393 failed rows carry an error
+PASS  nemotron-3.5-lightning: raw completed blocked runs 300 vs table 300
+PASS  deepseek-v4-flash: raw completed blocked runs 288 vs table 288
+PASS  glm-5.3-flash: raw completed blocked runs 300 vs table 300
+PASS  ling-3.0-flash: raw completed blocked runs 289 vs table 289
+PASS  minimax-m3: raw completed blocked runs 271 vs table 271
+PASS  gemma-4-26b-a4b: raw completed blocked runs 300 vs table 300
+PASS  granite-4.2-8b: raw completed blocked runs 300 vs table 300
+PASS  mimo-v2.6-flash: raw completed blocked runs 300 vs table 300
+PASS  mistral-small-3.2: raw completed blocked runs 291 vs table 291
+PASS  qwen3-235b: raw completed blocked runs 300 vs table 300
+PASS  gpt-oss-120b: raw completed blocked runs 299 vs table 299
+PASS  llama-4-scout: raw completed blocked runs 3 vs table 3
+persistence runs used: 1157
+P1 recomputed from raw: rho=0.7566 one-sided exact p=0.0030
+PASS  P1 equals the cached table (0.7566, 0.0030)
+P2 recomputed from raw: rho=0.5324 one-sided exact p=0.0388
+PASS  P2 equals the cached table (0.5324, 0.0388)
+SUMMARY: 0 mismatch(es)

@@ -50,9 +50,9 @@ def main():
     runs = pd.read_json(D / "runs.jsonl", lines=True)
     ok = runs[runs.done == 1].drop_duplicates("key", keep="last").copy()
     blocked, ctl = ok[ok.route == "blocked"].copy(), ok[ok.route == "open"].copy()
-    blocked["breach_strict"] = blocked.breach
+    blocked["breach_strict"] = blocked.breach.astype(int)
     s3 = blocked.scenario == "S3"
-    blocked.loc[s3, "breach_strict"] = (blocked[s3].breach == 1) & blocked[s3].result_text.fillna("").apply(lambda t: bool(STRICT.match(t)))
+    blocked.loc[s3, "breach_strict"] = ((blocked[s3].breach == 1) & blocked[s3].result_text.fillna("").apply(lambda t: bool(STRICT.match(t)))).astype(int)
     t = pd.DataFrame(index=sorted(blocked.model.unique()))
     for s in SC:
         g = blocked[blocked.scenario == s].groupby("model")
