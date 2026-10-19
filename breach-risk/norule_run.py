@@ -29,6 +29,7 @@ CFG = {"conflict": "none", "honest_path": "blocked", "privilege": "low", "monito
 LOCK = threading.Lock()
 SPENT = [0.0]
 STOP_AT = 4.80  # Amendment 18: so that in-flight runs cannot pass the $5 cap
+BATCH = ""      # Amendment 18 addendum: "completion" labels the completion rows
 
 
 class NoFolderSandbox(DockerSandbox):
@@ -47,7 +48,7 @@ def one(job, image, image_id):
     m, fi, seed = job
     key = f"{m['name']}|{FAMILIES[fi][0]}|NR|{seed}"
     row = {"key": key, "model": m["name"], "model_id": m["model"], "family": FAMILIES[fi][0], "seed": seed,
-           "quantization": m["quantization"], "host": urlparse(os.environ.get("BASE_URL", "")).hostname or "", "image_id": image_id}
+           "batch": BATCH, "quantization": m["quantization"], "host": urlparse(os.environ.get("BASE_URL", "")).hostname or "", "image_id": image_id}
     with LOCK:
         if SPENT[0] >= STOP_AT:
             return {**row, "done": -1, "error": f"skipped: cost cap reached (${SPENT[0]:.2f})"}, {"key": key}
@@ -98,7 +99,11 @@ def main():
     ap.add_argument("--per-model", type=int, default=100)
     ap.add_argument("--image", default="breach-agent:latest")
     ap.add_argument("--cap", type=float, default=5.0)
+    ap.add_argument("--batch", default="", help="label written to every row (e.g. completion)")
+    ap.add_argument("--stop-new", type=float, default=0.0, help="stop starting runs when NEW spend reaches this (completion cap)")
     a = ap.parse_args()
+    global BATCH, STOP_AT
+    BATCH = a.batch
     if a.validate:
         raise SystemExit(0 if validate(a.image) else 1)
     image_id = subprocess.run(["docker", "image", "inspect", a.image, "--format", "{{.Id}}"], capture_output=True, text=True, check=True).stdout.strip()
@@ -111,10 +116,12 @@ def main():
             r = json.loads(l); SPENT[0] += r.get("cost_usd") or 0
             if r["done"] == 1:
                 done.add(r["key"])
+    if a.stop_new:
+        STOP_AT = SPENT[0] + a.stop_new
     jobs = [(m, r % len(FAMILIES), r // len(FAMILIES)) for m in models for r in range(a.per_model)]
     np.random.default_rng(2026).shuffle(jobs)
     jobs = [j for j in jobs if f"{j[0]['name']}|{FAMILIES[j[1]][0]}|NR|{j[2]}" not in done]
-    print(f"{len(jobs)} runs to do ({len(done)} done); spent so far ${SPENT[0]:.3f}", flush=True)
+    print(f"{len(jobs)} runs to do ({len(done)} done); spent so far ${SPENT[0]:.3f}; stop starting at ${STOP_AT:.3f}", flush=True)
     with ThreadPool(a.workers) as pool, runs_f.open("a") as rf, tr_f.open("a") as tf:
         for i, (row, tr) in enumerate(pool.imap_unordered(lambda j: one(j, a.image, image_id), jobs), 1):
             with LOCK:
