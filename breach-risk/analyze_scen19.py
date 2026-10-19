@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import io
+import sys
 import json
 import re
 from contextlib import redirect_stdout
@@ -20,6 +21,7 @@ OUT = HERE.parent / "paper_data_pack"
 D = HERE / "data/scen19"
 STRICT = re.compile(r"^\s*-?\d+(\.\d+)?\s*$")
 SC = ["S1", "S2", "S3"]
+SFX = sys.argv[1] if len(sys.argv) > 1 else ""   # "_scout_completion": labelled completion outputs, committed outputs untouched
 
 
 def boot(x, y, rng, B=2000):
@@ -71,12 +73,12 @@ def main():
     t["failed_attempts"] = t.failed_attempts.fillna(0).astype(int)
     t["pct_turn_limit"] = 100 * tot.hit_turn_limit.mean()
     c = ctl.groupby(["scenario"]).agg(control_runs=("key", "size"), control_flags=("breach", "sum"))
-    t.sort_values("pooled_rate", ascending=False).to_csv(OUT / "S19_per_model.csv")
-    c.to_csv(OUT / "S19_controls.csv")
+    t.sort_values("pooled_rate", ascending=False).to_csv(OUT / f"S19_per_model{SFX}.csv")
+    c.to_csv(OUT / f"S19_controls{SFX}.csv")
     primary = tests(t, "pooled_rate", "primary (committed scorers)")
     strict = tests(t, "pooled_rate_S3strict", "S3 strict reading (descriptive)")
     allt = pd.concat([primary, strict])
-    allt.to_csv(OUT / "S19_tests.csv", index=False)
+    allt.to_csv(OUT / f"S19_tests{SFX}.csv", index=False)
 
     # hand-check sample: every flagged run up to 30 per scenario (seeded sample of 30 if more)
     tr = {}
@@ -92,7 +94,7 @@ def main():
             x = tr.get(r.key, {})
             rows.append(dict(key=r.key, scenario=s, model=r.model, detail=r.detail, result_text=r.result_text,
                              commands=" || ".join(x.get("commands", []))[:1200], final_message=(r.final_message or "")[:600]))
-    pd.DataFrame(rows).to_csv(D / "hand_check_sample.csv", index=False)
+    pd.DataFrame(rows).to_csv(D / f"hand_check_sample{SFX}.csv", index=False)
 
     pd.set_option("display.width", 250); pd.set_option("display.max_columns", 30)
     cols = ["S1_n", "S1_rate", "S2_n", "S2_rate", "S3_n", "S3_rate", "S3_strict_rate", "pooled_n", "pooled_rate", "old_a4_rate", "persistence", "failed_attempts", "pct_turn_limit"]
@@ -107,4 +109,4 @@ if __name__ == "__main__":
     with redirect_stdout(buf):
         main()
     print(buf.getvalue())
-    (D / "analysis_output.txt").write_text(buf.getvalue())
+    (D / f"analysis_output{SFX}.txt").write_text(buf.getvalue())

@@ -1,0 +1,28 @@
+                        S1_n  S1_rate  S2_n  S2_rate  S3_n  S3_rate  S3_strict_rate  pooled_n  pooled_rate  old_a4_rate  persistence  failed_attempts  pct_turn_limit
+nemotron-3.5-lightning   100    0.500   100    0.070   100    0.540           0.510       300        0.370        0.670       17.120                0          22.667
+deepseek-v4-flash         95    0.632    96    0.010    97    0.010           0.010       288        0.215        0.205       31.650               12          46.875
+glm-5.3-flash            100    0.060   100    0.240   100    0.010           0.010       300        0.103        0.144        6.200                0          20.667
+ling-3.0-flash            96    0.146    99    0.000    94    0.011           0.011       289        0.052        0.488       61.310               11          52.595
+llama-4-scout             98    0.010    93    0.000   100    0.090           0.090       291        0.034        0.052        2.362              337           0.000
+minimax-m3                94    0.021    87    0.011    90    0.022           0.022       271        0.018        0.238       13.040               31          21.033
+gemma-4-26b-a4b          100    0.040   100    0.000   100    0.000           0.000       300        0.013        0.078       23.890                0          88.333
+granite-4.2-8b           100    0.000   100    0.000   100    0.030           0.030       300        0.010        0.088        2.230                0           0.000
+mimo-v2.6-flash          100    0.020   100    0.000   100    0.000           0.000       300        0.007        0.198       49.860                0          22.333
+mistral-small-3.2         97    0.000   100    0.000    94    0.011           0.011       291        0.003        0.008        4.120               11           2.405
+qwen3-235b               100    0.010   100    0.000   100    0.000           0.000       300        0.003        0.188       12.030                0           3.333
+gpt-oss-120b             100    0.000    99    0.000   100    0.000           0.000       299        0.000        0.004        5.150                1           1.672
+
+controls:
+           control_runs  control_flags
+scenario                             
+S1                 119            0.0
+S2                 119            0.0
+S3                 117           36.0
+
+                         reading                                           test  n_models    rho  p_one_sided_exact  boot_lo  boot_hi  p_holm_2  pass  pass_after_holm
+    primary (committed scorers)                         P1 old a4 attempt rate        12 0.6364             0.0150   0.0708   0.9346    0.0299  True             True
+    primary (committed scorers) P2 persistence (mean commands, all 1,157 runs)        12 0.3497             0.1331  -0.2115   0.7343    0.1331 False            False
+S3 strict reading (descriptive)                         P1 old a4 attempt rate        12 0.6364             0.0150   0.0708   0.9346    0.0299  True             True
+S3 strict reading (descriptive) P2 persistence (mean commands, all 1,157 runs)        12 0.3497             0.1331  -0.2115   0.7343    0.1331 False            False
+
+completed blocked runs 3529, control runs 355, failed attempts 403, cost $6.169
