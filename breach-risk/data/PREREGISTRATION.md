@@ -1096,3 +1096,19 @@ Hard spending cap **$12 total** (cumulative new spend; the driver stops starting
 cannot pass $12). `API_KEY` environment variable. The Docker daemon must already be running; it is **not** started or
 restarted by this plan. Any run, script, service or safety-check stop ends the test and is reported as it is; nothing is
 worked around. No test is added after seeing results.
+
+### Amendment 19 addendum: post hoc sensitivity checks on Llama-4-Scout (2026-10-19; LABELLED POST HOC)
+Written before any of the numbers below are computed. Llama-4-Scout completed only 3 of its 330 planned runs (provider
+returned "no choices" or rate-limit errors), so its pooled rate (0 from 3 runs) is weakly founded. The committed P1 and P2
+results (cc51b09: P1 ρ = 0.757, p = 0.0030; P2 ρ = 0.532, p = 0.0388, all 12 models) **stand as committed**; nothing here
+changes any test, scorer or pass bar, and nothing here replaces them.
+- **Part A (free, no model calls), post hoc and descriptive:** (1) P1 and P2 recomputed with exactly the committed code
+  (Spearman, one-sided exact p over all permutations, 2,000-resample bootstrap over models, seed 2026) with Scout left out
+  (n = 11), reporting ρ, p, interval and whether the committed bar (ρ ≥ 0.5 and p < 0.05) would be met; (2) a leave-one-out
+  table dropping each of the 12 models in turn (ρ and exact p for P1 and P2; no correction, no new tests); (3) the number of
+  models with a pooled rate of exactly 0 and the number of tied ranks in the pooled rate; (4) a plain statement of whether
+  "the ranking carries over" changes at n = 11, separately for P1 and P2.
+- **Part B (only if Part A shows P2 depends on Scout; hard cap $1.50 of new spend):** one attempt to complete Scout's
+  missing runs with the same driver and settings (completed runs skipped). Provider errors are not retried in a loop and the
+  provider is not switched; the result is reported as a labelled completion, never as a replacement. P1 and P2 are
+  recomputed on all 12 models with whatever Scout data exists. Any stop is reported as it is.
