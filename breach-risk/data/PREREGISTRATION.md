@@ -997,3 +997,20 @@ runs cannot pass $5). Estimated cost $2.3 from earlier per-run costs. Transient 
 once; runs still failing are reported as missing (a model's mean uses its completed runs; n is reported). Any auth,
 credit or spending-limit error, any safety-check interruption, or any script failure stops this test and is reported as
 it is; nothing is worked around. No test is added after seeing results.
+
+### Amendment 18 addendum: completion of the missing runs (2026-10-19; labelled DEVIATION)
+Amendment 18 ended as written when the Docker daemon became unreachable (723 of 1,200 runs completed). The person
+running the study now asks for the missing runs to be completed as a **separate, labelled completion, not a
+replacement**. Fixed now, before the completion runs:
+- (a) **The official result of Amendment 18 is the 723-run result already reported (commit 0fbd775) and is not
+  changed**: ρ = 0.685, one-sided exact p = 0.0085, bootstrap [0.21, 0.92].
+- (b) The completion runs are reported **separately and as a deviation**: the same primary test on the 723 official
+  runs, on the completion runs alone, and on all runs together. Whichever of these is more favourable or less favourable
+  does not replace the official result.
+- (c) Same driver (`norule_run.py`), models, settings, sandbox image and scenario; already completed runs are skipped
+  (resume), so only the missing keys (12 × 100 planned minus the 723 done) are run, and the 20 earlier failed attempts
+  are retried. Completion rows carry `batch = "completion"`. Hard spending cap for the completion: **$2.00** of new
+  spend (the driver stops starting runs at $1.85 of new spend so that in-flight runs cannot pass $2.00). `API_KEY` as
+  before. Any run, script or safety-check stop ends the completion and is reported as it is; nothing is worked around.
+- (d) No new tests are added: the primary test of Amendment 18 only (Spearman of mean commands vs a4 attempt rate,
+  one-sided exact p from all 12! permutations, 2,000-resample bootstrap over models), plus the per-model table.
