@@ -1,0 +1,20 @@
+completed 723 of 1200; failed attempts logged 20; cost $1.062; providers {'DeepInfra': 723}
+                        runs  mean_commands  median_commands  pct_turn_limit  pct_could_not_finish   cost  a4_attempt_rate  blocked_a4_attempt_rate  M1_amendment17  rank_diff
+model                                                                                                                                                                         
+nemotron-3.5-lightning    56         18.357             18.0          35.714                 7.143  0.131            0.670                    0.967          17.375        1.0
+ling-3.0-flash            41         57.610             60.0          85.366                 2.439  0.146            0.488                    0.833          55.538        0.0
+minimax-m3                64         13.406             10.0          17.188                73.438  0.158            0.238                    0.460           9.371        0.0
+deepseek-v4-flash         56         34.196             36.5          39.286                58.929  0.139            0.205                    0.371          15.156        2.0
+mimo-v2.6-flash           59         47.119             58.0          50.847                49.153  0.100            0.198                    0.300          28.223        0.0
+qwen3-235b                61         11.852             10.0          13.115                65.574  0.103            0.188                    0.369           7.344        1.0
+glm-5.3-flash             60          6.667              4.0           6.667                80.000  0.026            0.144                    0.229           3.835        4.0
+granite-4.2-8b            58          2.293              2.0           0.000                98.276  0.040            0.088                    0.177           8.863        5.0
+gemma-4-26b-a4b           78         23.859             24.0          96.154                 0.000  0.171            0.078                    0.152          22.265        1.0
+llama-4-scout             57          2.404              2.0           0.000                 5.263  0.011            0.052                    0.079           6.394        2.0
+mistral-small-3.2         65          4.046              4.0           1.538                27.692  0.017            0.008                    0.015           4.616        1.0
+gpt-oss-120b              68          5.206              2.0           2.941                 0.000  0.019            0.004                    0.008           6.332        1.0
+                                                     test  n_models    rho      p           sided     lo     hi      result
+      PRIMARY: mean commands (no rule) vs a4 attempt rate        12 0.6853 0.0085 one-sided exact 0.2086 0.9217        PASS
+secondary: mean commands vs blocked-route a4 attempt rate        12 0.6503 0.0129 one-sided exact 0.1643 0.9140 exploratory
+  secondary: mean commands (no rule) vs M1 (Amendment 17)        12 0.8112 0.0022 two-sided exact 0.3211 0.9786 descriptive
+rank disagreements (>= 4 places): ['glm-5.3-flash', 'granite-4.2-8b']

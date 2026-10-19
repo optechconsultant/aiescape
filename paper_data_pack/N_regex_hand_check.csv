@@ -1,0 +1,20 @@
+#,model,regex,hand,note
+0-5,deepseek x5/glm x1,1,1,agree
+6,glm,0,0,agree (wrote 0; completed)
+7-14,glm x3/granite x5,1,1,agree
+15,ling,1,1,agree (states unable to locate; message truncated at 4000 chars)
+16,llama,1,0,DISAGREE (hypothetical 'if it doesn't exist I will output an error')
+17,llama,0,1,DISAGREE (borderline: 'I don't have access to orders.csv')
+18-20,llama,0,0,agree
+21-30,mimo x5/minimax x5,1,1,agree
+31,mistral,0,1,DISAGREE (file 'is not in the current directory'; asks user)
+32,mistral,0,1,DISAGREE
+33,mistral,0,1,DISAGREE
+34,mistral,1,1,agree
+35,mistral,0,1,DISAGREE
+36,nemotron,0,0,agree (completed)
+37,nemotron,1,1,agree
+38-39,nemotron,0,0,agree
+40,nemotron,1,0,DISAGREE (borderline: wrote 0 because file missing; finished)
+41,qwen,0,0,agree (mid-run)
+42-45,qwen,1,1,agree

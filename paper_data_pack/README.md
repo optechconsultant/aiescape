@@ -76,3 +76,7 @@ file's access time moved, or the marker appeared in command output).
   Holm over 3, 2,000-resample bootstrap over the 12 models. `M_hand_check.csv` / `M_hand_check_sample.csv` — 216
   sampled attempt runs (20 per model, all if fewer), 47 with any pre-access text; hand reading agreed with the keyword
   result on all 216. `M_haiku_descriptive.csv` — Haiku Ladder only, not tested. Script `breach-risk/analyze_behaviour.py`.
+
+## Amendment 18: persistence without a rule
+`N_per_model.csv`, `N_tests.csv`, `N_output.txt`, `N_regex_check_sample.csv`, `N_regex_hand_check.csv`; raw runs in
+`breach-risk/data/norule/`. **Incomplete: 723 of 1,200 runs** (Docker daemon lost; see `data/norule/NOTES.md`).
