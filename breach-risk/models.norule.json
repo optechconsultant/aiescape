@@ -1,0 +1,254 @@
+[
+ {
+  "name": "qwen3-235b",
+  "backend": "openai",
+  "model": "qwen/qwen3-235b-a22b-2507",
+  "quantization": "fp8 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/fp8"
+    ],
+    "only": [
+     "deepinfra/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "mistral-small-3.2",
+  "backend": "openai",
+  "model": "mistralai/mistral-small-3.2-24b-instruct",
+  "quantization": "fp8 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/fp8"
+    ],
+    "only": [
+     "deepinfra/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "deepseek-v4-flash",
+  "backend": "openai",
+  "model": "deepseek/deepseek-v4-flash-0731",
+  "quantization": "fp8 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/fp8"
+    ],
+    "only": [
+     "deepinfra/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "gemma-4-26b-a4b",
+  "backend": "openai",
+  "model": "google/gemma-4-26b-a4b-it",
+  "quantization": "fp8 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/fp8"
+    ],
+    "only": [
+     "deepinfra/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "llama-4-scout",
+  "backend": "openai",
+  "model": "meta-llama/llama-4-scout",
+  "quantization": "fp8 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/fp8/flex"
+    ],
+    "only": [
+     "deepinfra/fp8/flex"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "mimo-v2.6-flash",
+  "backend": "openai",
+  "model": "xiaomi/mimo-v2.6-flash",
+  "quantization": "fp8 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/fp8"
+    ],
+    "only": [
+     "deepinfra/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "nemotron-3.5-lightning",
+  "backend": "openai",
+  "model": "nvidia/nemotron-3.5-lightning",
+  "quantization": "bf16 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/bf16"
+    ],
+    "only": [
+     "deepinfra/bf16"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "ling-3.0-flash",
+  "backend": "openai",
+  "model": "inclusionai/ling-3.0-flash",
+  "quantization": "bf16 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/bf16"
+    ],
+    "only": [
+     "deepinfra/bf16"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "granite-4.2-8b",
+  "backend": "openai",
+  "model": "ibm-granite/granite-4.2-8b",
+  "quantization": "bf16 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/bf16"
+    ],
+    "only": [
+     "deepinfra/bf16"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "minimax-m3",
+  "backend": "openai",
+  "model": "minimax/minimax-m3",
+  "quantization": "fp8 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/fp8"
+    ],
+    "only": [
+     "deepinfra/fp8"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "glm-5.3-flash",
+  "backend": "openai",
+  "model": "z-ai/glm-5.3-flash",
+  "quantization": "fp4 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/fp4"
+    ],
+    "only": [
+     "deepinfra/fp4"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ },
+ {
+  "name": "gpt-oss-120b",
+  "backend": "openai",
+  "model": "openai/gpt-oss-120b",
+  "quantization": "bf16 (OpenRouter listing, DeepInfra endpoint)",
+  "rl_heavy": 0,
+  "capability": null,
+  "extra_body": {
+   "provider": {
+    "order": [
+     "deepinfra/bf16"
+    ],
+    "only": [
+     "deepinfra/bf16"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+   },
+   "max_tokens": 4096
+  }
+ }
+]

@@ -1,0 +1,15 @@
+PASS  prompt devops_deploy: lines=3 forbidden words=[]
+PASS  prompt data_cleaning: lines=3 forbidden words=[]
+PASS  prompt ci_fix: lines=3 forbidden words=[]
+PASS  prompt customer_lookup: lines=3 forbidden words=[]
+PASS  prompt web_research: lines=3 forbidden words=[]
+PASS  prompt file_mgmt: lines=3 forbidden words=[]
+PASS  prompt report_gen: lines=3 forbidden words=[]
+PASS  prompt db_migration: lines=3 forbidden words=[]
+PASS  prompt log_analysis: lines=3 forbidden words=[]
+PASS  prompt config_update: lines=3 forbidden words=[]
+PASS  container: no /restricted entry, empty workspace: 0 | 0 | ls: cannot access '/restricted': No such file or directory | ls: cannot access '/proc/1/root/restricted': No such file or directory | 
+PASS  tools = read_file/write_file/list_dir: ['read_file', 'write_file', 'list_dir']
+PASS  scripted agent: 3 commands counted, run ends on its own: commands=3 turns=4
+PASS  scripted agent: 24-turn limit applies: commands=24 limit_hit=1
+ALL PASS
