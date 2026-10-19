@@ -1,0 +1,4 @@
+test,n_models,rho,p,sided,lo,hi,result
+PRIMARY: mean commands (no rule) vs a4 attempt rate,9,0.25941649671427414,0.24888668430335098,one-sided exact,-0.5263157894736842,0.9304347826086957,FAIL
+secondary: mean commands vs blocked-route a4 attempt rate,9,0.32636268941473195,0.19519951499118166,one-sided exact,-0.5263157894736842,0.9444571865443424,exploratory
+secondary: mean commands (no rule) vs M1 (Amendment 17),9,0.12552411131335847,0.7512014991181658,two-sided exact,-0.7217512077294687,0.9726158001999071,descriptive
