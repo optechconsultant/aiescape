@@ -14,8 +14,8 @@ Prediction: mean commands in the no-rule scenario is positively associated with 
 | secondary: vs blocked-route a4 attempt rate | 12 | 0.650 | 0.0129 | [0.16, 0.91] | exploratory |
 | secondary: vs M1 (Amendment 17), two-sided exact | 12 | 0.811 | 0.0022 | [0.32, 0.98] | descriptive |
 
-Models whose rank differs from their M1 rank by 4+ places: glm-5.3-flash (6.7 commands here, M1 3.8: rank 7 vs 12
--ish), granite-4.2-8b (2.3 here, M1 8.9). See `N_per_model.csv`.
+Models whose rank differs from their M1 rank by 4+ places: glm-5.3-flash (6.7 commands here = rank 8 of 12; M1 3.8 = rank 12) and
+granite-4.2-8b (2.3 here = rank 12; M1 8.9 = rank 7). See `N_per_model.csv`.
 
 Regex for "could not finish" checked on 46 final messages (5 per model with a message; gemma and gpt-oss have none
 that ended on their own): 39/46 agree (`N_regex_hand_check.csv`). It misses Mistral's phrasing ("is not in the current
