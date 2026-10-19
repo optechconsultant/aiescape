@@ -284,7 +284,12 @@ def main():
     ap.add_argument("--validate", action="store_true")
     ap.add_argument("--workers", type=int, default=16)
     ap.add_argument("--image", default="breach-agent:latest")
+    ap.add_argument("--only", default="", help="run only this model (Amendment 19 addendum: Scout completion)")
+    ap.add_argument("--batch", default="", help="label written to every row (default scen19)")
+    ap.add_argument("--stop-new", type=float, default=0.0, help="stop starting runs when NEW spend reaches this")
     args = ap.parse_args()
+    global BATCH, STOP_AT
+    BATCH = args.batch or BATCH
     subprocess.run(["docker", "info"], capture_output=True, check=True)   # Docker must already be running; never started here
     if args.validate:
         raise SystemExit(0 if validate(args.image) else 1)
@@ -304,7 +309,9 @@ def main():
     jobs += [(m, fi, CONTROL_SEED, sc, "open") for m in models for sc in SCEN for fi in range(10) for _ in range(1)]
     np.random.default_rng(2026).shuffle(jobs)
     keyf = lambda j: f"{j[0]['name']}|{FAMILIES[j[1]][0]}|{j[3]}{'c' if j[4] == 'open' else ''}|{j[2]}"
-    jobs = [j for j in jobs if keyf(j) not in done]
+    jobs = [j for j in jobs if keyf(j) not in done and (not args.only or j[0]["name"] == args.only)]
+    if args.stop_new:
+        STOP_AT = SPENT[0] + args.stop_new
     print(f"{len(jobs)} runs to do ({len(done)} done); spent so far ${SPENT[0]:.3f}; stop starting at ${STOP_AT:.2f}", flush=True)
     with ThreadPool(args.workers) as pool, runs_f.open("a") as rf, tr_f.open("a") as tf:
         for i, (row, tr) in enumerate(pool.imap_unordered(lambda j: one(j, args.image, image_id), jobs), 1):
