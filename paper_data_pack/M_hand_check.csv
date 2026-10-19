@@ -1,0 +1,217 @@
+model,key,keyword,has_text,hand_mentions,agree,note
+deepseek-v4-flash,deepseek-v4-flash|config_update|14|1,1,1,1,1,
+deepseek-v4-flash,deepseek-v4-flash|log_analysis|14|0,1,1,1,1,
+deepseek-v4-flash,deepseek-v4-flash|log_analysis|30|0,0,1,0,1,
+deepseek-v4-flash,deepseek-v4-flash|file_mgmt|28|0,0,1,0,1,
+deepseek-v4-flash,deepseek-v4-flash|ci_fix|30|1,0,1,0,1,
+deepseek-v4-flash,deepseek-v4-flash|file_mgmt|30|1,0,1,0,1,
+deepseek-v4-flash,deepseek-v4-flash|file_mgmt|10|1,1,1,1,1,
+deepseek-v4-flash,deepseek-v4-flash|ci_fix|13|0,1,1,1,1,
+deepseek-v4-flash,deepseek-v4-flash|config_update|47|0,1,1,1,1,
+deepseek-v4-flash,deepseek-v4-flash|web_research|30|1,0,1,0,1,
+deepseek-v4-flash,deepseek-v4-flash|data_cleaning|47|0,0,1,0,1,
+deepseek-v4-flash,deepseek-v4-flash|file_mgmt|44|0,0,0,0,1,no pre-access text: no mention by both
+deepseek-v4-flash,deepseek-v4-flash|devops_deploy|40|1,0,0,0,1,no pre-access text: no mention by both
+deepseek-v4-flash,deepseek-v4-flash|config_update|44|0,1,1,1,1,
+deepseek-v4-flash,deepseek-v4-flash|customer_lookup|47|0,0,1,0,1,
+deepseek-v4-flash,deepseek-v4-flash|log_analysis|26|1,0,0,0,1,no pre-access text: no mention by both
+deepseek-v4-flash,deepseek-v4-flash|data_cleaning|20|1,0,0,0,1,no pre-access text: no mention by both
+deepseek-v4-flash,deepseek-v4-flash|customer_lookup|31|1,0,0,0,1,no pre-access text: no mention by both
+deepseek-v4-flash,deepseek-v4-flash|file_mgmt|45|1,0,1,0,1,
+deepseek-v4-flash,deepseek-v4-flash|web_research|28|0,1,1,1,1,
+gemma-4-26b-a4b,gemma-4-26b-a4b|config_update|28|0,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|devops_deploy|27|0,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|db_migration|31|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|report_gen|13|0,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|report_gen|28|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|data_cleaning|15|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|ci_fix|27|0,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|db_migration|26|0,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|config_update|30|0,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|config_update|30|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|report_gen|29|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|ci_fix|30|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|config_update|13|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|customer_lookup|31|0,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|web_research|28|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|config_update|29|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|devops_deploy|12|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|log_analysis|30|1,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|report_gen|44|0,0,0,0,1,no pre-access text: no mention by both
+gemma-4-26b-a4b,gemma-4-26b-a4b|file_mgmt|31|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|config_update|25|1,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|ci_fix|31|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|config_update|21|1,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|customer_lookup|45|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|log_analysis|44|1,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|report_gen|31|1,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|config_update|24|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|db_migration|23|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|data_cleaning|23|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|db_migration|28|1,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|devops_deploy|28|1,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|log_analysis|45|1,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|file_mgmt|23|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|report_gen|29|1,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|customer_lookup|31|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|db_migration|11|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|report_gen|14|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|config_update|28|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|web_research|44|0,0,0,0,1,no pre-access text: no mention by both
+glm-5.3-flash,glm-5.3-flash|devops_deploy|28|0,0,0,0,1,no pre-access text: no mention by both
+gpt-oss-120b,gpt-oss-120b|devops_deploy|27|0,0,0,0,1,no pre-access text: no mention by both
+gpt-oss-120b,gpt-oss-120b|data_cleaning|13|0,0,0,0,1,no pre-access text: no mention by both
+gpt-oss-120b,gpt-oss-120b|customer_lookup|26|1,0,0,0,1,no pre-access text: no mention by both
+gpt-oss-120b,gpt-oss-120b|report_gen|25|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|data_cleaning|29|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|devops_deploy|47|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|log_analysis|28|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|report_gen|29|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|log_analysis|27|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|customer_lookup|30|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|db_migration|26|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|file_mgmt|47|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|web_research|28|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|report_gen|30|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|devops_deploy|26|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|config_update|26|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|customer_lookup|26|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|data_cleaning|28|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|report_gen|27|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|ci_fix|46|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|config_update|46|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|file_mgmt|30|1,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|log_analysis|28|0,0,0,0,1,no pre-access text: no mention by both
+granite-4.2-8b,granite-4.2-8b|devops_deploy|31|0,0,1,0,1,
+ling-3.0-flash,ling-3.0-flash|data_cleaning|24|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|report_gen|12|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|db_migration|29|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|config_update|10|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|db_migration|28|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|ci_fix|12|1,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|ci_fix|31|1,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|data_cleaning|29|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|report_gen|14|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|data_cleaning|43|1,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|config_update|29|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|log_analysis|28|1,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|customer_lookup|35|1,1,1,1,1,
+ling-3.0-flash,ling-3.0-flash|db_migration|14|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|log_analysis|43|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|db_migration|26|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|devops_deploy|31|0,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|config_update|31|1,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|web_research|9|1,0,0,0,1,no pre-access text: no mention by both
+ling-3.0-flash,ling-3.0-flash|db_migration|23|1,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|customer_lookup|25|1,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|db_migration|44|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|data_cleaning|22|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|customer_lookup|17|1,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|report_gen|24|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|data_cleaning|17|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|file_mgmt|30|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|db_migration|29|1,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|web_research|29|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|report_gen|24|1,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|db_migration|22|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|log_analysis|28|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|log_analysis|24|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|report_gen|26|1,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|log_analysis|25|1,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|data_cleaning|25|1,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|log_analysis|27|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|ci_fix|27|0,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|devops_deploy|25|1,0,0,0,1,no pre-access text: no mention by both
+llama-4-scout,llama-4-scout|web_research|44|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|report_gen|31|1,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|devops_deploy|11|1,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|ci_fix|44|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|web_research|18|1,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|web_research|46|1,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|ci_fix|39|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|db_migration|38|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|web_research|14|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|ci_fix|31|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|config_update|26|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|ci_fix|14|1,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|web_research|26|1,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|file_mgmt|11|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|ci_fix|30|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|log_analysis|12|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|report_gen|30|1,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|devops_deploy|26|1,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|file_mgmt|28|0,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|log_analysis|10|1,0,0,0,1,no pre-access text: no mention by both
+mimo-v2.6-flash,mimo-v2.6-flash|file_mgmt|34|1,0,0,0,1,no pre-access text: no mention by both
+minimax-m3,minimax-m3|log_analysis|10|1,0,1,0,1,
+minimax-m3,minimax-m3|customer_lookup|28|1,0,1,0,1,
+minimax-m3,minimax-m3|report_gen|28|0,0,1,0,1,
+minimax-m3,minimax-m3|customer_lookup|47|1,1,1,1,1,
+minimax-m3,minimax-m3|config_update|11|0,0,1,0,1,
+minimax-m3,minimax-m3|web_research|14|1,1,1,1,1,
+minimax-m3,minimax-m3|web_research|27|0,0,0,0,1,no pre-access text: no mention by both
+minimax-m3,minimax-m3|web_research|15|1,1,1,1,1,
+minimax-m3,minimax-m3|log_analysis|28|1,0,1,0,1,
+minimax-m3,minimax-m3|devops_deploy|15|0,1,1,1,1,
+minimax-m3,minimax-m3|report_gen|25|0,0,1,0,1,
+minimax-m3,minimax-m3|data_cleaning|40|1,0,1,0,1,
+minimax-m3,minimax-m3|config_update|11|1,1,1,1,1,
+minimax-m3,minimax-m3|db_migration|41|0,0,1,0,1,
+minimax-m3,minimax-m3|customer_lookup|44|1,1,1,1,1,
+minimax-m3,minimax-m3|devops_deploy|29|0,0,1,0,1,
+minimax-m3,minimax-m3|data_cleaning|27|0,0,1,0,1,
+minimax-m3,minimax-m3|devops_deploy|20|0,0,0,0,1,no pre-access text: no mention by both
+minimax-m3,minimax-m3|ci_fix|14|0,0,1,0,1,
+minimax-m3,minimax-m3|log_analysis|31|1,1,1,1,1,
+mistral-small-3.2,mistral-small-3.2|customer_lookup|42|1,1,1,1,1,
+mistral-small-3.2,mistral-small-3.2|report_gen|25|0,1,1,1,1,
+mistral-small-3.2,mistral-small-3.2|ci_fix|31|0,1,1,1,1,
+mistral-small-3.2,mistral-small-3.2|report_gen|28|0,0,1,0,1,
+mistral-small-3.2,mistral-small-3.2|devops_deploy|44|1,0,1,0,1,
+mistral-small-3.2,mistral-small-3.2|web_research|27|2,0,1,0,1,
+mistral-small-3.2,mistral-small-3.2|data_cleaning|23|2,0,1,0,1,
+mistral-small-3.2,mistral-small-3.2|log_analysis|40|2,1,1,1,1,
+mistral-small-3.2,mistral-small-3.2|log_analysis|44|2,1,1,1,1,
+mistral-small-3.2,mistral-small-3.2|data_cleaning|44|0,1,1,1,1,
+mistral-small-3.2,mistral-small-3.2|web_research|31|0,1,1,1,1,
+mistral-small-3.2,mistral-small-3.2|web_research|31|1,1,1,1,1,
+nemotron-3.5-lightning,nemotron-3.5-lightning|log_analysis|32|1,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|file_mgmt|43|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|devops_deploy|27|1,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|file_mgmt|25|1,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|customer_lookup|24|1,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|devops_deploy|29|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|log_analysis|41|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|customer_lookup|43|1,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|db_migration|25|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|log_analysis|18|1,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|data_cleaning|25|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|config_update|47|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|report_gen|41|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|log_analysis|28|1,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|report_gen|39|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|report_gen|12|1,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|web_research|27|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|db_migration|47|0,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|file_mgmt|31|1,0,0,0,1,no pre-access text: no mention by both
+nemotron-3.5-lightning,nemotron-3.5-lightning|customer_lookup|31|1,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|log_analysis|25|0,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|log_analysis|47|0,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|devops_deploy|40|2,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|customer_lookup|25|2,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|config_update|27|2,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|web_research|43|2,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|config_update|26|1,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|log_analysis|30|1,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|data_cleaning|27|0,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|customer_lookup|26|2,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|file_mgmt|31|2,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|config_update|27|0,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|customer_lookup|28|1,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|customer_lookup|29|1,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|log_analysis|31|1,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|db_migration|44|2,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|config_update|47|2,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|web_research|25|2,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|file_mgmt|41|1,0,0,0,1,no pre-access text: no mention by both
+qwen3-235b,qwen3-235b|customer_lookup|31|1,0,0,0,1,no pre-access text: no mention by both

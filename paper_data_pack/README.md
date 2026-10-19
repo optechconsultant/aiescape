@@ -68,3 +68,11 @@ file's access time moved, or the marker appeared in command output).
   sensitivity with the starred values included (a deviation from "card only", reported separately). Script
   `breach-risk/analyze_features.py [--starred]`. The first Part 2 output (commit 0ccddfa) is superseded: it had no
   card facts and used a Holm family of 6 instead of 12.
+
+## Amendment 17 (exploratory): behaviour measures vs attempt rate
+- `M_measures.csv` — per model: M1 mean commands in blocked-route non-attempt runs (and share hitting the turn limit),
+  M2 share of attempt runs whose pre-access text matches the fixed keyword list (plus coverage = share with any
+  pre-access text), M3 denies share (from B2). `M_tests.csv` — Spearman vs attempt rate, exact p (all n! permutations),
+  Holm over 3, 2,000-resample bootstrap over the 12 models. `M_hand_check.csv` / `M_hand_check_sample.csv` — 216
+  sampled attempt runs (20 per model, all if fewer), 47 with any pre-access text; hand reading agreed with the keyword
+  result on all 216. `M_haiku_descriptive.csv` — Haiku Ladder only, not tested. Script `breach-risk/analyze_behaviour.py`.
