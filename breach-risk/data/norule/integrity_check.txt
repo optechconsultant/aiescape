@@ -1,0 +1,44 @@
+runs.jsonl: 1273 lines, 0 unparseable []; transcripts.jsonl: 1273 lines, 0 unparseable []
+PASS  every line of both files parses as JSON; same number of lines
+
+1. completed (done==1) rows per model: raw file vs N_per_model_all.csv
+PASS  deepseek-v4-flash: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  gemma-4-26b-a4b: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  glm-5.3-flash: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  gpt-oss-120b: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  granite-4.2-8b: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  ling-3.0-flash: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  llama-4-scout: raw 58 (raw rows incl. repeats 58) vs table 58
+PASS  mimo-v2.6-flash: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  minimax-m3: raw 99 (raw rows incl. repeats 99) vs table 99
+PASS  mistral-small-3.2: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  nemotron-3.5-lightning: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  qwen3-235b: raw 100 (raw rows incl. repeats 100) vs table 100
+PASS  total raw 1157 vs table 1157
+
+2. duplicates and missing fields
+PASS  no duplicate keys among completed rows ([])
+info: keys appearing in more than one row (failed attempt later retried): 69; all rows done=-1 then done=1 is expected
+PASS  no key has two successful transcripts
+PASS  no completed row has a missing/null field (0 found, first [])
+PASS  key format, model/model_id, family, host, provider, image, error, limit flag, cost all consistent (0 bad [])
+PASS  seeds within 0..9 for 10 families x 10 seeds = 100 per model (max seed 9)
+PASS  all 116 failed rows carry an error message
+
+4. the 417 recovered rows (lines 745-1161 of the file as committed in a99a5bd)
+PASS  first 744 lines unchanged by recovery; recovered = 417 run rows + 417 transcript rows
+PASS  current file begins with the recovered file exactly
+PASS  all 417 recovered run rows and 417 transcript rows parse as JSON (0 errors)
+PASS  recovered: 364 completed rows pass the transcript/limit checks; 0 problems []
+PASS  other completed: 793 completed rows pass the transcript/limit checks; 0 problems []
+PASS  recovered failed rows: 53, all carry an error; completed: 364
+PASS  recovered rows are all either completed or failed
+PASS  all recovered rows are labelled batch=completion
+
+3. primary test recomputed from raw runs.jsonl + raw pilot 6-8 logs (official = 723 rows with no batch label)
+official 723: n_runs=723 models=12 rho=0.6853 one-sided exact p=0.0085 (independent Monte Carlo check p~0.0086)
+PASS  official rho matches 0.685 and p matches 0.0085
+all completed: n_runs=1157 models=12 rho=0.6853 one-sided exact p=0.0085 (independent Monte Carlo check p~0.0086)
+PASS  all-runs rho matches 0.685
+
+SUMMARY: 0 mismatch(es)
