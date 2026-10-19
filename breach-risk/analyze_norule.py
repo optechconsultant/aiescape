@@ -31,9 +31,19 @@ def boot(x, y, rng, B=2000):
     return np.percentile(out, [2.5, 97.5])
 
 
-def main():
+def main(subset="official"):
+    """subset: official = the 723 runs of the first batch (no batch label; the official Amendment 18 result);
+    completion = rows labelled batch=completion; all = both (Amendment 18 addendum, labelled deviation)."""
     allr = pd.read_json(HERE / "data/norule/runs.jsonl", lines=True)
+    if "batch" not in allr:
+        allr["batch"] = ""
+    allr["batch"] = allr.batch.fillna("")
     r = allr[allr.done == 1].drop_duplicates("key", keep="last").copy()
+    if subset == "official":
+        r = r[r.batch == ""]
+    elif subset == "completion":
+        r = r[r.batch == "completion"]
+    sfx = "" if subset == "official" else f"_{subset}"
     r["ended_own"] = r.hit_turn_limit == 0
     r["cnf"] = r.ended_own & r.final_message.fillna("").apply(lambda t: bool(CNF.search(t)))
     g = r.groupby("model").agg(runs=("key", "size"), mean_commands=("n_commands", "mean"), median_commands=("n_commands", "median"),
@@ -50,7 +60,7 @@ def main():
     g["rank_here"] = g.mean_commands.rank(ascending=False); g["rank_M1"] = g.M1_amendment17.rank(ascending=False)
     g["rank_diff"] = (g.rank_here - g.rank_M1).abs()
     g = g.sort_values("a4_attempt_rate", ascending=False)
-    g.to_csv(OUT / "N_per_model.csv")
+    g.to_csv(OUT / f"N_per_model{sfx}.csv")
     rng = np.random.default_rng(2026)
     n = len(g)
     rho, p = exact_spearman(g.mean_commands.to_numpy(), g.a4_attempt_rate.to_numpy(), one_sided=True)
@@ -64,17 +74,19 @@ def main():
         dict(test="PRIMARY: mean commands (no rule) vs a4 attempt rate", n_models=n, rho=rho, p=p, sided="one-sided exact", lo=lo, hi=hi, result="PASS" if passed else "FAIL"),
         dict(test="secondary: mean commands vs blocked-route a4 attempt rate", n_models=n, rho=rho2, p=p2, sided="one-sided exact", lo=lo2, hi=hi2, result="exploratory"),
         dict(test="secondary: mean commands (no rule) vs M1 (Amendment 17)", n_models=n, rho=rho3, p=p3, sided="two-sided exact", lo=lo3, hi=hi3, result="descriptive")])
-    res.to_csv(OUT / "N_tests.csv", index=False)
+    res.to_csv(OUT / f"N_tests{sfx}.csv", index=False)
     # regex check sample: 5 final messages per model among runs that ended on their own with a message
     pool = r[r.ended_own & (r.final_message.fillna("").str.strip() != "")]
-    samp = pd.concat([d.sample(min(5, len(d)), random_state=2026) for _, d in pool.groupby("model")])
-    samp[["model", "key", "final_message", "cnf"]].to_csv(OUT / "N_regex_check_sample.csv", index=False)
+    if subset == "official":
+        samp = pd.concat([d.sample(min(5, len(d)), random_state=2026) for _, d in pool.groupby("model")])
+        samp[["model", "key", "final_message", "cnf"]].to_csv(OUT / "N_regex_check_sample.csv", index=False)
     pd.set_option("display.width", 250)
-    print(f"completed {len(r)} of 1200; failed attempts logged {int((allr.done == -1).sum())}; cost ${allr.cost_usd.sum():.3f}; providers {r.providers.value_counts().to_dict()}")
+    print(f"subset: {subset}; completed {len(r)} of 1200; failed attempts logged {int((allr.done == -1).sum())}; cost ${allr.cost_usd.sum():.3f}; providers {r.providers.value_counts().to_dict()}")
     print(g.drop(columns=["rank_here", "rank_M1"]).round(3).to_string())
     print(res.round(4).to_string(index=False))
     print("rank disagreements (>= 4 places):", g[g.rank_diff >= 4].index.tolist())
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(sys.argv[1] if len(sys.argv) > 1 else "official")
