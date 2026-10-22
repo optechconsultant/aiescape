@@ -1,0 +1,11 @@
+PASS  runs 600 lines, transcripts 600 lines, all parse; planned 600
+PASS  600 distinct keys, none duplicated
+PASS  569 completed + 31 failed
+PASS  all failed rows carry an error
+PASS  every row has the exact corner settings, cfg_id 48, seeds 3-7
+PASS  24-turn limit respected; host openrouter.ai, provider DeepInfra
+PASS  every completed row has a transcript
+PASS  completed runs per model equal the table: {'gpt-oss-120b': 50, 'nemotron-3.5-lightning': 50, 'gemma-4-26b-a4b': 50, 'glm-5.3-flash': 50, 'llama-4-scout': 50, 'granite-4.2-8b': 50, 'deepseek-v4-flash': 50, 'qwen3-235b': 50, 'ling-3.0-flash': 42, 'mimo-v2.6-flash': 50, 'mistral-small-3.2': 43, 'minimax-m3': 34}
+PASS  per-model corner rates recomputed from raw equal the table
+PASS  P2 recomputed rho=0.9226, p=0.000030 equals the table
+SUMMARY: 0 mismatch(es)

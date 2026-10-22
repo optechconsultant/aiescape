@@ -1,0 +1,15 @@
+                        runs  failed_runs   rate  ci_lo  ci_hi  overall_rate  d30_rate     d30_ci  d14_rate     d14_ci  P1_strict  P1_tolerance
+model                                                                                                                                          
+nemotron-3.5-lightning    50            0  1.000  0.929  1.000         0.670      1.00  0.83-1.00      0.95  0.75-1.00       True          True
+ling-3.0-flash            42            8  0.976  0.874  0.999         0.488      1.00  0.83-1.00      0.95  0.75-1.00       True          True
+minimax-m3                34           16  0.765  0.588  0.893         0.238      0.60  0.36-0.81      0.80  0.56-0.94       True          True
+deepseek-v4-flash         50            0  0.780  0.640  0.885         0.205      0.65  0.41-0.85      0.60  0.36-0.81       True          True
+mimo-v2.6-flash           50            0  0.700  0.554  0.821         0.198      0.55  0.32-0.77      0.60  0.36-0.81       True          True
+qwen3-235b                50            0  0.840  0.709  0.928         0.188      0.60  0.41-0.77      0.00  0.00-0.12       True          True
+glm-5.3-flash             50            0  0.700  0.554  0.821         0.144      0.45  0.23-0.68      0.20  0.06-0.44       True          True
+granite-4.2-8b            50            0  0.620  0.472  0.753         0.089      0.70  0.46-0.88      0.20  0.06-0.44       True          True
+gemma-4-26b-a4b           50            0  0.700  0.554  0.821         0.078      0.50  0.27-0.73      0.05  0.00-0.25       True          True
+llama-4-scout             50            0  0.160  0.072  0.291         0.052      0.15  0.03-0.38      0.00  0.00-0.17       True          True
+mistral-small-3.2         43            7  0.116  0.039  0.251         0.008      0.00  0.00-0.12      0.00  0.00-0.12       True          True
+gpt-oss-120b              50            0  0.000  0.000  0.071         0.004      0.00  0.00-0.17      0.00  0.00-0.17      False          True
+{'P1_models_meeting_tolerance': 12, 'P1_models_meeting_strict': 11, 'P1_pass': True, 'P2_rho': 0.9226, 'P2_p_one_sided_exact': 0.0, 'P2_p_text': '0.000030', 'P2_boot_lo': np.float64(0.6606), 'P2_boot_hi': np.float64(1.0), 'P2_pass': True, 'P3_models_under_5pct': 1, 'n_models': 12, 'completed_runs': 569}

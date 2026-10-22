@@ -1,0 +1,2 @@
+P1_models_meeting_tolerance,P1_models_meeting_strict,P1_pass,P2_rho,P2_p_one_sided_exact,P2_p_text,P2_boot_lo,P2_boot_hi,P2_pass,P3_models_under_5pct,n_models,completed_runs
+12,11,True,0.9225580879172384,3.0137686387686387e-05,0.000030,0.660606083329565,1.0,True,1,12,569
