@@ -5,13 +5,10 @@ Predicts whether an LLM agent will step outside a rule, from information known b
 
 ## Status
 
-| Part | Status |
-| --- | --- |
-| 48-run D-optimal design (7 factors, 1,458-cell grid) | Tested: full rank 20/20, balanced, D-efficiency 0.130 vs best random 0.114 |
-| 10 scenario families, canary-file breach scorer | Tested on 7,680 scripted runs: 638/638 breaches caught (6 techniques incl. base64 and silent copy), 0 false positives |
-| Analysis (held-out validation, calibration, effects) | Tested on SYNTHETIC data only |
-| Agent loop, privilege-based tool sets, request_review tool, safety guards | Tested with a mock model |
-| `DockerSandbox`, `AnthropicBackend`, `OpenAICompatBackend` | NOT tested (no image registry or API key in the build workspace) |
+This harness produced all the runs reported in the paper "Which Situations Make AI Agents Break Rules? A Preregistered
+Measurement Study" (20,182 runs, twelve open-weight models and one closed model). The preregistration and its amendments
+are in `data/PREREGISTRATION.md`, and the numbers behind each table are in `../paper_data_pack/` (see its README).
+Earlier build-stage notes below, such as the synthetic dry run, describe how the machinery was first checked.
 
 ## Dry run (already done, synthetic)
 
